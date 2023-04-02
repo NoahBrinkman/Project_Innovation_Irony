@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -20,23 +21,24 @@ public class OreManager : MonoBehaviour
 {
     [SerializeField,Tooltip("The host will decide these randomly")] private List<Recipe> debugRecipes;
     [SerializeField] private GameObject oreObject;
-    [SerializeField] private List<Transform> possibleSpawnLocations = new List<Transform>();
-    private List<Transform> bufferTransforms;
-    private List<Recipe> recipes;
 
-    private List<Ore> ores;
+    private List<Recipe> recipes;
+    
+    private List<metals> minedOres;
 
     [SerializeField] private int randomExtraOres = 5;
-    [SerializeField] private Collider bounds;
+    [SerializeField] private List<Collider> bounds;
+    [SerializeField] private float minimumDistanceBetweenOres = .75f;
+    private List<Vector3> takenPositions = new List<Vector3>();
     private void Start()
     {
-        bufferTransforms = new List<Transform>(possibleSpawnLocations);
         Initialize(debugRecipes);
 
     }
 
     public void Initialize(List<Recipe> Precipes)
     {
+        minedOres = new List<metals>();
         recipes = Precipes;
         for (int i = 0; i < recipes.Count; i++)
         {
@@ -54,26 +56,34 @@ public class OreManager : MonoBehaviour
 
     private void SpawnOre(metals metal)
     {
-       /* Vector3 spawnPosition = Vector3.zero;
-        float randomX ;
-        float randomY ;
-        float randomZ ;
+       Vector3 spawnPosition = Vector3.zero;
+       
+        Collider spawnBound = bounds[Random.Range(0, bounds.Count)];
+
         do
         {
-            randomX = Random.Range(bounds.bounds.min.x - 10, bounds.bounds.max.x + 10);
-            randomY = Random.Range(bounds.bounds.min.y-10, bounds.bounds.max.y +10);
-            randomZ = Random.Range(bounds.bounds.min.z - 10, bounds.bounds.max.z + 10);
-        } while (bounds.bounds.Contains(new Vector3(randomX,randomY,randomZ)));
+           float x = Random.Range(spawnBound.bounds.min.x, spawnBound.bounds.max.x);
+            float y = Random.Range(spawnBound.bounds.min.y, spawnBound.bounds.max.y);
+            float z = Random.Range(spawnBound.bounds.min.z, spawnBound.bounds.max.z );
+            spawnPosition = new Vector3(x, y, z);
+
+        } while (takenPositions.Any(p => Vector3.Distance(p,spawnPosition) < minimumDistanceBetweenOres));
         
-        spawnPosition = new Vector3(randomX, randomY, randomZ);
-        GameObject newOre = Instantiate(oreObject, bounds.ClosestPointOnBounds(spawnPosition), quaternion.identity);
-        Ore oreComponent = newOre.GetComponent<Ore>();
-        oreComponent.Initialize(metal);*/
-       int r = Random.Range(0, bufferTransforms.Count);
-       Transform spawnPoint = bufferTransforms[r];
-       bufferTransforms.Remove(bufferTransforms[r]);
-       GameObject newOre = Instantiate(oreObject, spawnPoint.position, spawnPoint.rotation);
-       newOre.GetComponent<Ore>().Initialize(metal);
+     
+       GameObject newOre = Instantiate(oreObject, spawnPosition,  
+           spawnBound.transform.rotation);
+       newOre.GetComponent<Ore>().Initialize(metal).onMined += OnOreMinded;
+    }
+
+    void OnOreMinded(metals metal)
+    {
+        minedOres.Add(metal);
+        if (recipes[0].metalRecipe.ContainsSequence(minedOres))
+        {
+            recipes.RemoveAt(0);
+            //Remove the currect ores
+            //Send accuracy grade
+        }
     }
     
     // Update is called once per frame
@@ -81,4 +91,7 @@ public class OreManager : MonoBehaviour
     {
         
     }
+    
 }
+
+

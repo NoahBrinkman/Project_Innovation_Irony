@@ -11,13 +11,13 @@ public class ShakeDetector : MonoBehaviour
     
     private void Start()
     {
-        ReadAccelerometerInput.Instance.OnSake += OnShake;
+        ReadAccelerometerInput.Instance.OnShake += OnShake;
         Input.gyro.enabled = true;
     }
 
     private void OnDestroy()
     {
-        ReadAccelerometerInput.Instance.OnSake -= OnShake;
+        ReadAccelerometerInput.Instance.OnShake -= OnShake;
     }
 
     private void Update()
