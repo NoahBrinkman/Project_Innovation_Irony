@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class Ore : MonoBehaviour
 {
-    [SerializeField] private OreColourHelper colorHelper;
+    [SerializeField] private OreHelper colorHelper;
 
     [SerializeField] private int health = 5;
     private int _health;
