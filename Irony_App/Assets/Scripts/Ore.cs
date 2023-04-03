@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class Ore : MonoBehaviour
 {
-    [SerializeField] private OreColourHelper colorHelper;
+    [SerializeField] private OreHelper colorHelper;
 
     [SerializeField] private int health = 5;
     private int _health;
@@ -75,8 +75,8 @@ public class Ore : MonoBehaviour
         //Set my camera as the one
         isSelected = true;
         isHeldDown = true;
-        cinCam.m_Priority++;
-        mainCam.m_Priority--;;
+        cinCam.m_Priority = 11;
+        mainCam.m_Priority = 10;
     }
 
     private void OnShaken()
@@ -90,8 +90,8 @@ public class Ore : MonoBehaviour
         _health--;
         if (_health <= 0)
         {
-            mainCam.m_Priority++;
-            cinCam.m_Priority--;
+            mainCam.m_Priority = 11;
+            cinCam.m_Priority = 10;
             GetComponent<MeshRenderer>().enabled = false;
             Destroy(gameObject, 2.5f);
         }

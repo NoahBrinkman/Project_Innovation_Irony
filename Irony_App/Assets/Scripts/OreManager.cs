@@ -78,20 +78,15 @@ public class OreManager : MonoBehaviour
     void OnOreMinded(metals metal)
     {
         minedOres.Add(metal);
+        //send metal to forge
         if (recipes[0].metalRecipe.ContainsSequence(minedOres))
         {
             recipes.RemoveAt(0);
             //Remove the currect ores
-            //Send accuracy grade
+            //Send "Ore sent" accuracy grade
         }
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
         
     }
-    
 }
 
 
