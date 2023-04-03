@@ -24,10 +24,12 @@ public class ReadAccelerometerInput : MonoBehaviour
         _instance = this;
     }
 
-    public Action OnSake;
+    public Action OnShake;
+    
+    public Action OnEndShake;
     [SerializeField] private float threshold = 2;
-    private float updateInterval = 1.0f / 60.0f;
-    private float lowPassKernelInSeconds = 1.0f;
+   // private float updateInterval = 1.0f / 60.0f;
+    //private float lowPassKernelInSeconds = 1.0f;
     private float lowPassFilterFactor;
     private Vector3 lowPassValue;
     
@@ -44,7 +46,11 @@ public class ReadAccelerometerInput : MonoBehaviour
         Vector3 deltaAcceleration = acceleration - lowPassValue;
         if (deltaAcceleration.sqrMagnitude >= threshold)
         {
-            OnSake?.Invoke();
+            OnShake?.Invoke();
+        }
+        else
+        {
+            OnEndShake?.Invoke();
         }
     }
 
