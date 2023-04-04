@@ -42,14 +42,19 @@ using UnityEngine;
 [Serializable]
 public class MetalData
 {
+    [Header("General")]
     public metals Metal;
     public Material mat;
+    [Header("Cleaning")]
     [Tooltip("Shaking the phone will make a value increase, roughness will subtract itself from this")]
     public float roughness = .5f;
-
     public float perfectCleaningValue = 3.5f;
     public float cleaningGradeMargin = .5f;
-    
+    [Header("Smelting")]
+    public float targetHeat;
+    public float heatMargin;
+    public float cookTime;
+
 }
 
 
