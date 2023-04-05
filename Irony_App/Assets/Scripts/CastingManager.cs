@@ -11,12 +11,12 @@ public class CastingManager : MonoBehaviour
     [SerializeField] private List<metals> moltenMetalsInForge;
     [SerializeField] private CastMold currentlyChosenMold;
 
-  
+   
     
     void Start()
     {
         Input.gyro.enabled = true;
-        
+        ReadSwipeInput.Instance.OnSwipeRight += OnswipeRight;
     }
 
     // Update is called once per frame
@@ -24,16 +24,38 @@ public class CastingManager : MonoBehaviour
     {
         if (currentlyChosenMold != null)
         {
-            float rotationalInput = Mathf.Abs(Input.gyro.attitude.z);
-            //Debug.Log(Input.gyro.attitude.x + " , " + Input.gyro.attitude.y + " , "+ Input.gyro.attitude.z );
-            if ( rotationalInput >  minimumRotationalInput && rotationalInput < minimumaximumRotationalInput)
+            if (moltenMetalsInForge.ContainsAll(currentlyChosenMold.myRecipe.metalRecipe))
             {
-                currentlyChosenMold.Fill(rotationalInput);
+                float rotationalInput = Mathf.Abs(Input.gyro.attitude.z);
+                //Debug.Log(Input.gyro.attitude.x + " , " + Input.gyro.attitude.y + " , "+ Input.gyro.attitude.z );
+                if ( rotationalInput >  minimumRotationalInput && rotationalInput < minimumaximumRotationalInput)
+                {
+                    currentlyChosenMold.Fill(rotationalInput);
+                    
+                }
+                
+            }
+            else
+            {
+                Debug.Log("no");
             }
         }
     }
 
-
+    private void OnswipeRight()
+    {
+        if (currentlyChosenMold != null)
+        {
+            if (currentlyChosenMold.fillValue > +currentlyChosenMold.targetFillValue - currentlyChosenMold.fillMargin)
+            {
+                foreach (var metal in currentlyChosenMold.myRecipe.metalRecipe)
+                {
+                    moltenMetalsInForge.Remove(metal);
+                }
+                StartCoroutine(currentlyChosenMold.SendOffScreen());
+            }
+        }
+    }
     public void SelectCurrentMold(CastMold mold)
     {
         if (currentlyChosenMold == mold)
@@ -50,5 +72,9 @@ public class CastingManager : MonoBehaviour
             currentlyChosenMold = mold;
         }
     }
-    
+
+    public void SendToolToServer(Item item, int grade)
+    {
+        //TODO: Send message with this data;
+    }
 }

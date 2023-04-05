@@ -23,4 +23,18 @@
 
             return false;
         }
+        public static bool ContainsAll<T>(this List<T> outer, List<T> inner)
+        {
+            bool allIn = true;
+
+            for (int i = 0; i < inner.Count; i++)
+            {
+                if (!outer.Contains(inner[i]))
+                {
+                    allIn = false;
+                }
+            }
+            
+            return allIn;
+        }
     }
