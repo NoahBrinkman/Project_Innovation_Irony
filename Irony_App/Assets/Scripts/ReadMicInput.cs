@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class ReadMicInput : MonoBehaviour
 {
-    private float volume;
-    [SerializeField] private Transform scaleIdentifier;
+    public float volume { get; private set; }
     [SerializeField] private int sampleWindow;
     private AudioSource source;
     [SerializeField] private Vector3 maxScale;
     private AudioClip micClip;
     [SerializeField] private float sensitivity = 75;
+    [SerializeField] private float minimumloudness = .01f; 
     private void Start()
     {
         source = GetComponent<AudioSource>();
@@ -30,8 +30,12 @@ public class ReadMicInput : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            float volume = GetLoudnessFromMicrophone() * sensitivity;
-            scaleIdentifier.transform.localScale = Vector3.Lerp(Vector3.one, maxScale,volume);
+            float loudness = GetLoudnessFromMicrophone();
+            if (loudness < minimumloudness)
+                volume = 0;
+            else
+                volume = GetLoudnessFromMicrophone() * sensitivity;
+            
         }
     }
 
