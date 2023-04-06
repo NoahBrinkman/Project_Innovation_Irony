@@ -24,10 +24,15 @@ public class Ore : MonoBehaviour
     private bool beenMined = false;
 
     public Action<metals> onMined;
-    // Start is called before the first frame update
+
+    //get the moving minecart
+    private Minecart mc;
+    
     void Start()
     {
         //    Initialize(Metal);
+        //Get "Minecart" Script from gameObject
+        mc = FindAnyObjectByType<Minecart>().GetComponent<Minecart>();
         
     }
 
@@ -59,13 +64,14 @@ public class Ore : MonoBehaviour
                 isSelected = false;
                 cinCam.m_Priority--;
                 mainCam.m_Priority++;
-                
+                mc.minecartStop = false;
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             isHeldDown = false;
+            
         }
     }
 
@@ -77,6 +83,9 @@ public class Ore : MonoBehaviour
         isHeldDown = true;
         cinCam.m_Priority = 11;
         mainCam.m_Priority = 10;
+        mc.minecartStop = true;
+
+
     }
 
     private void OnShaken()
