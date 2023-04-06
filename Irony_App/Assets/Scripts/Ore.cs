@@ -102,6 +102,7 @@ public class Ore : MonoBehaviour
             mainCam.m_Priority = 11;
             cinCam.m_Priority = 10;
             GetComponent<MeshRenderer>().enabled = false;
+            mc.minecartStop = false;
             Destroy(gameObject, 2.5f);
         }
         transform.localScale *= .95f;
