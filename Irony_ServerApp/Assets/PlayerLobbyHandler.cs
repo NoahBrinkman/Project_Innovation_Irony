@@ -23,7 +23,7 @@ public class PlayerLobbyHandler : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
 
     [SerializeField] private List<Recipe> recipes = new List<Recipe>();
-    [SerializeField] private List<Recipe> recipePool;
+    private List<Recipe> recipePool;
 
     private void Start()
     {
