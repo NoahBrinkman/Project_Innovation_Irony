@@ -3442,9 +3442,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimumRotationalInput: 0.3
-  minimumaximumRotationalInput: 0.4
+  minimumaximumRotationalInput: 0.45
   pouringAdditionMultiplier: 0.2
-  moltenMetalsInForge: 
+  moltenMetalsInForge: 01000000020000000300000001000000
   currentlyChosenMold: {fileID: 0}
 --- !u!1 &1784177434
 GameObject:

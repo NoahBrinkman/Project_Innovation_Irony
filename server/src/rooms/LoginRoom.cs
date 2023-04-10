@@ -53,6 +53,8 @@ namespace server
 			HostJoinResponse response =	new HostJoinResponse();
 			_server._hosts.Add(response.passcode, pSender);
             pSender.SendMessage(response);
+            removeMember(pSender);
+            _server.GetLobbyRoom().AddMember(pSender);
         }
 
         /**
@@ -63,7 +65,7 @@ namespace server
 			Log.LogInfo("Moving new client to accepted...", this);
 			
 			PlayerJoinResponse playerJoinResponse = new PlayerJoinResponse();
-            if (_server.GetPlayerInfo((p) => p.passCode == pMessage.passCode).Count == 0)
+			/*if (_server.GetPlayerInfo((p) => p.passCode == pMessage.passCode).Count == 0)
 			{
 				playerJoinResponse.result = PlayerJoinResponse.RequestResult.ACCEPTED;
 				PlayerInfo newPlayerInfo = new PlayerInfo();
@@ -72,7 +74,22 @@ namespace server
 				removeMember(pSender);
 				_server.GetLobbyRoom().AddMember(pSender);
 			}
-            playerJoinResponse.result = PlayerJoinResponse.RequestResult.DENIED;
+            playerJoinResponse.result = PlayerJoinResponse.RequestResult.DENIED;*/
+			if (_server._hosts.ContainsKey(pMessage.passCode))
+			{
+                playerJoinResponse.result = PlayerJoinResponse.RequestResult.ACCEPTED;
+                PlayerInfo newPlayerInfo = new PlayerInfo();
+                newPlayerInfo.id = _server.GetNewID();
+				newPlayerInfo.room = MinigameRoom.None;
+				newPlayerInfo.lobbyCode = pMessage.passCode;
+				_server.AddPlayerInfo(pSender, newPlayerInfo);
+				removeMember(pSender);
+				_server.GetLobbyRoom().AddMember(pSender);
+			}
+			else
+			{
+                playerJoinResponse.result = PlayerJoinResponse.RequestResult.DENIED;
+            }
             pSender.SendMessage(playerJoinResponse);
 		}
 

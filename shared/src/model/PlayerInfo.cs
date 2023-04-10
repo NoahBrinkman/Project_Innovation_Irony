@@ -6,16 +6,22 @@
      */
     public class PlayerInfo : ASerializable
     {
-        public string passCode;
+        public int id;
+        public string lobbyCode;
+        public MinigameRoom room;
 
         public override void Deserialize(Packet pPacket)
         {
-            passCode = pPacket.ReadString();
+            id = pPacket.ReadInt();
+            room = (MinigameRoom)pPacket.ReadInt();
+            lobbyCode = pPacket.ReadString();
         }
 
         public override void Serialize(Packet pPacket)
         {
-            pPacket.Write(passCode);
+            pPacket.Write(id);
+            pPacket.Write((int)room);
+            pPacket.Write(lobbyCode);
         }
     }
 }

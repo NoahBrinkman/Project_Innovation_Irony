@@ -24,11 +24,13 @@ public class Ore : MonoBehaviour
     private bool beenMined = false;
 
     public Action<metals> onMined;
+
+    private MeshRenderer mR;
     // Start is called before the first frame update
     void Start()
     {
         //    Initialize(Metal);
-        
+        mR = GetComponent<MeshRenderer>();
     }
 
     public Ore Initialize(metals metal)
@@ -81,7 +83,7 @@ public class Ore : MonoBehaviour
 
     private void OnShaken()
     {
-        if (!isSelected || beenMined)
+        if (!isSelected || beenMined || _health <= 0)
         {
             return;
         }
@@ -92,7 +94,8 @@ public class Ore : MonoBehaviour
         {
             mainCam.m_Priority = 11;
             cinCam.m_Priority = 10;
-            GetComponent<MeshRenderer>().enabled = false;
+            if(mR != null)
+                mR.enabled = false;
             Destroy(gameObject, 2.5f);
         }
         transform.localScale *= .95f;

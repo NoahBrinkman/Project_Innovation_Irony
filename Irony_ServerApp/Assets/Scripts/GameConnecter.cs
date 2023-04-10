@@ -18,6 +18,9 @@ public class GameConnecter : MonoBehaviour
     public static  GameConnecter Instance => _instance;
     private string passCode;
     public string PassCode => passCode;
+
+    public Action<MinigameRoom> OnMinigameChosen;
+    public Action<MinigameRoom> OnMinigameUnChosen;
     
     // Start is called before the first frame update
     void Awake()
@@ -54,7 +57,13 @@ public class GameConnecter : MonoBehaviour
     private void HandleMessage(ASerializable message)
     {
         if(message is HostJoinResponse) HandleHostJoinResponse(message as HostJoinResponse);
-        else if (message is MinigameChosenRequest) HandleMinigameChosenRequest(message as MinigameChosenRequest);
+        else if (message is MinigameChosenEvent) HandleMinigameChosenEvent(message as MinigameChosenEvent);
+        else if (message is MinigameUnChosenEvent) HandleMinigameUnChosenEvent(message as MinigameUnChosenEvent);
+    }
+
+    private void HandleMinigameUnChosenEvent(MinigameUnChosenEvent message)
+    {
+        OnMinigameUnChosen?.Invoke(message.room);
     }
 
 
@@ -74,6 +83,11 @@ public class GameConnecter : MonoBehaviour
         }
     }
 
+    public void StartGame()
+    {
+        StartGameRequest request = new StartGameRequest();
+        _channel.SendMessage(request);
+    }
     private void HandleHostJoinResponse(HostJoinResponse response)
     {
         Debug.Log($"Received join Response passcode: {response.passcode}");
@@ -81,9 +95,10 @@ public class GameConnecter : MonoBehaviour
         SceneManager.LoadSceneAsync(1);
     }
     
-    private void HandleMinigameChosenRequest(MinigameChosenRequest message)
+    private void HandleMinigameChosenEvent(MinigameChosenEvent message)
     {
-        throw new NotImplementedException();
+        Debug.Log(message.room);
+       OnMinigameChosen?.Invoke(message.room);
     }
     
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using shared;
 using UnityEngine;
 
 public class PlayerLobbyHandler : MonoBehaviour
@@ -11,30 +12,65 @@ public class PlayerLobbyHandler : MonoBehaviour
     [SerializeField] private RectTransform cleaningTransform;
     [SerializeField] private RectTransform smeltingTransform;
     [SerializeField] private RectTransform castingTransform;
-    [SerializeField] private float playerChoseThisYValueRenameThisLaterPlease;
+    [SerializeField] private float lockedInYValue;
     [SerializeField] private float noPlayerYValue;
-    private void Update()
+
+
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        GameConnecter.Instance.OnMinigameChosen += MoveUp;
+        GameConnecter.Instance.OnMinigameUnChosen += moveDown;
+    }
+    
+    
+    
+    private void MoveUp(MinigameRoom room)
+    {
+        switch (room)
         {
-            MoveUp();
+            case MinigameRoom.Mining:
+                miningTransform.DOMoveY(miningTransform.position.y + lockedInYValue, 1).SetEase(Ease.OutBounce);
+                break;
+            case MinigameRoom.Cleaning:
+                cleaningTransform.DOMoveY(cleaningTransform.position.y + lockedInYValue, 1).SetEase(Ease.OutBounce);
+                break;
+            case MinigameRoom.Smelting:
+                smeltingTransform.DOMoveY(smeltingTransform.position.y + lockedInYValue, 1).SetEase(Ease.OutBounce);
+                break;
+            case MinigameRoom.Casting:
+                castingTransform.DOMoveY(castingTransform.position.y + lockedInYValue, 1).SetEase(Ease.OutBounce);
+                break;
+                
         }
+       
+    }
 
-        if (Input.GetKeyDown(KeyCode.L))
+    private void moveDown(MinigameRoom room)
+    {
+        Debug.Log("Unchosen found");
+        switch (room)
         {
-            moveDown();
+            case MinigameRoom.Mining:
+                miningTransform.DOMoveY(miningTransform.position.y - lockedInYValue, 1).SetEase(Ease.InQuad);
+                break;
+            case MinigameRoom.Cleaning:
+                cleaningTransform.DOMoveY(cleaningTransform.position.y - lockedInYValue, 1).SetEase(Ease.InQuad);
+                break;
+            case MinigameRoom.Smelting:
+                smeltingTransform.DOMoveY(smeltingTransform.position.y - lockedInYValue, 1).SetEase(Ease.InQuad);
+                break;
+            case MinigameRoom.Casting:
+                castingTransform.DOMoveY(castingTransform.position.y - lockedInYValue, 1).SetEase(Ease.InQuad);
+                break;
+                
         }
     }
 
-    private void MoveUp()
+    public void StartGame()
     {
-        miningTransform.DOMoveY(playerChoseThisYValueRenameThisLaterPlease, 1).SetEase(Ease.OutBounce);
+        GameConnecter.Instance.StartGame();
     }
-
-    private void moveDown()
-    {
-        miningTransform.DOMoveY(noPlayerYValue, 1).SetEase(Ease.InQuad);
-    }
+    
 }
 
 

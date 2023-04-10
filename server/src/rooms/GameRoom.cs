@@ -1,5 +1,6 @@
 ﻿using shared;
 using System;
+using System.Collections.Generic;
 
 namespace server
 {
@@ -12,7 +13,7 @@ namespace server
 	 * The game has no end yet (that is up to you), in other words:
 	 * all players that are added to this room, stay in here indefinitely.
 	 */
-	class GameRoom : Room
+	class GameRoom : SimpleRoom
 	{
 		public bool IsGameInPlay { get; private set; }
 
@@ -22,18 +23,17 @@ namespace server
 		{
 		}
 
-		public void StartGame (TcpMessageChannel pPlayer1, TcpMessageChannel pPlayer2)
+		public void StartGame (List<TcpMessageChannel> players)
 		{
 			if (IsGameInPlay) throw new Exception("Programmer error duuuude.");
 
 			IsGameInPlay = true;
-			GameRoomEnteredMessage gm = new GameRoomEnteredMessage();
-			gm.player1 = _server.GetPlayerInfo(pPlayer1);
-			gm.player2 = _server.GetPlayerInfo(pPlayer2);
-			addMember(pPlayer1);
-			addMember(pPlayer2);
-			pPlayer1.SendMessage(gm);
-			pPlayer2.SendMessage(gm);
+			//GameRoomEnteredMessage gm = new GameRoomEnteredMessage();
+			for (int i = 0; i < players.Count; i++)
+			{
+				addMember(players[i]);
+			}
+		//	sendToAll(gm);
 		}
 
 		protected override void addMember(TcpMessageChannel pMember)
@@ -43,6 +43,21 @@ namespace server
 			//notify client he has joined a game room 
 			RoomJoinedEvent roomJoinedEvent = new RoomJoinedEvent();
 			roomJoinedEvent.room = RoomJoinedEvent.Room.GAME_ROOM;
+			switch (_server.GetPlayerInfo(pMember).room)
+			{
+				case MinigameRoom.Mining:
+					roomJoinedEvent.miningGameChosen = true;
+					break;
+                case MinigameRoom.Cleaning:
+                    roomJoinedEvent.cleaningGameChosen = true;
+                    break;
+                case MinigameRoom.Smelting:
+                    roomJoinedEvent.smeltingGameChosen = true;
+                    break;
+                case MinigameRoom.Casting:
+                    roomJoinedEvent.castingGameChosen = true;
+                    break;
+            }
 			pMember.SendMessage(roomJoinedEvent);
 		}
 

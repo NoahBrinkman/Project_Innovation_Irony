@@ -38,7 +38,7 @@ namespace server {
 		//stores additional info for a player
 		public Dictionary<string,TcpMessageChannel> _hosts = new Dictionary<string, TcpMessageChannel>();
 		private Dictionary<TcpMessageChannel, PlayerInfo> _playerInfo = new Dictionary<TcpMessageChannel, PlayerInfo>();
-
+		
 		private TCPGameServer()
 		{
 			//we have only one instance of each room, this is especially limiting for the game room (since this means you can only have one game at a time).
@@ -141,6 +141,10 @@ namespace server {
 				Console.WriteLine($"Destroying game room!");
 			}
 			
+		}
+		public int GetNewID()
+		{
+			return _playerInfo.Count;
 		}
 	}
 
