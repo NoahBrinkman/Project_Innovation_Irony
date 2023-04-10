@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using shared;
 using UnityEngine;
 
 public class CastMold : MonoBehaviour
 {
-    [SerializeField] public Recipe myRecipe;
+    [SerializeField] public Item myItem;
     [SerializeField] private float perfectFillValue;
     public float targetFillValue => perfectFillValue;
     [SerializeField] private float perfectFillMargin;
@@ -66,7 +67,7 @@ public class CastMold : MonoBehaviour
         
         yield return new WaitForSeconds(1.2f);
         Fill(-fillValue);
-        castingManager.SendToolToServer(myRecipe.item, grade);
+        castingManager.SendToolToServer(myItem, grade);
         castingManager.SelectCurrentMold(this);
         
         yield break;

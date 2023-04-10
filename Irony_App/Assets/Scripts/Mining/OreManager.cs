@@ -5,26 +5,16 @@ using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-[Serializable]
-public enum metals
-{
-    none,
-    copper,
-    iron,
-    gold,
-    diamond,
-}
-
+using shared;
 
 public class OreManager : MonoBehaviour
 {
     [SerializeField,Tooltip("The host will decide these randomly")] private List<Recipe> debugRecipes;
     [SerializeField] private GameObject oreObject;
 
-    private List<Recipe> recipes;
+    private List<Recipe> recipes = new List<Recipe>();
     
-    private List<metals> minedOres;
+    private List<Metal> minedOres;
 
     [SerializeField] private int randomExtraOres = 5;
     [SerializeField] private List<Collider> bounds;
@@ -35,10 +25,24 @@ public class OreManager : MonoBehaviour
         Initialize(debugRecipes);
 
     }
-
+    
+    public void Initialize(Recipe Precipe)
+    {
+        minedOres = new List<Metal>();
+        recipes.Add( Precipe);
+        for (int j = 0; j < Precipe.metalRecipe.Count; j++)
+        {
+            SpawnOre(Precipe.metalRecipe[j]);
+        }
+        for (int i = 0; i < randomExtraOres; i++)
+        {
+            SpawnOre((Metal)Random.Range(0,Enum.GetNames(typeof(Metal)).Length));
+        }
+    }
+    
     public void Initialize(List<Recipe> Precipes)
     {
-        minedOres = new List<metals>();
+        minedOres = new List<Metal>();
         recipes = Precipes;
         for (int i = 0; i < recipes.Count; i++)
         {
@@ -50,11 +54,11 @@ public class OreManager : MonoBehaviour
         }
         for (int i = 0; i < randomExtraOres; i++)
         {
-            SpawnOre((metals)Random.Range(0,Enum.GetNames(typeof(metals)).Length));
+            SpawnOre((Metal)Random.Range(0,Enum.GetNames(typeof(Metal)).Length));
         }
     }
 
-    private void SpawnOre(metals metal)
+    private void SpawnOre(Metal metal)
     {
        Vector3 spawnPosition = Vector3.zero;
        
@@ -75,7 +79,7 @@ public class OreManager : MonoBehaviour
        newOre.GetComponent<Ore>().Initialize(metal).onMined += OnOreMinded;
     }
 
-    void OnOreMinded(metals metal)
+    void OnOreMinded(Metal metal)
     {
         minedOres.Add(metal);
         //send metal to forge

@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using shared;
 using TMPro;
 using UnityEngine;
 
 public class WashableOreManager : MonoBehaviour
 {
     [SerializeField] private GameObject washableOrePrefab;
-    [SerializeField] private List<metals> washableOreBacklog;
+    [SerializeField] private List<Metal> washableOreBacklog;
     [SerializeField] private Transform spawnPosition;
     [SerializeField] private Transform endPosition;
     private WashableOre currentOre;
@@ -43,7 +44,7 @@ public class WashableOreManager : MonoBehaviour
     }
 
 
-    private void CreateNewOre(metals metal)
+    private void CreateNewOre(Metal metal)
     {
         //Spawn new ore 
         GameObject newOre = Instantiate(washableOrePrefab, spawnPosition.position, Quaternion.identity);

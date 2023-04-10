@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using shared;
+using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerLobbyHandler : MonoBehaviour
 {
@@ -15,11 +17,19 @@ public class PlayerLobbyHandler : MonoBehaviour
     [SerializeField] private float lockedInYValue;
     [SerializeField] private float noPlayerYValue;
 
+    [SerializeField] private float timePerRoundInSeconds = 180.0f;
+    [SerializeField] private float bufferSeconds = 3;
+    private float timer;
+    [SerializeField] private TMP_Text timerText;
+
+    [SerializeField] private List<Recipe> recipes = new List<Recipe>();
+    [SerializeField] private List<Recipe> recipePool;
 
     private void Start()
     {
-        GameConnecter.Instance.OnMinigameChosen += MoveUp;
-        GameConnecter.Instance.OnMinigameUnChosen += moveDown;
+        recipePool = new List<Recipe>(recipes);
+       GameConnecter.Instance.OnMinigameChosen += MoveUp;
+       GameConnecter.Instance.OnMinigameUnChosen += moveDown;
     }
     
     
@@ -68,9 +78,32 @@ public class PlayerLobbyHandler : MonoBehaviour
 
     public void StartGame()
     {
-        GameConnecter.Instance.StartGame();
+        Recipe r = recipePool[Random.Range(0, recipePool.Count)];
+        recipePool.Remove(r);
+        if (recipePool.Count == 0)
+        {
+            recipePool = new List<Recipe>(recipes);
+        }
+        
+        GameConnecter.Instance.StartGame(r);
+        timerText.gameObject.SetActive(true);
+        timer = timePerRoundInSeconds;
     }
-    
+
+    private void Update()
+    {
+        if (timerText.gameObject.activeInHierarchy)
+        {
+            timer -= Time.deltaTime;
+            float minutes = Mathf.FloorToInt(timer / 60);
+            float seconds = Mathf.FloorToInt(timer % 60);
+            timerText.text = string.Format("{0:00} : {1:00}",minutes,seconds);
+            if (timer + bufferSeconds <= 0)
+            {
+                
+            }
+        }
+    }
 }
 
 

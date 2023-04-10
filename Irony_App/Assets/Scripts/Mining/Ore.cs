@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using shared;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,7 +14,7 @@ public class Ore : MonoBehaviour
 
     [SerializeField] private int health = 5;
     private int _health;
-    public metals Metal;
+    public Metal Metal;
 
     private CinemachineVirtualCamera cinCam;
     private CinemachineVirtualCamera mainCam;
@@ -23,7 +24,7 @@ public class Ore : MonoBehaviour
 
     private bool beenMined = false;
 
-    public Action<metals> onMined;
+    public Action<Metal> onMined;
 
     private MeshRenderer mR;
     // Start is called before the first frame update
@@ -33,7 +34,7 @@ public class Ore : MonoBehaviour
         mR = GetComponent<MeshRenderer>();
     }
 
-    public Ore Initialize(metals metal)
+    public Ore Initialize(Metal metal)
     {
         Material myMat = colorHelper.GetMaterial(metal);
         //This will change for something else later

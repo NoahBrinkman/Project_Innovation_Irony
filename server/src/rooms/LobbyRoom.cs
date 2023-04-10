@@ -77,6 +77,7 @@ namespace server
             GameRoom room = new GameRoom(_server);
             _server.GetGameRooms().Add(room);
 			StartGameEvent gameStart = new StartGameEvent();
+			gameStart.startRecipe = startGameRequest.startRecipe;
 			//_server._hosts[_server.GetPlayerInfo(pSender).lobbyCode];
 			pSender.SendMessage(gameStart);
 

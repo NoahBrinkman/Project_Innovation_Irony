@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using shared;
 using UnityEngine;
 
 public class WashableOre : MonoBehaviour
 {
     [SerializeField] private OreHelper helper;
     [SerializeField] private float cleaningSpeed = .3f;
-    private metals metalType;
+    private Metal metalType;
     private float roughness = 0;
     public  float cleaningValue { get; private set; }
     private float targetCleaningValue = 1;
@@ -19,7 +20,7 @@ public class WashableOre : MonoBehaviour
     private bool perfectGrade => cleaningValue >= (targetCleaningValue - targetCleaningMargin) &&
                                  cleaningValue <= (targetCleaningValue + targetCleaningMargin);
 
-    public void Initialize(metals metal, Vector3 endPosition, Ease easeMode = Ease.InQuart)
+    public void Initialize(Metal metal, Vector3 endPosition, Ease easeMode = Ease.InQuart)
     {
         metalType = metal;
         MetalData metalInfo = helper.GetMetalData(metal);

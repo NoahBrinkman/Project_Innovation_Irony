@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using JetBrains.Annotations;
+using shared;
 using TMPro;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ public class ForgeManager : MonoBehaviour
 { 
     
     [SerializeField] private OreHelper helper;
-   [SerializeField] private List<metals> forgeBacklog;
-   [SerializeField] private metals currentlyInForge;
+   [SerializeField] private List<Metal> forgeBacklog;
+   [SerializeField] private Metal currentlyInForge;
 
    [SerializeField] private float gradeSubtractionMultiplier = 2.0f;
    private ReadMicInput micInput;
@@ -40,7 +41,7 @@ public class ForgeManager : MonoBehaviour
 
         debugText.text = $"Heat value: {micInput.volume}\nTimeTaken: {timer.ToString("F2")}";
         
-        if (currentlyInForge == metals.none && forgeBacklog.Count > 0)
+        if (currentlyInForge == Metal.None && forgeBacklog.Count > 0)
         {
             InitializeNewMetalInForge();
         }   
@@ -66,7 +67,7 @@ public class ForgeManager : MonoBehaviour
         //Start tween
         moltenMetal.transform.DOMoveY(-11, 2);
         yield return new WaitForSeconds(2);
-        currentlyInForge = metals.none;
+        currentlyInForge = Metal.None;
         if (forgeBacklog.Count > 0)
         {
             InitializeNewMetalInForge();

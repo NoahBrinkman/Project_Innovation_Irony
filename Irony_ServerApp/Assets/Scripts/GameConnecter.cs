@@ -83,11 +83,17 @@ public class GameConnecter : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame(Recipe r)
     {
         StartGameRequest request = new StartGameRequest();
+        request.startRecipe = r.recipe;
         _channel.SendMessage(request);
     }
+    public void EndGame()
+    {
+       Debug.Log("Not Implemented yet");
+    }
+    
     private void HandleHostJoinResponse(HostJoinResponse response)
     {
         Debug.Log($"Received join Response passcode: {response.passcode}");
