@@ -24,6 +24,7 @@ public class Ore : MonoBehaviour
 
     private bool beenMined = false;
 
+<<<<<<< HEAD:Irony_App/Assets/Scripts/Mining/Ore.cs
     public Action<Metal> onMined;
 
     private MeshRenderer mR;
@@ -32,6 +33,19 @@ public class Ore : MonoBehaviour
     {
         //    Initialize(Metal);
         mR = GetComponent<MeshRenderer>();
+=======
+    public Action<metals> onMined;
+
+    //get the moving minecart
+    private Minecart mc;
+    
+    void Start()
+    {
+        //    Initialize(Metal);
+        //Get "Minecart" Script from gameObject
+        mc = FindAnyObjectByType<Minecart>().GetComponent<Minecart>();
+        
+>>>>>>> DesignerTrench:Irony_App/Assets/Scripts/Ore.cs
     }
 
     public Ore Initialize(Metal metal)
@@ -62,13 +76,14 @@ public class Ore : MonoBehaviour
                 isSelected = false;
                 cinCam.m_Priority--;
                 mainCam.m_Priority++;
-                
+                mc.minecartStop = false;
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             isHeldDown = false;
+            
         }
     }
 
@@ -80,6 +95,9 @@ public class Ore : MonoBehaviour
         isHeldDown = true;
         cinCam.m_Priority = 11;
         mainCam.m_Priority = 10;
+        mc.minecartStop = true;
+
+
     }
 
     private void OnShaken()
@@ -95,8 +113,13 @@ public class Ore : MonoBehaviour
         {
             mainCam.m_Priority = 11;
             cinCam.m_Priority = 10;
+<<<<<<< HEAD:Irony_App/Assets/Scripts/Mining/Ore.cs
             if(mR != null)
                 mR.enabled = false;
+=======
+            GetComponent<MeshRenderer>().enabled = false;
+            mc.minecartStop = false;
+>>>>>>> DesignerTrench:Irony_App/Assets/Scripts/Ore.cs
             Destroy(gameObject, 2.5f);
         }
         transform.localScale *= .95f;
