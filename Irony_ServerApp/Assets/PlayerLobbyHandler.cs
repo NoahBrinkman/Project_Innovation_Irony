@@ -36,10 +36,10 @@ public class PlayerLobbyHandler : MonoBehaviour
 
     private void CloseOrder(FinishItemResponse response)
     {
-       
+       Debug.Log("Received closeOrder");
         for(int i = 0; i < openOrders.Count; i++)
         {
-             if(response.recipe == openOrders[i].recipe)
+             if(response.recipe.item == openOrders[i].recipe.item)
              {
                  openOrders.Remove(openOrders[i]);
                  Debug.Log("JOB DONE YAY");

@@ -106,7 +106,9 @@ public class CastingManager : MonoBehaviour
         {
             if (recipeBacklog[i].item == item)
             {
-                
+                FinishItemRequest request = new FinishItemRequest();
+                request.recipe = recipeBacklog[i];
+                MobileNetworkClient.Instance.channel.SendMessage(request);
                 recipeBacklog.Remove(recipeBacklog[i]);
                 
             }

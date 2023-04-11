@@ -79,6 +79,7 @@ namespace server
 				if (_server._hosts.ContainsValue(_members[i]))
 				{
 					//Send the respond to host
+					Log.LogInfo("Host found sending item", this);
 					FinishItemResponse response = new FinishItemResponse();
 					response.recipe = finishItemRequest.recipe;
 					_members[i].SendMessage(response);

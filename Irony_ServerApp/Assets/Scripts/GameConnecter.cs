@@ -63,6 +63,7 @@ public class GameConnecter : MonoBehaviour
         else if (message is MinigameChosenEvent) HandleMinigameChosenEvent(message as MinigameChosenEvent);
         else if (message is MinigameUnChosenEvent) HandleMinigameUnChosenEvent(message as MinigameUnChosenEvent);
         else if (message is RoomJoinedEvent) handleRoomJoinedEvent(message as RoomJoinedEvent);
+        else if(message is FinishItemResponse) OnItemFinished?.Invoke(message as FinishItemResponse);
     }
 
     private void handleRoomJoinedEvent(RoomJoinedEvent message)

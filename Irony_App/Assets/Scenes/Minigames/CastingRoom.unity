@@ -1654,7 +1654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94becd2ef163d8448a85db323e5fe10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myItem: 0
+  myItem: 3
   perfectFillValue: 50
   perfectFillMargin: 5
   castingPosition: {fileID: 80840515}
@@ -3444,7 +3444,7 @@ MonoBehaviour:
   minimumRotationalInput: 0.3
   minimumaximumRotationalInput: 0.45
   pouringAdditionMultiplier: 0.2
-  moltenMetalsInForge: 
+  moltenMetalsInForge: 020000000100000002000000
   currentlyChosenMold: {fileID: 0}
 --- !u!1 &1784177434
 GameObject:
