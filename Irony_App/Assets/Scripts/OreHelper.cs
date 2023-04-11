@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using shared;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ using UnityEngine;
     {
         [SerializeField] private List<MetalData> colors = new List<MetalData>();
 
-        public Material GetMaterial(metals metal)
+        public Material GetMaterial(Metal metal)
         {
             for (int i = 0; i < colors.Count; i++)
             {
@@ -18,7 +19,7 @@ using UnityEngine;
             return null;
         }
         
-        public float GetRoughness(metals metal)
+        public float GetRoughness(Metal metal)
         {
             for (int i = 0; i < colors.Count; i++)
             {
@@ -28,7 +29,7 @@ using UnityEngine;
             return 0;
         }
 
-        public MetalData GetMetalData(metals metal)
+        public MetalData GetMetalData(Metal metal)
         {
             for (int i = 0; i < colors.Count; i++)
             {
@@ -43,7 +44,7 @@ using UnityEngine;
 public class MetalData
 {
     [Header("General")]
-    public metals Metal;
+    public Metal Metal;
     public Material mat;
     [Header("Cleaning")]
     [Tooltip("Shaking the phone will make a value increase, roughness will subtract itself from this")]
