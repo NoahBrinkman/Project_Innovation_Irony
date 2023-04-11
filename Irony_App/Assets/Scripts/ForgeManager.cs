@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using JetBrains.Annotations;
+using shared;
 using TMPro;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ public class ForgeManager : MonoBehaviour
 { 
     
     [SerializeField] private OreHelper helper;
-   [SerializeField] private List<metals> forgeBacklog;
-   [SerializeField] private metals currentlyInForge;
+   [SerializeField] private List<Metal> forgeBacklog;
+   [SerializeField] private Metal currentlyInForge;
 
    [SerializeField] private float gradeSubtractionMultiplier = 2.0f;
    private ReadMicInput micInput;
@@ -27,6 +28,22 @@ public class ForgeManager : MonoBehaviour
     {
         micInput = GetComponent<ReadMicInput>();
         ReadSwipeInput.Instance.OnSwipeRight += OnSwipeRight;
+        MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+    }
+
+    private void OnMetalReceived(SendMetalResponse obj)
+    {
+        if (obj.to == MinigameRoom.Smelting)
+        {
+            if (currentlyInForge == Metal.None)
+            {
+                currentlyInForge = obj.metal;
+            }
+            else
+            {
+                forgeBacklog.Add(obj.metal);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -40,7 +57,7 @@ public class ForgeManager : MonoBehaviour
 
         debugText.text = $"Heat value: {micInput.volume}\nTimeTaken: {timer.ToString("F2")}";
         
-        if (currentlyInForge == metals.none && forgeBacklog.Count > 0)
+        if (currentlyInForge == Metal.None && forgeBacklog.Count > 0)
         {
             InitializeNewMetalInForge();
         }   
@@ -51,11 +68,17 @@ public class ForgeManager : MonoBehaviour
         if (timer >= currentCookTime)
         {
             float grade = 10 - (timer - currentCookTime) * gradeSubtractionMultiplier;
+            SendMetalRequest request = new SendMetalRequest();
+            request.from = MinigameRoom.Smelting;
+            request.to = MinigameRoom.Casting;
+            request.metal = currentlyInForge;
+            request.grade = Mathf.RoundToInt(grade);
+            MobileNetworkClient.Instance.SendMetal(request);
             Debug.Log($"Grade: {grade.ToString("F0")}");
-            StartCoroutine(RemoveMetal());
+            StartCoroutine(RemoveMetal());  
             //Remove current metal
             //Add new Metal;
-
+            
             //grade would be 10 - (timer - currentCooktime)
 
         }
@@ -66,7 +89,7 @@ public class ForgeManager : MonoBehaviour
         //Start tween
         moltenMetal.transform.DOMoveY(-11, 2);
         yield return new WaitForSeconds(2);
-        currentlyInForge = metals.none;
+        currentlyInForge = Metal.None;
         if (forgeBacklog.Count > 0)
         {
             InitializeNewMetalInForge();
