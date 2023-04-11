@@ -1,6 +1,8 @@
 ﻿using shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.NetworkInformation;
 
 namespace server
 {
@@ -60,27 +62,74 @@ namespace server
             }
 			pMember.SendMessage(roomJoinedEvent);
 		}
-
-		public override void Update()
-		{
-			//demo of how we can tell people have left the game...
-			int oldMemberCount = memberCount;
-			base.Update();
-			int newMemberCount = memberCount;
-
-			if (oldMemberCount != newMemberCount)
-			{
-				Log.LogInfo("People left the game...", this);
-				
-			}
-		}
-
 		protected override void handleNetworkMessage(ASerializable pMessage, TcpMessageChannel pSender)
 		{
-			
+			if(pMessage is AddRecipeRequest) handleAddRecipeRequest(pMessage as AddRecipeRequest, pSender);	
+			else if(pMessage is SendMetalRequest) handleSendMetalRequest(pMessage as SendMetalRequest, pSender);
+			else if (pMessage is SendMetalsRequest) handleSendMetalsRequest(pMessage as SendMetalsRequest, pSender);
+			else if (pMessage is FinishItemRequest) handleFinishItemRequest(pMessage as FinishItemRequest, pSender);
         }
 
-      
+        private void handleFinishItemRequest(FinishItemRequest finishItemRequest, TcpMessageChannel pSender)
+        {
+			//Find the host
 
-	}
+			for (int i = 0; i < _members.Count; i++)
+			{
+				if (_server._hosts.ContainsValue(_members[i]))
+				{
+					//Send the respond to host
+					FinishItemResponse response = new FinishItemResponse();
+					response.recipe = finishItemRequest.recipe;
+					_members[i].SendMessage(response);
+					return;
+				}
+			}
+        }
+
+        private void handleSendMetalsRequest(SendMetalsRequest sendMetalsRequest, TcpMessageChannel pSender)
+        {
+
+			for (int i = 0; i < _members.Count; i++)
+			{
+				if (_server.GetPlayerInfo(_members[i]).room == sendMetalsRequest.to)
+				{
+					SendMetalsResponse response = new SendMetalsResponse();
+					response.from= sendMetalsRequest.from;
+					response.to= sendMetalsRequest.to;
+					response.metals= sendMetalsRequest.metals;
+					response.size= sendMetalsRequest.size;
+					response.grade = sendMetalsRequest.grade;
+					_members[i].SendMessage(response);
+					return;
+				}
+			}
+        }
+
+        private void handleSendMetalRequest(SendMetalRequest sendMetalRequest, TcpMessageChannel pSender)
+        {
+
+            for (int i = 0; i < _members.Count; i++)
+            {
+                if (_server.GetPlayerInfo(_members[i]).room == sendMetalRequest.to)
+                {
+                    SendMetalResponse response = new SendMetalResponse();
+                    response.from = sendMetalRequest.from;
+                    response.to = sendMetalRequest.to;
+                    response.metal = sendMetalRequest.metal;
+                    response.grade = sendMetalRequest.grade;
+                    _members[i].SendMessage(response);
+                    return;
+                }
+            }
+        }
+
+        private void handleAddRecipeRequest(AddRecipeRequest addRecipeRequest, TcpMessageChannel pSender)
+        {
+			Log.LogInfo(addRecipeRequest, this);
+			RecipeAddedMessage mes = new RecipeAddedMessage();
+			mes.recipe = addRecipeRequest.recipe;
+			sendToAll(mes);
+        }
+    }
 }

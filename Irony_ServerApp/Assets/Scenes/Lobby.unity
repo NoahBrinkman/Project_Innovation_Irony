@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717296487}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85178d7fa58770c4e972e8da6e7d04a7, type: 3}
   m_Name: 
@@ -2550,4 +2550,5 @@ MonoBehaviour:
   timePerRoundInSeconds: 180
   bufferSeconds: 3
   timerText: {fileID: 1031345174}
-  recipes: []
+  recipes:
+  - {fileID: 11400000, guid: a9c9899fd92e5fb41897b9ce289fc188, type: 2}

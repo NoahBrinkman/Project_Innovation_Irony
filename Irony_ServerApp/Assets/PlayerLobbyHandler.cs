@@ -24,16 +24,31 @@ public class PlayerLobbyHandler : MonoBehaviour
 
     [SerializeField] private List<Recipe> recipes = new List<Recipe>();
     private List<Recipe> recipePool;
-
+    private List<Recipe> openOrders = new List<Recipe>();
     private void Start()
     {
         recipePool = new List<Recipe>(recipes);
        GameConnecter.Instance.OnMinigameChosen += MoveUp;
        GameConnecter.Instance.OnMinigameUnChosen += moveDown;
+       GameConnecter.Instance.OnGameRoomStarted += SendRandomRecipe;
+       GameConnecter.Instance.OnItemFinished += CloseOrder;
     }
-    
-    
-    
+
+    private void CloseOrder(FinishItemResponse response)
+    {
+       
+        for(int i = 0; i < openOrders.Count; i++)
+        {
+             if(response.recipe == openOrders[i].recipe)
+             {
+                 openOrders.Remove(openOrders[i]);
+                 Debug.Log("JOB DONE YAY");
+             }
+        }
+        
+    }
+
+
     private void MoveUp(MinigameRoom room)
     {
         switch (room)
@@ -78,18 +93,22 @@ public class PlayerLobbyHandler : MonoBehaviour
 
     public void StartGame()
     {
+        GameConnecter.Instance.StartGame(recipes[0]);
+        timerText.gameObject.SetActive(true);
+        timer = timePerRoundInSeconds;
+    }
+
+    private void SendRandomRecipe()
+    {
         Recipe r = recipePool[Random.Range(0, recipePool.Count)];
         recipePool.Remove(r);
         if (recipePool.Count == 0)
         {
             recipePool = new List<Recipe>(recipes);
         }
-        
-        GameConnecter.Instance.StartGame(r);
-        timerText.gameObject.SetActive(true);
-        timer = timePerRoundInSeconds;
+        openOrders.Add(r);
+        GameConnecter.Instance.SendRecipe(r);
     }
-
     private void Update()
     {
         if (timerText.gameObject.activeInHierarchy)
@@ -104,6 +123,7 @@ public class PlayerLobbyHandler : MonoBehaviour
             }
         }
     }
+
 }
 
 

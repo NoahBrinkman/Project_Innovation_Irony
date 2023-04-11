@@ -67,9 +67,11 @@ namespace server
 		protected override void handleNetworkMessage(ASerializable pMessage, TcpMessageChannel pSender)
 		{
 			if (pMessage is ChangeReadyStatusRequest) handleReadyNotification(pMessage as ChangeReadyStatusRequest, pSender);
-			else if(pMessage is MinigameChosenRequest) handleMinigameChosenRequest(pMessage as MinigameChosenRequest, pSender);
-			else if(pMessage is StartGameRequest) handleStartGameRequest(pMessage as StartGameRequest, pSender);
+			else if (pMessage is MinigameChosenRequest) handleMinigameChosenRequest(pMessage as MinigameChosenRequest, pSender);
+			else if (pMessage is StartGameRequest) handleStartGameRequest(pMessage as StartGameRequest, pSender);
 		}
+
+
 
         private void handleStartGameRequest(StartGameRequest startGameRequest, TcpMessageChannel pSender)
         {
@@ -80,17 +82,21 @@ namespace server
 			gameStart.startRecipe = startGameRequest.startRecipe;
 			//_server._hosts[_server.GetPlayerInfo(pSender).lobbyCode];
 			pSender.SendMessage(gameStart);
-
             List<TcpMessageChannel> membersToMove = new List<TcpMessageChannel>();
 			for (int i = 0; i < _members.Count; i++)
 			{
-				room.AddMember(_members[i]);
+				//room.AddMember(_members[i]);
+				membersToMove.Add(_members[i]);
 			}
 			for (int i = 0; i < membersToMove.Count; i++)
 			{
-				removeMember(membersToMove[i]);
+				//removeMember(membersToMove[i]);
+				_members.Remove(membersToMove[i]);
 			}
 			room.StartGame(membersToMove);
+
+			Log.LogInfo($"Members left: {_members.Count}", this);
+
         }
 
         private void handleMinigameChosenRequest(MinigameChosenRequest minigameChosenRequest, TcpMessageChannel pSender)

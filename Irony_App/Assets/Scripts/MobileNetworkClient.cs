@@ -33,8 +33,14 @@ public class MobileNetworkClient : MonoBehaviour
     public Action<List<MinigameRoom>> OnLobbyJoinedEvent;
     public Action<MinigameChosenEvent> OnMinigameChosenEvent;
     public Action<MinigameUnChosenEvent> OnMinigameUnChosenEvent;
-
+    public Action<Recipe> OnRecipeReceived;
+    public Action<List<Recipe>> OnRecipesReceived;
+    public Action<SendMetalResponse> OnMetalReceived;
+    public Action<SendMetalsResponse> OnMetalsReceived;
     public List<MinigameRoom> chosenRooms { get; private set; }
+
+
+   [HideInInspector] public Recipe recipeBacklog = null;
     
     // Start is called before the first frame update
     void Awake()
@@ -76,7 +82,21 @@ public class MobileNetworkClient : MonoBehaviour
         else if (message is MinigameChosenEvent) HandleMinigameChosenEvent(message as MinigameChosenEvent);
         else if (message is RoomJoinedEvent) handleRoomJoinedEvent(message as RoomJoinedEvent);
         else if (message is MinigameUnChosenEvent) HandleMinigameUnChosenEvent(message as MinigameUnChosenEvent);
+        else if (message is RecipeAddedMessage) handleRecipeAddedMessage(message as RecipeAddedMessage);
+        else if(message is SendMetalResponse) OnMetalReceived?.Invoke(message as SendMetalResponse);
+        else if(message is SendMetalsResponse) OnMetalsReceived?.Invoke(message as SendMetalsResponse);
        
+    }
+
+    private void handleRecipeAddedMessage(RecipeAddedMessage message)
+    {
+        Debug.Log("Recipe Received");
+        if (OnRecipeReceived == null)
+        {
+            Debug.Log("Recipe is null so adding it to backlog");
+            recipeBacklog = message.recipe;
+        }
+        OnRecipeReceived?.Invoke(message.recipe);
     }
 
     private void HandleMinigameUnChosenEvent(MinigameUnChosenEvent message)
@@ -149,6 +169,15 @@ public class MobileNetworkClient : MonoBehaviour
     {
         ChangeReadyStatusRequest request = new ChangeReadyStatusRequest();
         request.ready = isReady;
+        _channel.SendMessage(request);
+    }
+
+    public void SendMetal(SendMetalRequest request)
+    {
+        _channel.SendMessage(request);
+    }
+    public void SendMetal(SendMetalsRequest request)
+    {
         _channel.SendMessage(request);
     }
 }

@@ -19,6 +19,9 @@ public class CastingManager : MonoBehaviour
     {
         Input.gyro.enabled = true;
         ReadSwipeInput.Instance.OnSwipeRight += OnswipeRight;
+        MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
+        MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+
     }
 
     // Update is called once per frame
@@ -45,6 +48,14 @@ public class CastingManager : MonoBehaviour
         }
     }
 
+    void OnMetalReceived(SendMetalResponse message)
+    {
+        if (message.to == MinigameRoom.Casting)
+        {
+            moltenMetalsInForge.Add(message.metal);
+        }
+    }
+    
     private void OnswipeRight()
     {
         if (currentlyChosenMold != null)
@@ -83,8 +94,23 @@ public class CastingManager : MonoBehaviour
         }
     }
 
+    private void OnRecipeReceived(Recipe r)
+    {
+        recipeBacklog.Add(r);
+    }
+    
     public void SendToolToServer(Item item, int grade)
     {
         //TODO: Send message with this data;
+        for (int i = 0; i < recipeBacklog.Count; i++)
+        {
+            if (recipeBacklog[i].item == item)
+            {
+                
+                recipeBacklog.Remove(recipeBacklog[i]);
+                
+            }
+        }
+
     }
 }

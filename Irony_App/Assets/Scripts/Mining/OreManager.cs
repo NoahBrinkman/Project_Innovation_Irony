@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,10 +23,21 @@ public class OreManager : MonoBehaviour
     private List<Vector3> takenPositions = new List<Vector3>();
     private void Start()
     {
-        Initialize(debugRecipes);
-
+        //Initialize(debugRecipes);
+        Debug.Log("Adding recipe Handling");
+        MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
+        if (MobileNetworkClient.Instance.recipeBacklog != null)
+        {
+            OnRecipeReceived(MobileNetworkClient.Instance.recipeBacklog);
+            MobileNetworkClient.Instance.recipeBacklog = null;
+        }
     }
-    
+
+    private void OnRecipeReceived(Recipe r)
+    {
+        Initialize(r);
+    }
+
     public void Initialize(Recipe Precipe)
     {
         minedOres = new List<Metal>();
@@ -76,6 +88,8 @@ public class OreManager : MonoBehaviour
      
        GameObject newOre = Instantiate(oreObject, spawnPosition,  
            spawnBound.transform.rotation);
+       newOre.transform.localScale = new Vector3();
+       newOre.transform.DOScale(Vector3.one, .25f);
        newOre.GetComponent<Ore>().Initialize(metal).onMined += OnOreMinded;
     }
 
@@ -83,9 +97,25 @@ public class OreManager : MonoBehaviour
     {
         minedOres.Add(metal);
         //send metal to forge
-        if (recipes[0].metalRecipe.ContainsSequence(minedOres))
+        if (recipes[0].metalRecipe.ContainsSequence(minedOres) || recipes[0].metalRecipe.ContainsAll(minedOres))
         {
-            recipes.RemoveAt(0);
+            SendMetalsRequest request = new SendMetalsRequest();
+            request.from = MinigameRoom.Mining;
+            request.to = MinigameRoom.Cleaning;
+            int grade = 10;
+            for (int i = 0; i < recipes[0].recipeSize; i++)
+            {
+                if (recipes[0].metalRecipe[i] != minedOres[i])
+                {
+                    grade -= 2;
+                }
+                request.metals.Add(recipes[0].metalRecipe[i]);
+                minedOres.Remove(recipes[0].metalRecipe[i]);
+                
+            }
+
+            request.grade = grade;
+            //recipes.RemoveAt(0);
             //Remove the currect ores
             //Send "Ore sent" accuracy grade
         }

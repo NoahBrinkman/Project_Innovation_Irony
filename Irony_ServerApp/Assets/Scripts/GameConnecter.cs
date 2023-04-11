@@ -21,7 +21,10 @@ public class GameConnecter : MonoBehaviour
 
     public Action<MinigameRoom> OnMinigameChosen;
     public Action<MinigameRoom> OnMinigameUnChosen;
-    
+
+    public Action OnGameRoomStarted;
+
+    public Action<FinishItemResponse> OnItemFinished;
     // Start is called before the first frame update
     void Awake()
     {
@@ -59,6 +62,15 @@ public class GameConnecter : MonoBehaviour
         if(message is HostJoinResponse) HandleHostJoinResponse(message as HostJoinResponse);
         else if (message is MinigameChosenEvent) HandleMinigameChosenEvent(message as MinigameChosenEvent);
         else if (message is MinigameUnChosenEvent) HandleMinigameUnChosenEvent(message as MinigameUnChosenEvent);
+        else if (message is RoomJoinedEvent) handleRoomJoinedEvent(message as RoomJoinedEvent);
+    }
+
+    private void handleRoomJoinedEvent(RoomJoinedEvent message)
+    {
+        if (message.room == RoomJoinedEvent.Room.GAME_ROOM)
+        {
+            OnGameRoomStarted?.Invoke();
+        }
     }
 
     private void HandleMinigameUnChosenEvent(MinigameUnChosenEvent message)
@@ -106,5 +118,14 @@ public class GameConnecter : MonoBehaviour
         Debug.Log(message.room);
        OnMinigameChosen?.Invoke(message.room);
     }
+
+    public void SendRecipe(Recipe r)
+    {
+        AddRecipeRequest request = new AddRecipeRequest();
+        request.recipe = r.recipe;
+        _channel.SendMessage(request);
+    }
+
+
     
 }

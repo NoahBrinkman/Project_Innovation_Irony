@@ -9,7 +9,7 @@ public class WashableOre : MonoBehaviour
 {
     [SerializeField] private OreHelper helper;
     [SerializeField] private float cleaningSpeed = .3f;
-    private Metal metalType;
+    public Metal metalType;
     private float roughness = 0;
     public  float cleaningValue { get; private set; }
     private float targetCleaningValue = 1;

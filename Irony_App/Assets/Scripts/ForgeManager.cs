@@ -28,6 +28,22 @@ public class ForgeManager : MonoBehaviour
     {
         micInput = GetComponent<ReadMicInput>();
         ReadSwipeInput.Instance.OnSwipeRight += OnSwipeRight;
+        MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+    }
+
+    private void OnMetalReceived(SendMetalResponse obj)
+    {
+        if (obj.to == MinigameRoom.Smelting)
+        {
+            if (currentlyInForge == Metal.None)
+            {
+                currentlyInForge = obj.metal;
+            }
+            else
+            {
+                forgeBacklog.Add(obj.metal);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -52,11 +68,17 @@ public class ForgeManager : MonoBehaviour
         if (timer >= currentCookTime)
         {
             float grade = 10 - (timer - currentCookTime) * gradeSubtractionMultiplier;
+            SendMetalRequest request = new SendMetalRequest();
+            request.from = MinigameRoom.Smelting;
+            request.to = MinigameRoom.Casting;
+            request.metal = currentlyInForge;
+            request.grade = Mathf.RoundToInt(grade);
+            MobileNetworkClient.Instance.SendMetal(request);
             Debug.Log($"Grade: {grade.ToString("F0")}");
-            StartCoroutine(RemoveMetal());
+            StartCoroutine(RemoveMetal());  
             //Remove current metal
             //Add new Metal;
-
+            
             //grade would be 10 - (timer - currentCooktime)
 
         }

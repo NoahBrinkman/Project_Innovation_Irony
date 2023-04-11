@@ -1393,11 +1393,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5bff25e0ebdfc49b8008bbe992a06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugRecipes:
-  - {fileID: 11400000, guid: aacda49dcb9f5bf4dba82e8eaf59223c, type: 2}
+  debugRecipes: []
   oreObject: {fileID: 673780492866757447, guid: b4ff07cad0e42ff4d955a95652554cab,
     type: 3}
-  randomExtraOres: 5
+  randomExtraOres: 3
   bounds:
   - {fileID: 1270654827}
   minimumDistanceBetweenOres: 3
