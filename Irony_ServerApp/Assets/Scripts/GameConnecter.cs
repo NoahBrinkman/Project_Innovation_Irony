@@ -64,6 +64,7 @@ public class GameConnecter : MonoBehaviour
         else if (message is MinigameUnChosenEvent) HandleMinigameUnChosenEvent(message as MinigameUnChosenEvent);
         else if (message is RoomJoinedEvent) handleRoomJoinedEvent(message as RoomJoinedEvent);
         else if(message is FinishItemResponse) OnItemFinished?.Invoke(message as FinishItemResponse);
+        else if(message is EndGameEvent) handleGameEndEvent(message as EndGameEvent);
     }
 
     private void handleRoomJoinedEvent(RoomJoinedEvent message)
@@ -104,7 +105,13 @@ public class GameConnecter : MonoBehaviour
     }
     public void EndGame()
     {
-       Debug.Log("Not Implemented yet");
+        EndGameRequest request = new EndGameRequest();
+        _channel.SendMessage(request);
+    }
+
+    private void handleGameEndEvent(EndGameEvent endGameEvent)
+    {
+        
     }
     
     private void HandleHostJoinResponse(HostJoinResponse response)
