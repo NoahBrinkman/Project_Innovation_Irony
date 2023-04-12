@@ -20,8 +20,11 @@ public class WashableOre : MonoBehaviour
     private bool perfectGrade => cleaningValue >= (targetCleaningValue - targetCleaningMargin) &&
                                  cleaningValue <= (targetCleaningValue + targetCleaningMargin);
 
+    public CleaningParticleSystems cps;
+
     public void Initialize(Metal metal, Vector3 endPosition, Ease easeMode = Ease.InQuart)
     {
+        cps = FindFirstObjectByType<CleaningParticleSystems>();
         metalType = metal;
         MetalData metalInfo = helper.GetMetalData(metal);
         GetComponent<MeshRenderer>().material = metalInfo.mat;
@@ -30,8 +33,8 @@ public class WashableOre : MonoBehaviour
         targetCleaningMargin = metalInfo.cleaningGradeMargin;
         transform.DOMove(endPosition, .5f).SetEase(easeMode);
         ReadAccelerometerInput.Instance.OnShake += OnShaken;
-
         ReadSwipeInput.Instance.OnSwipeUp += OnSwipeUp;
+        
     }
 
     private void OnDestroy()
@@ -44,8 +47,14 @@ public class WashableOre : MonoBehaviour
     private void OnShaken()
     {
         cleaningValue += cleaningSpeed - roughness;
+        cps.SoundMarg = cleaningValue;
+        cps.SoundMax = targetCleaningValue;
+      
     }
-
+    private void Update()
+    {
+        
+    }
     private void OnSwipeUp()
     {
         if (cleanEnoughToSend)
