@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3b57c7899a4501a8c79914f67739f2, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  name: Sword
-  recipeSize: 3
-  isRandom: 0
-  metalRecipe: 020000000300000001000000
+  recipe:
+    item: 0
+    recipeSize: 3
+    metalRecipe: 010000000000000000000000
