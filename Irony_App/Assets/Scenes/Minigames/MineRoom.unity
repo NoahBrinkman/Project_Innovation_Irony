@@ -1373,11 +1373,7 @@ MonoBehaviour:
   debugRecipes: []
   oreObject: {fileID: 673780492866757447, guid: b4ff07cad0e42ff4d955a95652554cab,
     type: 3}
-<<<<<<< HEAD:Irony_App/Assets/Scenes/Minigames/MineRoom.unity
-  randomExtraOres: 3
-=======
   randomExtraOres: 20
->>>>>>> DesignerTrench:Irony_App/Assets/Scenes/MineRoom.unity
   bounds:
   - {fileID: 1526710930}
   - {fileID: 600670315}
