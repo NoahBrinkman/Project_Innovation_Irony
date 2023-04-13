@@ -1883,6 +1883,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9056767343234673067, guid: 260cc77465586594c9935831e6e98b13,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056767343234673067, guid: 260cc77465586594c9935831e6e98b13,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2558,6 +2568,10 @@ MonoBehaviour:
   NORMAL: {fileID: 8300000, guid: 50a94e954213b204ab465d1b71cfdd15, type: 3}
   SoundMarg: 0
   SoundMax: 0
+  camTransform: {fileID: 330585546}
+  shakeDuration: 0
+  shakeAmount: 0.1
+  decreaseFactor: 1
 --- !u!1 &1852036504
 GameObject:
   m_ObjectHideFlags: 0

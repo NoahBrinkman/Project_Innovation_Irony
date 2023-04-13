@@ -47,13 +47,10 @@ public class WashableOre : MonoBehaviour
     private void OnShaken()
     {
         cleaningValue += cleaningSpeed - roughness;
-        cps.SoundMarg = cleaningValue;
+        cps.SoundValue = cleaningValue;
+        cps.SoundMarg = targetCleaningMargin;
         cps.SoundMax = targetCleaningValue;
       
-    }
-    private void Update()
-    {
-        
     }
     private void OnSwipeUp()
     {
