@@ -28,11 +28,14 @@ public class Ore : MonoBehaviour
     public Action<Metal> onMined;
 
     private MeshRenderer meshRenderer;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         //    Initialize(Metal);
         meshRenderer = GetComponent<MeshRenderer>();
+        
     }
 
     public Ore Initialize(Metal metal)
@@ -100,6 +103,7 @@ public class Ore : MonoBehaviour
         _health--;
         if (_health <= 0)
         {
+            
             beenMined = true;
             ReadSwipeInput.Instance.OnSwipeLeft += SendOffRejected;
             ReadSwipeInput.Instance.OnSwipeRight += SendOffAccepted;
