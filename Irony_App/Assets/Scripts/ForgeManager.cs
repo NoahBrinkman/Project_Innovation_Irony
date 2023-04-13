@@ -57,7 +57,8 @@ public class ForgeManager : MonoBehaviour
             timer += Time.deltaTime;
         }
 
-        if (micInput.volume > 0.1f)
+        micVolume = Mathf.Clamp(micVolume, 0, 10);
+        if (micInput.volume > micInput.minimumLoudnes)
         {
             micVolume += micInput.volume;
         }
@@ -66,7 +67,7 @@ public class ForgeManager : MonoBehaviour
             micVolume -= dropOffRate;
         }
         indicator.SetIndicator(micVolume/10);
-        debugText.text = $"Heat value: {micInput.volume}\nTimeTaken: {timer.ToString("F2")}";
+        debugText.text = $"Heat value: {micVolume}\nTimeTaken: {timer.ToString("F2")}";
         
         if (currentlyInForge == Metal.None && forgeBacklog.Count > 0)
         {
