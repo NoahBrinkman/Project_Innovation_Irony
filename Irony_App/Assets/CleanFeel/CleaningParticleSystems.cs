@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CleaningParticleSystem : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particles, scrapes; // this will keep it private but visible to drag and drop in inspector
+    [SerializeField] private ParticleSystem particles, scrapes, done; // this will keep it private but visible to drag and drop in inspector
     public AudioClip OVERDONE, NORMAL, DONE;
     private AudioSource audiosource;
     public AudioSource Victory;
@@ -59,6 +59,7 @@ public class CleaningParticleSystem : MonoBehaviour
         else if (SoundValue >= SoundMax - SoundMarg && SoundValue <= SoundMax + SoundMarg)
         {
             audiosource.clip = DONE;
+            done.Play();
         } 
         else
         {
