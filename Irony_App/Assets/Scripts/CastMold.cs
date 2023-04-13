@@ -25,29 +25,7 @@ public class CastMold : MonoBehaviour
     [SerializeField] private float maximumY;
     public int GetGrade()
     {
-        float timeUnderMargin = fillValue - (targetFillValue - fillMargin);
-        float timeOverMargin = fillValue - (targetFillValue + fillMargin);
-        float grade;
-        if (timeOverMargin <= 0 && timeUnderMargin >= 0)
-        {
-            grade = 10;
-        }
-        else
-        {
-            grade = 10;
-            if (timeOverMargin > 0)
-            {
-                grade -= timeOverMargin;
-            }
-
-            if (timeUnderMargin < 0)
-            {
-                grade += timeUnderMargin;
-            }
-
-        }
-
-        return Mathf.RoundToInt(grade);
+        return 5;
     }
 
     public void Fill(float amount)

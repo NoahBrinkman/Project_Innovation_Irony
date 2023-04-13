@@ -77,32 +77,9 @@ public class ForgeManager : MonoBehaviour
 
     private void OnSwipeRight()
     {
-        // timer = 5 
-        // cooktime = 5
-        // margin is 2
-        if (timer >= currentCookTime - (currentHeatMargin*2))
+        if (timer >= currentCookTime)
         {
-            float timeUnderMargin = timer - (currentCookTime - currentHeatMargin);
-            float timeOverMargin = timer - (currentCookTime + currentHeatMargin);
-            float grade;
-            if (timeOverMargin <= 0 && timeUnderMargin >= 0)
-            {
-                grade = 10;
-            }
-            else
-            {
-                grade = 10;
-                if (timeOverMargin > 0)
-                {
-                    grade -= timeOverMargin;
-                }
-
-                if (timeUnderMargin < 0)
-                {
-                    grade += timeUnderMargin;
-                }
-
-            }
+            float grade = 10 - (timer - currentCookTime) * gradeSubtractionMultiplier;
             SendMetalRequest request = new SendMetalRequest();
             request.from = MinigameRoom.Smelting;
             request.to = MinigameRoom.Casting;

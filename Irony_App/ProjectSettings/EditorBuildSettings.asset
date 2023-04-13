@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 66eecd119c2e9184eb4efdabb9c40cc6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LobbyScene.unity
     guid: 4e967c82ed25abb4090609ca9e96a6be
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Minigames/MineRoom.unity
     guid: f6cb3de482c27cd49aa5857084a8c77a
   - enabled: 1
