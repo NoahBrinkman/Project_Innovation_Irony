@@ -6,20 +6,16 @@ using System.Threading.Tasks;
 
 namespace shared
 {
-    public class FinishItemRequest : ASerializable
+    public class EndGameRequest : ASerializable
     {
-        public Recipe recipe;
-        public int grade;
         public override void Deserialize(Packet pPacket)
         {
-            recipe = pPacket.Read<Recipe>();
-            grade = pPacket.ReadInt();
+         
         }
 
         public override void Serialize(Packet pPacket)
         {
-            pPacket.Write(recipe);   
-            pPacket.Write(grade);
+            
         }
     }
 }

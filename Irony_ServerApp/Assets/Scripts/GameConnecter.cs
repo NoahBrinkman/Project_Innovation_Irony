@@ -25,6 +25,8 @@ public class GameConnecter : MonoBehaviour
     public Action OnGameRoomStarted;
 
     public Action<FinishItemResponse> OnItemFinished;
+
+    public Action<EndGameEvent> OnGameEnded;
     // Start is called before the first frame update
     void Awake()
     {
@@ -64,6 +66,7 @@ public class GameConnecter : MonoBehaviour
         else if (message is MinigameUnChosenEvent) HandleMinigameUnChosenEvent(message as MinigameUnChosenEvent);
         else if (message is RoomJoinedEvent) handleRoomJoinedEvent(message as RoomJoinedEvent);
         else if(message is FinishItemResponse) OnItemFinished?.Invoke(message as FinishItemResponse);
+        else if(message is EndGameEvent) StartCoroutine(handleGameEndEvent(message as EndGameEvent));
     }
 
     private void handleRoomJoinedEvent(RoomJoinedEvent message)
@@ -92,6 +95,7 @@ public class GameConnecter : MonoBehaviour
         catch (Exception e)
         {
             Console.WriteLine(e);
+            
             throw;
         }
     }
@@ -104,7 +108,23 @@ public class GameConnecter : MonoBehaviour
     }
     public void EndGame()
     {
-       Debug.Log("Not Implemented yet");
+        Debug.Log("Ending game?");
+        EndGameRequest request = new EndGameRequest();
+        _channel.SendMessage(request);
+    }
+
+    private IEnumerator handleGameEndEvent(EndGameEvent endGameEvent)
+    {
+        //display All average Grades
+        
+        //Say thanks for playing
+        OnGameEnded?.Invoke(endGameEvent);
+        //Wait 10 seconds
+        yield return new WaitForSeconds(30);
+        _channel.Close();
+        SceneManager.LoadScene(0);
+        yield break;
+        
     }
     
     private void HandleHostJoinResponse(HostJoinResponse response)
