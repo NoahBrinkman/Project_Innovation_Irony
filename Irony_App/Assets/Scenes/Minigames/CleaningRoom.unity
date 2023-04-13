@@ -914,7 +914,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 289301614986012343, guid: 7384f3c29ad7db4478d3b6406ef644ef, type: 3}
+  m_Mesh: {fileID: -9011381436011714577, guid: fe0e813adc114ba4c883fabe44f70901, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -6179,7 +6179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   washableOrePrefab: {fileID: 752630743410207833, guid: 247770e12f7fb604e889ca843ddb767f,
     type: 3}
-  washableOreBacklog: 0100000002000000
+  washableOreBacklog: 01000000020000000400000003000000
   spawnPosition: {fileID: 879100563}
   endPosition: {fileID: 1809450686}
   easeMode: 15
@@ -7666,7 +7666,7 @@ MonoBehaviour:
   SoundMax: 0
   camTransform: {fileID: 330585546}
   shakeDuration: 0
-  shakeAmount: 0.1
+  shakeAmount: 0.05
   decreaseFactor: 1
 --- !u!1 &1852036504
 GameObject:
