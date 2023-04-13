@@ -6103,7 +6103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   washableOrePrefab: {fileID: 752630743410207833, guid: 247770e12f7fb604e889ca843ddb767f,
     type: 3}
-  washableOreBacklog: 02000000010000000300000004000000
+  washableOreBacklog: 0100000002000000
   spawnPosition: {fileID: 879100563}
   endPosition: {fileID: 1809450686}
   easeMode: 15

@@ -6,12 +6,14 @@ using UnityEngine;
 public class ReadMicInput : MonoBehaviour
 {
     public float volume { get; private set; }
+
     [SerializeField] private int sampleWindow;
     private AudioSource source;
     [SerializeField] private Vector3 maxScale;
     private AudioClip micClip;
     [SerializeField] private float sensitivity = 75;
-    [SerializeField] private float minimumloudness = .01f; 
+    [SerializeField] private float minimumloudness = .01f;
+    public float minimumLoudnes { get; private set; }
     private void Start()
     {
         source = GetComponent<AudioSource>();
@@ -28,15 +30,11 @@ public class ReadMicInput : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            float loudness = GetLoudnessFromMicrophone();
-            if (loudness < minimumloudness)
-                volume = 0;
-            else
-                volume = GetLoudnessFromMicrophone() * sensitivity;
-            
-        }
+        float loudness = GetLoudnessFromMicrophone();
+        if (loudness < minimumloudness)
+            volume = 0;
+        else
+            volume = GetLoudnessFromMicrophone() * sensitivity;
     }
 
     float GetLoudnessFromMicrophone()

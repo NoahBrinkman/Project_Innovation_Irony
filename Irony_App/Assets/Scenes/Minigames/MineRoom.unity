@@ -1770,7 +1770,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928068886}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 433bf4241553b15459b1eee98aa116b3, type: 3}
   m_Name: 
@@ -2603,6 +2603,7 @@ GameObject:
   - component: {fileID: 1440257933}
   - component: {fileID: 1440257934}
   - component: {fileID: 1440257935}
+  - component: {fileID: 1440257936}
   m_Layer: 0
   m_Name: OreManager
   m_TagString: Untagged
@@ -2657,6 +2658,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 3
+--- !u!114 &1440257936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440257932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26021b3056ae444189e4888b946c665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumDistance: {x: 200, y: 20000}
+  onlyOneSwipeDetectable: 1
 --- !u!1 &1456382664
 GameObject:
   m_ObjectHideFlags: 0
