@@ -18,7 +18,7 @@ public class WashableOreManager : MonoBehaviour
     [SerializeField] private TMP_Text cleanLevelText;
     private void Start()
     {
-        MobileNetworkClient.Instance.OnMetalsReceived += OnMetalsReceived;
+        if(MobileNetworkClient.Instance != null)MobileNetworkClient.Instance.OnMetalsReceived += OnMetalsReceived;
     }
 
     private void OnMetalsReceived(SendMetalsResponse msg)
@@ -68,7 +68,7 @@ public class WashableOreManager : MonoBehaviour
         request.to = MinigameRoom.Smelting;
         request.grade = 5;
         request.metal = currentOre.metalType;
-        MobileNetworkClient.Instance.SendMetal(request);
+        if(MobileNetworkClient.Instance != null) MobileNetworkClient.Instance.SendMetal(request);
         Destroy(currentOre.gameObject,3);
         currentOre.OnSend -= OnOreSent;
         currentOre = null;
