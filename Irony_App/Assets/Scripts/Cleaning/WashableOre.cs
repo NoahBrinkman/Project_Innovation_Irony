@@ -14,10 +14,11 @@ public class WashableOre : MonoBehaviour
     public  float cleaningValue { get; private set; }
     private float targetCleaningValue = 1;
     private float targetCleaningMargin = .3f;
+    public float maxCleaningValue => targetCleaningValue + targetCleaningMargin * 3;
     public Action OnSend;
     public bool cleanEnoughToSend => cleaningValue >= (targetCleaningValue - targetCleaningMargin);
 
-    private bool perfectGrade => cleaningValue >= (targetCleaningValue - targetCleaningMargin) &&
+    public bool perfectGrade => cleaningValue >= (targetCleaningValue - targetCleaningMargin) &&
                                  cleaningValue <= (targetCleaningValue + targetCleaningMargin);
 
     public CleaningParticleSystem cps;
@@ -50,7 +51,8 @@ public class WashableOre : MonoBehaviour
         cps.SoundValue = cleaningValue;
         cps.SoundMarg = targetCleaningMargin;
         cps.SoundMax = targetCleaningValue;
-      
+        cleaningValue = Mathf.Clamp(cleaningValue, 0, maxCleaningValue);
+
     }
     private void OnSwipeUp()
     {
