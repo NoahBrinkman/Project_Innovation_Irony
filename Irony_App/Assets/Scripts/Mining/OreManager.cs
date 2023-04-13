@@ -21,16 +21,30 @@ public class OreManager : MonoBehaviour
     [SerializeField] private List<Collider> bounds;
     [SerializeField] private float minimumDistanceBetweenOres = .75f;
     private List<Vector3> takenPositions = new List<Vector3>();
+    
+    
+    
     private void Start()
     {
+        minedOres = new List<Metal>();
         //Initialize(debugRecipes);
-        Debug.Log("Adding recipe Handling");
-        MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
-        if (MobileNetworkClient.Instance.recipeBacklog != null)
+        if (MobileNetworkClient.Instance == null)
         {
-            OnRecipeReceived(MobileNetworkClient.Instance.recipeBacklog);
-            MobileNetworkClient.Instance.recipeBacklog = null;
+            for (int i = 0; i < randomExtraOres; i++)
+            {
+                SpawnOre((Metal)Random.Range(0,Enum.GetNames(typeof(Metal)).Length));
+            }
         }
+        else
+        {
+            MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
+            if (MobileNetworkClient.Instance.recipeBacklog != null)
+            {
+                OnRecipeReceived(MobileNetworkClient.Instance.recipeBacklog);
+                MobileNetworkClient.Instance.recipeBacklog = null;
+            }
+        }
+
     }
 
     private void OnRecipeReceived(Recipe r)
