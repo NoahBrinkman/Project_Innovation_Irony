@@ -78,4 +78,31 @@ public class WashableOre : MonoBehaviour
         yield return new WaitForSeconds(1f);
         OnSend?.Invoke();
     }
+
+    public int GetGrade()
+    {
+        float timeUnderMargin = cleaningValue - (targetCleaningValue - targetCleaningMargin);
+            float timeOverMargin = cleaningValue - (targetCleaningValue + targetCleaningMargin);
+            float grade;
+            if (timeOverMargin <= 0 && timeUnderMargin >= 0)
+            {
+                grade = 10;
+            }
+            else
+            {
+                grade = 10;
+                if (timeOverMargin > 0)
+                {
+                    grade -= timeOverMargin;
+                }
+
+                if (timeUnderMargin < 0)
+                {
+                    grade += timeUnderMargin;
+                }
+
+            }
+
+            return Mathf.RoundToInt(grade);
+    }
 }

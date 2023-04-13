@@ -10,12 +10,12 @@ namespace shared
     {
         public override void Deserialize(Packet pPacket)
         {
-            throw new NotImplementedException();
+         
         }
 
         public override void Serialize(Packet pPacket)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

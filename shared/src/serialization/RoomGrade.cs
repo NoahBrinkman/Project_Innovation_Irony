@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace shared
 {
-    public class FinishItemRequest : ASerializable
+    public class RoomGrade : ASerializable
     {
-        public Recipe recipe;
         public int grade;
+        public MinigameRoom room;
+
         public override void Deserialize(Packet pPacket)
         {
-            recipe = pPacket.Read<Recipe>();
             grade = pPacket.ReadInt();
+            room = (MinigameRoom)pPacket.ReadInt();
         }
 
         public override void Serialize(Packet pPacket)
         {
-            pPacket.Write(recipe);   
-            pPacket.Write(grade);
+           pPacket.Write(grade);
+           pPacket.Write((int)room);
         }
     }
 }

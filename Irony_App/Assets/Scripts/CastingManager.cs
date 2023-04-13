@@ -98,6 +98,8 @@ public class CastingManager : MonoBehaviour
     {
         recipeBacklog.Add(r);
     }
+
+
     
     public void SendToolToServer(Item item, int grade)
     {
@@ -108,6 +110,7 @@ public class CastingManager : MonoBehaviour
             {
                 FinishItemRequest request = new FinishItemRequest();
                 request.recipe = recipeBacklog[i];
+                
                 MobileNetworkClient.Instance.channel.SendMessage(request);
                 recipeBacklog.Remove(recipeBacklog[i]);
                 
