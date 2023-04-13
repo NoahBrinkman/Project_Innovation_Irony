@@ -107,7 +107,7 @@ public class OreManager : MonoBehaviour
             {
                 if (recipes[0].metalRecipe[i] != minedOres[i])
                 {
-                    grade -= 3;
+                    grade -= 2;
                 }
                 request.metals.Add(recipes[0].metalRecipe[i]);
                 minedOres.Remove(recipes[0].metalRecipe[i]);

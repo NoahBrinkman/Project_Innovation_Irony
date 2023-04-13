@@ -64,7 +64,7 @@ public class WashableOreManager : MonoBehaviour
         SendMetalRequest request = new SendMetalRequest();
         request.from = MinigameRoom.Cleaning;
         request.to = MinigameRoom.Smelting;
-        request.grade = currentOre.GetGrade();
+        request.grade = 5;
         request.metal = currentOre.metalType;
         MobileNetworkClient.Instance.SendMetal(request);
         Destroy(currentOre.gameObject,3);
