@@ -12,7 +12,8 @@ public class ReadMicInput : MonoBehaviour
     [SerializeField] private Vector3 maxScale;
     private AudioClip micClip;
     [SerializeField] private float sensitivity = 75;
-    [SerializeField] private float minimumloudness = .01f; 
+    [SerializeField] private float minimumloudness = .01f;
+    public float minimumLoudnes { get; private set; }
     private void Start()
     {
         source = GetComponent<AudioSource>();

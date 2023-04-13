@@ -2974,7 +2974,7 @@ MonoBehaviour:
   forgeBacklog: 01000000
   currentlyInForge: 0
   gradeSubtractionMultiplier: 2
-  dropOffRate: 0.01
+  dropOffRate: 0.1
   moltenMetal: {fileID: 1357050854}
   indicator: {fileID: 1241335231}
   debugText: {fileID: 972087399}
@@ -2993,7 +2993,7 @@ MonoBehaviour:
   sampleWindow: 64
   maxScale: {x: 0, y: 0, z: 0}
   sensitivity: 100
-  minimumloudness: 0.02
+  minimumloudness: 0.015
 --- !u!1 &1712248826
 GameObject:
   m_ObjectHideFlags: 0
