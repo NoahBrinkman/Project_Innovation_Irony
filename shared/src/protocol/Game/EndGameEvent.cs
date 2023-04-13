@@ -8,14 +8,27 @@ namespace shared
 {
     public class EndGameEvent : ASerializable
     {
+        public int size;
+        public List<RoomGrade> grades = new List<RoomGrade>();
+
         public override void Deserialize(Packet pPacket)
         {
-            throw new NotImplementedException();
+           size = pPacket.ReadInt();
+            grades = new List<RoomGrade>();
+            for (int i = 0; i < size; i++)
+            {
+                grades.Add(pPacket.Read<RoomGrade>());
+            }
         }
 
         public override void Serialize(Packet pPacket)
         {
-            throw new NotImplementedException();
+           pPacket.Write(size);
+           
+            for (int i = 0; i < size; i++)
+            {
+                pPacket.Write(grades[i]);
+            }
         }
     }
 }
