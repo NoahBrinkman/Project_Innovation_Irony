@@ -20,11 +20,11 @@ public class WashableOre : MonoBehaviour
     private bool perfectGrade => cleaningValue >= (targetCleaningValue - targetCleaningMargin) &&
                                  cleaningValue <= (targetCleaningValue + targetCleaningMargin);
 
-    public CleaningParticleSystems cps;
+    public CleaningParticleSystem cps;
 
     public void Initialize(Metal metal, Vector3 endPosition, Ease easeMode = Ease.InQuart)
     {
-        cps = FindFirstObjectByType<CleaningParticleSystems>();
+        cps = FindFirstObjectByType<CleaningParticleSystem>();
         metalType = metal;
         MetalData metalInfo = helper.GetMetalData(metal);
         GetComponent<MeshRenderer>().material = metalInfo.mat;
@@ -47,13 +47,10 @@ public class WashableOre : MonoBehaviour
     private void OnShaken()
     {
         cleaningValue += cleaningSpeed - roughness;
-        cps.SoundMarg = cleaningValue;
+        cps.SoundValue = cleaningValue;
+        cps.SoundMarg = targetCleaningMargin;
         cps.SoundMax = targetCleaningValue;
       
-    }
-    private void Update()
-    {
-        
     }
     private void OnSwipeUp()
     {
@@ -77,32 +74,5 @@ public class WashableOre : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         OnSend?.Invoke();
-    }
-
-    public int GetGrade()
-    {
-        float timeUnderMargin = cleaningValue - (targetCleaningValue - targetCleaningMargin);
-            float timeOverMargin = cleaningValue - (targetCleaningValue + targetCleaningMargin);
-            float grade;
-            if (timeOverMargin <= 0 && timeUnderMargin >= 0)
-            {
-                grade = 10;
-            }
-            else
-            {
-                grade = 10;
-                if (timeOverMargin > 0)
-                {
-                    grade -= timeOverMargin;
-                }
-
-                if (timeUnderMargin < 0)
-                {
-                    grade += timeUnderMargin;
-                }
-
-            }
-
-            return Mathf.RoundToInt(grade);
     }
 }
