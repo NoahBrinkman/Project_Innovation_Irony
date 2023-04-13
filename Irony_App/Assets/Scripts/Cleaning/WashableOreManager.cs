@@ -16,6 +16,7 @@ public class WashableOreManager : MonoBehaviour
     [SerializeField] private Ease easeMode;
 
     [SerializeField] private TMP_Text cleanLevelText;
+    [SerializeField] private CleanMeter cleanMeter;
     private void Start()
     {
         if(MobileNetworkClient.Instance != null)MobileNetworkClient.Instance.OnMetalsReceived += OnMetalsReceived;
@@ -54,11 +55,12 @@ public class WashableOreManager : MonoBehaviour
 
         if (currentOre != null) {
             cleanLevelText.text =
-                $"Clean Level: {(currentOre.cleanEnoughToSend ? "<color=green>" : "")}{currentOre.cleaningValue.ToString("F2")}{(currentOre.cleanEnoughToSend ? "</color>" : "")}";
+                $"Clean Level: {(currentOre.cleanEnoughToSend ? currentOre.perfectGrade ? "<color=green>" : "<color=red>"  : "")}{currentOre.cleaningValue.ToString("F2")}{(currentOre.cleanEnoughToSend ? "</color>" : "")}";
 
         }
             
         else cleanLevelText.text = "All done for now!";
+        cleanMeter.UpdateIndicatorPosition(currentOre);
     }
 
     private void OnOreSent()
