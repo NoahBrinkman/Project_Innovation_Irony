@@ -2302,6 +2302,8 @@ MonoBehaviour:
   minimumY: -0.2
   perfectY: 0.3
   maximumY: 0.4
+  toolPrefab: {fileID: 8856586884282821332, guid: 8426737f03e08484fb38112a938a3121,
+    type: 3}
 --- !u!65 &877492057
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3912,6 +3914,8 @@ MonoBehaviour:
   minimumY: -0.2
   perfectY: 0.3
   maximumY: 0.55
+  toolPrefab: {fileID: 8856586884282821332, guid: 8426737f03e08484fb38112a938a3121,
+    type: 3}
 --- !u!65 &1492805987
 BoxCollider:
   m_ObjectHideFlags: 0

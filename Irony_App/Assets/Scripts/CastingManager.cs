@@ -19,8 +19,11 @@ public class CastingManager : MonoBehaviour
     {
         Input.gyro.enabled = true;
         ReadSwipeInput.Instance.OnSwipeRight += OnswipeRight;
-        MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
-        MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+        if (MobileNetworkClient.Instance != null)
+        {
+            MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
+            MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+        }
 
     }
 
@@ -30,6 +33,15 @@ public class CastingManager : MonoBehaviour
         
         if (currentlyChosenMold != null)
         {
+            if (MobileNetworkClient.Instance == null)
+            {
+                float rotationalInput = Mathf.Abs(Input.gyro.attitude.z);
+                if ( rotationalInput >  minimumRotationalInput && rotationalInput < minimumaximumRotationalInput)
+                {
+                    currentlyChosenMold.Fill(rotationalInput);
+                            
+                }
+            }
             if(recipeBacklog.Count == 0) return;
                 //Debug.Log(Input.gyro.attitude.x + " , " + Input.gyro.attitude.y + " , "+ Input.gyro.attitude.z );
                 for (int i = 0; i < recipeBacklog.Count; i++)
