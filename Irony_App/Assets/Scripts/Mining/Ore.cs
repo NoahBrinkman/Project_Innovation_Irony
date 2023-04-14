@@ -27,9 +27,11 @@ public class Ore : MonoBehaviour
     public bool beenChipped = false;
     public Action<Metal> onMined;
 
-    private MeshRenderer meshRenderer;
+    [SerializeField] private MeshRenderer meshRenderer;
 
-    
+    public GameObject Dwayne;
+    public GameObject TheRock;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +44,7 @@ public class Ore : MonoBehaviour
     {
         Material myMat = colorHelper.GetMaterial(metal);
         //This will change for something else later
-        foreach (var mr in GetComponentsInChildren<MeshRenderer>())
-        {
-            if(mr.transform == transform) continue;
-            mr.material = myMat;
-        }
+       meshRenderer.material = myMat;
 
         _health = health;
         isSelected = false;
@@ -57,7 +55,7 @@ public class Ore : MonoBehaviour
         return this;
     }
 
-    public void update()
+    public void Update()
     {
         if (beenMined) return;
         if (isSelected && !isHeldDown)
@@ -76,6 +74,7 @@ public class Ore : MonoBehaviour
             isHeldDown = false;
             
         }
+
     }
 
     private void OnMouseDown()
@@ -86,8 +85,7 @@ public class Ore : MonoBehaviour
         isHeldDown = true;
         cinCam.m_Priority = 11;
         mainCam.m_Priority = 10;
-       // mc.minecartStop = true;
-
+        // mc.minecartStop = true;
 
     }
 
@@ -103,7 +101,8 @@ public class Ore : MonoBehaviour
         _health--;
         if (_health <= 0)
         {
-            
+            Instantiate(TheRock, Dwayne.transform.position, Quaternion.identity);
+            Destroy(Dwayne);
             beenMined = true;
             ReadSwipeInput.Instance.OnSwipeLeft += SendOffRejected;
             ReadSwipeInput.Instance.OnSwipeRight += SendOffAccepted;
@@ -150,6 +149,6 @@ public class Ore : MonoBehaviour
         yield break;
         
     }
-
+    
 
 }
