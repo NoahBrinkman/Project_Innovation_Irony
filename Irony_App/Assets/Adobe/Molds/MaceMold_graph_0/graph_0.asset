@@ -147,7 +147,7 @@ MonoBehaviour:
   HasThumbnail: 0
   CurrentStatePreset: " <sbspreset pkgurl=\"pkg://MaceMold\" label=\"\" >\n  <presetinput
     identifier=\"$outputsize\" uid=\"1956711741\" type=\"8\" value=\"10,10\" />\n 
-    <presetinput identifier=\"itemcolor\" uid=\"430405612\" type=\"3\" value=\"0.0784314,0.0784314,0.0784314,1\"
+    <presetinput identifier=\"itemcolor\" uid=\"430405612\" type=\"3\" value=\"0.27451,0.27451,0.27451,1\"
     />\n </sbspreset>\n"
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
             output image
           Type: 3
           WidgetType: 3
-        Data: {x: 0.078431375, y: 0.078431375, z: 0.078431375, w: 1}
+        Data: {x: 0.27450982, y: 0.27450982, z: 0.27450982, w: 1}
         NumericalDescription:
           DefaultValue: {x: 0.27451, y: 0.27451, z: 0.27451, w: 1}
           MinValue: {x: 0, y: 0, z: 0, w: 0}
