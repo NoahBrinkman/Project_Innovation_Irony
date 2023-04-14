@@ -131,8 +131,9 @@ MonoBehaviour:
   CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Substance_graph\" label=\"\" >\n 
     <presetinput identifier=\"$outputsize\" uid=\"3795302352\" type=\"8\" value=\"11,11\"
     />\n  <presetinput identifier=\"rocks_x_amount\" uid=\"2400533052\" type=\"4\"
-    value=\"30\" />\n  <presetinput identifier=\"rocks_y_amount\" uid=\"2400532363\"
-    type=\"4\" value=\"30\" />\n </sbspreset>\n"
+    value=\"20\" />\n  <presetinput identifier=\"rocks_y_amount\" uid=\"2400532363\"
+    type=\"4\" value=\"20\" />\n  <presetinput identifier=\"rocks_scale\" uid=\"2400537185\"
+    type=\"0\" value=\"3.49\" />\n </sbspreset>\n"
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
   GenerateAllMipmaps: 1
@@ -198,7 +199,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 1
-        Data: 30
+        Data: 20
         NumericalDescription:
           DefaultValue: 16
           MinValue: 1
@@ -220,7 +221,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 1
-        Data: 30
+        Data: 20
         NumericalDescription:
           DefaultValue: 16
           MinValue: 1
@@ -242,7 +243,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: 5
+        Data: 3.49
         NumericalDescription:
           DefaultValue: 5
           MinValue: 0
