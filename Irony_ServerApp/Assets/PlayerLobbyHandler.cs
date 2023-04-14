@@ -30,6 +30,7 @@ public class PlayerLobbyHandler : MonoBehaviour
     [SerializeField] private List<Recipe> recipes = new List<Recipe>();
     private List<Recipe> recipePool;
     private List<Recipe> openOrders = new List<Recipe>();
+    [SerializeField] private float secondsBetweenRecipes = 30;
     [Space]
     [Header("GameTime")]
     [SerializeField] private float timePerRoundInSeconds = 180.0f;
@@ -139,6 +140,7 @@ public class PlayerLobbyHandler : MonoBehaviour
     public void StartGame()
     {
         GameConnecter.Instance.StartGame(recipes[0]);
+        StartCoroutine(SendRandomRecipesThroughoutGame());
         timerText.gameObject.SetActive(true);
         timer = timePerRoundInSeconds;
     }
@@ -151,7 +153,7 @@ public class PlayerLobbyHandler : MonoBehaviour
         {
             recipePool = new List<Recipe>(recipes);
         }
-
+        
         openOrders.Add(r);
         GameConnecter.Instance.SendRecipe(r);
     }
@@ -179,8 +181,20 @@ public class PlayerLobbyHandler : MonoBehaviour
 
         }
 
+        
     }
     
+        IEnumerator SendRandomRecipesThroughoutGame()
+        {
+            while (timer > 0)
+            {
+                
+                yield return new WaitForSeconds(secondsBetweenRecipes);
+                SendRandomRecipe();
+            }
+            
+            yield break;
+        }
     
     
 }
