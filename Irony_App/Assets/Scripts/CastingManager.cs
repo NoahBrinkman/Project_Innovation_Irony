@@ -12,7 +12,9 @@ public class CastingManager : MonoBehaviour
     [SerializeField] private float pouringAdditionMultiplier;
     [SerializeField] private List<Metal> moltenMetalsInForge;
     [SerializeField] private CastMold currentlyChosenMold;
-
+    [SerializeField] private Transform bucket;
+    [SerializeField] private float rotationIntensity = 1.1f;
+    [SerializeField] private float rotationOffset = 10;
     private List<Recipe> recipeBacklog = new List<Recipe>();
 
     void Start()
@@ -21,6 +23,7 @@ public class CastingManager : MonoBehaviour
         ReadSwipeInput.Instance.OnSwipeRight += OnswipeRight;
         if (MobileNetworkClient.Instance != null)
         {
+            
             MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
             MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
         }
@@ -35,7 +38,12 @@ public class CastingManager : MonoBehaviour
         {
             if (MobileNetworkClient.Instance == null)
             {
+                Input.gyro.enabled = true;
                 float rotationalInput = Mathf.Abs(Input.gyro.attitude.z);
+                Debug.Log(rotationalInput);
+                float t = Mathf.InverseLerp(0f, 0.5f, rotationalInput);
+                float bucketRotaion = Mathf.Lerp(270f, 180f, t);
+                bucket.localRotation = Quaternion.Euler(new Vector3(0,90, bucketRotaion));
                 if ( rotationalInput >  minimumRotationalInput && rotationalInput < minimumaximumRotationalInput)
                 {
                     currentlyChosenMold.Fill(rotationalInput);
@@ -49,6 +57,7 @@ public class CastingManager : MonoBehaviour
                     if (recipeBacklog[i].item == currentlyChosenMold.myItem && moltenMetalsInForge.ContainsAll(recipeBacklog[0].metalRecipe))
                     {
                         float rotationalInput = Mathf.Abs(Input.gyro.attitude.z);
+                        bucket.rotation = Quaternion.Euler(new Vector3(0,0, 180 + (-rotationalInput * rotationIntensity)));
                         if ( rotationalInput >  minimumRotationalInput && rotationalInput < minimumaximumRotationalInput)
                         {
                             currentlyChosenMold.Fill(rotationalInput);
@@ -58,6 +67,7 @@ public class CastingManager : MonoBehaviour
                     }
                 }
         }
+        Input.gyro.enabled = false;
     }
 
     void OnMetalReceived(SendMetalResponse message)
