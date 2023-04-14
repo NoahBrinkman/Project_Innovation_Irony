@@ -3063,8 +3063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sampleWindow: 64
   maxScale: {x: 0, y: 0, z: 0}
-  sensitivity: 100
-  minimumloudness: 0.015
+  sensitivity: 150
+  minimumloudness: 0.095
 --- !u!1 &1712248826
 GameObject:
   m_ObjectHideFlags: 0

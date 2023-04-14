@@ -60,7 +60,7 @@ public class WashableOreManager : MonoBehaviour
         }
             
         else cleanLevelText.text = "All done for now!";
-        cleanMeter.UpdateIndicatorPosition(currentOre);
+        //cleanMeter.UpdateIndicatorPosition(currentOre);
     }
 
     private void OnOreSent()
