@@ -23,6 +23,8 @@ public class WashableOre : MonoBehaviour
 
     public CleaningParticleSystem cps;
 
+    [SerializeField] private ParticleSystem ps;
+    [SerializeField] private MeshRenderer ms;
     public void Initialize(Metal metal, Vector3 endPosition, Ease easeMode = Ease.InQuart)
     {
         cps = FindFirstObjectByType<CleaningParticleSystem>();
@@ -35,7 +37,9 @@ public class WashableOre : MonoBehaviour
         transform.DOMove(endPosition, .5f).SetEase(easeMode);
         ReadAccelerometerInput.Instance.OnShake += OnShaken;
         ReadSwipeInput.Instance.OnSwipeUp += OnSwipeUp;
-        
+        ps.GetComponent<Renderer>().material = metalInfo.mat;
+        ms.GetComponent<MeshRenderer>().material = metalInfo.mat;
+
     }
 
     private void OnDestroy()
@@ -52,6 +56,15 @@ public class WashableOre : MonoBehaviour
         cps.SoundMarg = targetCleaningMargin;
         cps.SoundMax = targetCleaningValue;
         cleaningValue = Mathf.Clamp(cleaningValue, 0, maxCleaningValue);
+        
+        if(targetCleaningValue <= cleaningValue)
+        {
+            ps.maxParticles = 0;
+        }
+        else
+        {
+            ps.maxParticles = Mathf.RoundToInt(targetCleaningValue / cleaningValue);
+        }
 
     }
     private void OnSwipeUp()
