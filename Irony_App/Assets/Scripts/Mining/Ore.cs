@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Cinemachine;
 using DG.Tweening;
 using shared;
@@ -28,23 +29,30 @@ public class Ore : MonoBehaviour
     public Action<Metal> onMined;
 
     [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private ParticleSystem ps;
+    [SerializeField] private ParticleSystem Rocks, Sparks;
+    [SerializeField] private ParticleSystem Reveal;
 
     public GameObject Dwayne;
     public GameObject TheRock;
- 
+
+    [SerializeField] private CamShake camTarget;
     // Start is called before the first frame update
     void Start()
     {
-        //    Initialize(Metal);
+        //Initialize(Metal);
         meshRenderer = GetComponent<MeshRenderer>();
+        ps = GetComponent<ParticleSystem>();
         
-    }
 
+    }
     public Ore Initialize(Metal metal)
     {
         Material myMat = colorHelper.GetMaterial(metal);
         //This will change for something else later
-       meshRenderer.material = myMat;
+         meshRenderer.material = myMat;
+         ps.GetComponent<Renderer>().material = myMat;
+         Reveal.GetComponent<Renderer>().material = myMat;
 
         _health = health;
         isSelected = false;
@@ -95,7 +103,9 @@ public class Ore : MonoBehaviour
         {
             return;
         }
-
+        camTarget.GetComponent<CamShake>().shakeDuration = 0.2f;
+        Sparks.Play();
+        Handheld.Vibrate();
         beenChipped = true;
         Debug.Log("Mined");
         _health--;
@@ -103,6 +113,9 @@ public class Ore : MonoBehaviour
         {
             Instantiate(TheRock, Dwayne.transform.position, Quaternion.identity);
             Destroy(Dwayne);
+            Rocks.Play();
+            Reveal.Play();
+            camTarget.GetComponent<CamShake>().shakeDuration = 0.75f;
             beenMined = true;
             ReadSwipeInput.Instance.OnSwipeLeft += SendOffRejected;
             ReadSwipeInput.Instance.OnSwipeRight += SendOffAccepted;
