@@ -52,13 +52,11 @@ public class WashableOreManager : MonoBehaviour
             CreateNewOre(washableOreBacklog[0]);
             //Send message to server
         }
-
-        if (currentOre != null) {
+        if (currentOre != null)
+        {
             cleanLevelText.text =
-                $"Clean Level: {(currentOre.cleanEnoughToSend ? currentOre.perfectGrade ? "<color=green>" : "<color=red>"  : "")}{currentOre.cleaningValue.ToString("F2")}{(currentOre.cleanEnoughToSend ? "</color>" : "")}";
-
+                $"Clean Level: {(currentOre.cleanEnoughToSend ? currentOre.perfectGrade ? "<color=green>" : "<color=red>" : "")}{currentOre.cleaningValue.ToString("F2")}{(currentOre.cleanEnoughToSend ? "</color>" : "")}";
         }
-            
         else cleanLevelText.text = "All done for now!";
         cleanMeter.UpdateIndicatorPosition(currentOre);
     }

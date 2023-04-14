@@ -327,13 +327,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lorem Ipsum Remember you can have rich text using <> and b i u\nsize and
-    color\nmeaning if you want to make something <b>pop</b> out you make it bold
-    or <i>italic</i> <color=green>Different colours work too! </color> \nthis is
-    <u>very</u> important for humans to quickly read and take up information it makes
-    a <size=48>huge</size> difference"
+  m_text: "The miner needs to select an ore and swing the pickaxe to break it.  To
+    choose what ore he sends to the cleaner he needs to swipe left or right.  \r\n\r\nPickaxe
+    = Iron \u2013 Diamond \u2013 Iron \r\n\r\nAxe = Copper \u2013 Gold \u2013 Copper
+    \r\n\r\nSword = Diamond \u2013 Diamond \u2013 Gold \r\n\r\nMace = Iron \u2013
+    Copper - Gold "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1fe8b42eeed7e6f499d43f6dafd066f5, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -358,8 +358,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: -286.47647}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &185612410
@@ -1222,7 +1222,7 @@ RectTransform:
   m_AnchorMin: {x: 0.15, y: 0}
   m_AnchorMax: {x: 0.85, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -170.09998, y: -109.43884}
+  m_SizeDelta: {x: -150, y: -109.43884}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &401307233
 MonoBehaviour:
@@ -2598,7 +2598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem Ipsum
+  m_text: Miner Manual
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
