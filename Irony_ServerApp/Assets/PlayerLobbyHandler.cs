@@ -42,6 +42,7 @@ public class PlayerLobbyHandler : MonoBehaviour
     [Header("GameTime")]
     [SerializeField] private float timePerRoundInSeconds = 180.0f;
     [SerializeField] private float bufferSeconds = 3;
+    [SerializeField] private float timeBetweenOrders = 30;
     private float timer;
     [SerializeField] private TMP_Text timerText;
     private bool gameEnded = false;
@@ -159,6 +160,7 @@ public class PlayerLobbyHandler : MonoBehaviour
         GameConnecter.Instance.StartGame(recipes[0]);
         timerText.gameObject.SetActive(true);
         timer = timePerRoundInSeconds;
+        StartCoroutine(SpawnOrdersInGame());
     }
 
     private void SendRandomRecipe()
@@ -174,7 +176,7 @@ public class PlayerLobbyHandler : MonoBehaviour
         openOrders.Add(r);
         newOrderDisplay.GetComponent<OrderDisplay>().
             Initialize(r, openOrders.Count, startY - (stillOpenOrderDisplays.Count * spaceIncrements));
-        newOrderDisplay.transform.parent = canvas.transform;
+        newOrderDisplay.transform.SetParent(canvas.transform);
         stillOpenOrderDisplays.Add(newOrderDisplay);
         GameConnecter.Instance.SendRecipe(r);
         
@@ -204,7 +206,16 @@ public class PlayerLobbyHandler : MonoBehaviour
         }
 
     }
-    
+
+    IEnumerator SpawnOrdersInGame()
+    {
+        while (!gameEnded)
+        {
+            yield return new WaitForSeconds(timeBetweenOrders);
+            SendRandomRecipe();
+        }
+        yield break;
+    }
     
     
 }

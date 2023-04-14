@@ -4464,10 +4464,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa20074dca680904f9af5dd58cec716d, type: 2}
   orderDisplay: {fileID: 7954312007771290621, guid: d6c7d5ef8167e524fb48ccc73ee54618,
     type: 3}
-  spawnY: -60
+  spawnY: -100
   spawnX: 140
   startY: 375
-  spaceIncrements: 100
+  spaceIncrements: 80
   timePerRoundInSeconds: 180
   bufferSeconds: 3
+  timeBetweenOrders: 30
   timerText: {fileID: 1031345174}
