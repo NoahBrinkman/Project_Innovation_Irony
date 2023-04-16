@@ -23,6 +23,9 @@ public class CastMold : MonoBehaviour
     [SerializeField] private float minimumY;
     [SerializeField] private float perfectY;
     [SerializeField] private float maximumY;
+
+    [SerializeField] private GameObject toolPrefab;
+    
     public int GetGrade()
     {
         return 5;
@@ -63,6 +66,10 @@ public class CastMold : MonoBehaviour
     {
         int grade = GetGrade();
         //Sequence this
+
+        GameObject g = Instantiate(toolPrefab, transform.position,transform.rotation);
+        g.transform.DOMoveY(10, 2).SetEase(Ease.InBack);
+        
         transform.DOMoveX(30, 1);
         
         yield return new WaitForSeconds(1.2f);

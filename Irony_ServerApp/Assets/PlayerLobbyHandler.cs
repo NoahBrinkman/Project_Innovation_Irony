@@ -158,6 +158,7 @@ public class PlayerLobbyHandler : MonoBehaviour
     public void StartGame()
     {
         GameConnecter.Instance.StartGame(recipes[0]);
+        StartCoroutine(SendRandomRecipesThroughoutGame());
         timerText.gameObject.SetActive(true);
         timer = timePerRoundInSeconds;
         StartCoroutine(SpawnOrdersInGame());
@@ -205,6 +206,7 @@ public class PlayerLobbyHandler : MonoBehaviour
 
         }
 
+        
     }
 
     IEnumerator SpawnOrdersInGame()
@@ -217,6 +219,17 @@ public class PlayerLobbyHandler : MonoBehaviour
         yield break;
     }
     
+        IEnumerator SendRandomRecipesThroughoutGame()
+        {
+            while (timer > 0)
+            {
+                
+                yield return new WaitForSeconds(secondsBetweenRecipes);
+                SendRandomRecipe();
+            }
+            
+            yield break;
+        }
     
 }
 
