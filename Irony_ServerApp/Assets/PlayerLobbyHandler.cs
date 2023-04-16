@@ -62,6 +62,7 @@ public class PlayerLobbyHandler : MonoBehaviour
 
     private void ShowEndGameUI(EndGameEvent msg)
     {
+        StopCoroutine(SpawnOrdersInGame());
         timerText.gameObject.SetActive(false);
         miningTransform.DOMoveY(noPlayerYValue * 2, .5f).SetEase(Ease.InBounce);
         cleaningTransform.DOMoveY(noPlayerYValue * 2, .5f).SetEase(Ease.InBounce);
@@ -92,23 +93,33 @@ public class PlayerLobbyHandler : MonoBehaviour
     private void CloseOrder(FinishItemResponse response)
     {
         Debug.Log("Received closeOrder");
+        Recipe closedOrder = null;
         for (int i = 0; i < openOrders.Count; i++)
         {
             if (response.recipe.item == openOrders[i].recipe.item)
             {
-                openOrders.Remove(openOrders[i]);
+                
                 for (int j = 0; j < stillOpenOrderDisplays.Count; j++)
                 {
-                    if (stillOpenOrderDisplays[j].GetComponent<OrderDisplay>().recipe == openOrders[i])
+                    
+                    
+                    if (stillOpenOrderDisplays[j].GetComponent<OrderDisplay>().recipe.recipe.item == openOrders[i].recipe.item)
                     {
                         stillOpenOrderDisplays[j].GetComponent<OrderDisplay>().SendOffScreen();
+                        closedOrder = openOrders[i];
+                        break;
                         
+
                     }
                 }
                 Debug.Log("JOB DONE YAY");
             }
         }
 
+        if (closedOrder != null)
+        {
+            openOrders.Remove(closedOrder);
+        }
  
     }
 
@@ -205,6 +216,7 @@ public class PlayerLobbyHandler : MonoBehaviour
 
         }
 
+        
     }
 
     IEnumerator SpawnOrdersInGame()
@@ -216,8 +228,7 @@ public class PlayerLobbyHandler : MonoBehaviour
         }
         yield break;
     }
-    
-    
+
 }
 
 [Serializable]

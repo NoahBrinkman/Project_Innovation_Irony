@@ -13,6 +13,7 @@ public class OrderDisplay : MonoBehaviour
     public void Initialize(Recipe recipe, int orderNumber, float targetY)
     {
         titleText.text = $"Order - #{orderNumber}";
+        this.recipe = recipe;
         if (recipe.isWeapon)
         {
             typeText.text = $"Type: Weapon\nName: {recipe.name}";

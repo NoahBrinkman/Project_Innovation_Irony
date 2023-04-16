@@ -8,7 +8,7 @@ public class OreFracture : MonoBehaviour
 
     public Ore ore;
 
-    private void Start()
+    void Start()
     {
         ore = GetComponent<Ore>();
     }
