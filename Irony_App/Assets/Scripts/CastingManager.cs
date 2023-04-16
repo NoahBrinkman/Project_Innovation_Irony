@@ -26,6 +26,7 @@ public class CastingManager : MonoBehaviour
             
             MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
             MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+            if(MobileNetworkClient.Instance.recipeBacklog != null) OnRecipeReceived(MobileNetworkClient.Instance.recipeBacklog);
         }
 
     }
@@ -33,7 +34,21 @@ public class CastingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            for (int i = 0; i < recipeBacklog.Count; i++)
+            {
+                if (recipeBacklog[i].item == currentlyChosenMold.myItem)
+                {
+                    foreach (Metal metal in recipeBacklog[i].metalRecipe)
+                    {
+                        moltenMetalsInForge.Remove(metal);
+                    }
+                    break;
+                }
+            }
+            StartCoroutine(currentlyChosenMold.SendOffScreen());
+        }
         if (currentlyChosenMold != null)
         {
             if (MobileNetworkClient.Instance == null)
@@ -118,6 +133,7 @@ public class CastingManager : MonoBehaviour
 
     private void OnRecipeReceived(Recipe r)
     {
+        Debug.Log("Recipe Receved: " + r.item);
         recipeBacklog.Add(r);
     }
     
