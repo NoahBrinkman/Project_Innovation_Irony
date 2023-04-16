@@ -477,6 +477,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2100468180631660164, guid: 2e3b6c10f5b76a347abe9da369980734,
         type: 3}
+      propertyPath: myItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2100468180631660164, guid: 2e3b6c10f5b76a347abe9da369980734,
+        type: 3}
+      propertyPath: toolPrefab
+      value: 
+      objectReference: {fileID: 8856586884282821332, guid: 8426737f03e08484fb38112a938a3121,
+        type: 3}
+    - target: {fileID: -2100468180631660164, guid: 2e3b6c10f5b76a347abe9da369980734,
+        type: 3}
       propertyPath: startingPos
       value: 
       objectReference: {fileID: 1133069376}
@@ -2492,6 +2503,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7758788642481010620, guid: 6ff0cb9aa11290545982ef80359dda70,
         type: 3}
+      propertyPath: myItem
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7758788642481010620, guid: 6ff0cb9aa11290545982ef80359dda70,
+        type: 3}
+      propertyPath: toolPrefab
+      value: 
+      objectReference: {fileID: 8856586884282821332, guid: 8426737f03e08484fb38112a938a3121,
+        type: 3}
+    - target: {fileID: -7758788642481010620, guid: 6ff0cb9aa11290545982ef80359dda70,
+        type: 3}
       propertyPath: startingPos
       value: 
       objectReference: {fileID: 393733447}
@@ -2820,8 +2842,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 903820397}
-  - {fileID: 401307232}
   - {fileID: 972087398}
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -3096,6 +3116,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1350126741}
     m_Modifications:
+    - target: {fileID: -452610186992092594, guid: da362272a318fc042a4d24c22683409c,
+        type: 3}
+      propertyPath: myItem
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -452610186992092594, guid: da362272a318fc042a4d24c22683409c,
+        type: 3}
+      propertyPath: toolPrefab
+      value: 
+      objectReference: {fileID: 8856586884282821332, guid: 8426737f03e08484fb38112a938a3121,
+        type: 3}
     - target: {fileID: -452610186992092594, guid: da362272a318fc042a4d24c22683409c,
         type: 3}
       propertyPath: startingPos
@@ -3512,6 +3543,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1350126741}
     m_Modifications:
+    - target: {fileID: -6484897868454177257, guid: d4e7e20ffc0d9734ab0304bd2f6993a7,
+        type: 3}
+      propertyPath: toolPrefab
+      value: 
+      objectReference: {fileID: 8856586884282821332, guid: 8426737f03e08484fb38112a938a3121,
+        type: 3}
     - target: {fileID: -6484897868454177257, guid: d4e7e20ffc0d9734ab0304bd2f6993a7,
         type: 3}
       propertyPath: startingPos

@@ -15,18 +15,6 @@ public class MoltenLevel : MonoBehaviour
         mySubstance.SetInputFloat("moltenlevel", 0.0f);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && SubstanceBrightness <= 1)
-        {
-            toBright = true;
-        }
-
-        if (toBright)
-        {
-            UpdateSubstance();
-        }
-    }
 
     public void UpdateSubstance()
     {

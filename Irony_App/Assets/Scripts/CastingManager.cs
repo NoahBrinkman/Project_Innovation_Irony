@@ -146,6 +146,7 @@ public class CastingManager : MonoBehaviour
             {
                 FinishItemRequest request = new FinishItemRequest();
                 request.recipe = recipeBacklog[i];
+                request.grade = grade;
                 MobileNetworkClient.Instance.channel.SendMessage(request);
                 recipeBacklog.Remove(recipeBacklog[i]);
                 

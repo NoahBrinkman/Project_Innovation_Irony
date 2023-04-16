@@ -35,9 +35,7 @@ public class CastMold : MonoBehaviour
     {
         fillValue += amount;
         Debug.Log(fillValue);
-        Vector3 pos = moltenMetal.transform.localPosition;
-        pos.y =  Mathf.Clamp(Mathf.LerpUnclamped(minimumY,perfectY, (1/perfectFillValue)*fillValue), minimumY, maximumY);
-       moltenMetal.transform.localPosition = pos;
+        
     }
 
     private void OnMouseDown()
