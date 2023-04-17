@@ -87,6 +87,7 @@ namespace server
             endGame.grades.Add(getRoomGrade(MinigameRoom.Smelting));
             endGame.grades.Add(getRoomGrade(MinigameRoom.Casting));
             sendToAll(endGame);
+			IsGameInPlay= false;
 		}
 
 		private RoomGrade getRoomGrade(MinigameRoom room)
