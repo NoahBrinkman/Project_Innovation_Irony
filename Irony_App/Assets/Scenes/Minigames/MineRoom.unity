@@ -1431,8 +1431,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858905294}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 8.1, y: 6.4, z: 109.7}
-  m_LocalScale: {x: 1, y: 26.96, z: 150}
+  m_LocalPosition: {x: -4.5, y: 5.7, z: -0.7}
+  m_LocalScale: {x: 1, y: 22.866123, z: 43.85791}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1001105775}
@@ -1457,8 +1457,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.3187487, y: 0.87938815, z: 0.90426344}
+  m_Center: {x: 2.3982496, y: 0.03457228, z: -0.032526847}
 --- !u!23 &858905297
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7174,7 +7174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440257932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7198,7 +7198,7 @@ MonoBehaviour:
     type: 3}
   randomExtraOres: 8
   bounds:
-  - {fileID: 0}
+  - {fileID: 858905296}
   minimumDistanceBetweenOres: 1
 --- !u!114 &1440257935
 MonoBehaviour:
