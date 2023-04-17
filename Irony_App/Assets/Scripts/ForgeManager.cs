@@ -19,15 +19,17 @@ public class ForgeManager : MonoBehaviour
    private float currentHeatMargin;
    private float currentCookTime;
    private float timer;
-
+   private float micVolume;
    [SerializeField] private Transform moltenMetal;
-
+   [SerializeField] private HeatValueImageIndicator indicator;
+   [SerializeField] private float dropOffRate = .2f;
    [SerializeField] [NotNull] private TMP_Text debugText;
     // Start is called before the first frame update
     void Start()
     {
         micInput = GetComponent<ReadMicInput>();
         ReadSwipeInput.Instance.OnSwipeRight += OnSwipeRight;
+        if(MobileNetworkClient.Instance != null)
         MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
     }
 
@@ -56,7 +58,16 @@ public class ForgeManager : MonoBehaviour
         }
 
         debugText.text = $"Heat value: {micInput.volume}\nTimeTaken: {timer.ToString("F2")}";
-        
+        micVolume = Mathf.Clamp(micVolume, 0, 10);
+        if (micInput.volume > 0.1f)
+        {
+            micVolume += micInput.volume;
+        }
+        else
+        {
+            micVolume -= dropOffRate;
+        }
+        indicator.SetIndicator(micVolume/10);
         if (currentlyInForge == Metal.None && forgeBacklog.Count > 0)
         {
             InitializeNewMetalInForge();
