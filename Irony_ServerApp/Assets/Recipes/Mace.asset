@@ -16,3 +16,5 @@ MonoBehaviour:
     item: 2
     recipeSize: 3
     metalRecipe: 020000000200000003000000
+  isWeapon: 0
+  name: Wilhelm

@@ -69,9 +69,13 @@ namespace server
 			if (pMessage is ChangeReadyStatusRequest) handleReadyNotification(pMessage as ChangeReadyStatusRequest, pSender);
 			else if (pMessage is MinigameChosenRequest) handleMinigameChosenRequest(pMessage as MinigameChosenRequest, pSender);
 			else if (pMessage is StartGameRequest) handleStartGameRequest(pMessage as StartGameRequest, pSender);
-		}
+            else if (pMessage is EndGameRequest) handleEndGameRequest(pMessage as EndGameRequest, pSender);
+        }
 
-
+        private void handleEndGameRequest(EndGameRequest endGameRequest, TcpMessageChannel pSender)
+        {
+			Log.LogInfo("AAAAAAAAAAAAAAAAAAAAAAAH", this);
+        }
 
         private void handleStartGameRequest(StartGameRequest startGameRequest, TcpMessageChannel pSender)
         {

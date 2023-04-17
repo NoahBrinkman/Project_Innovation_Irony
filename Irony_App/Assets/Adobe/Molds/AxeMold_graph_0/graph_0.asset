@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: graph_0
   m_EditorClassIdentifier: 
   AssetPath: Assets/Adobe/Molds/AxeMold.sbsar
-  OutputPath: Assets/Adobe/Molds/AxeMold_graph_0
+  OutputPath: Assets\Adobe\Molds\AxeMold_graph_0
   RawData: {fileID: -244192453324840774, guid: e5db55011b28daa41884fec09a9e891b, type: 3}
   Name: graph_0
   IsRoot: 1
   FlagedForDelete: 0
-  GUID: 67f012b0-26a3-49be-9182-b340bdca4a31
+  GUID: e70b872e-ef41-47c9-80f4-e7bc06e1e33e
   Index: 0
   Input:
-  - rid: 2585209406394728487
-  - rid: 2585209406394728488
-  - rid: 2585209406394728489
-  - rid: 2585209406394728490
-  - rid: 2585209406394728491
-  - rid: 2585209406394728492
+  - rid: 6049830028631080979
+  - rid: 6049830028631080980
+  - rid: 6049830028631080981
+  - rid: 6049830028631080982
+  - rid: 6049830028631080983
+  - rid: 6049830028631080984
   Output:
   - Index: 0
     VirtualOutputIndex: 7
@@ -116,7 +116,7 @@ MonoBehaviour:
       Index: 5
       Type: 8
       Channel: ambientOcclusion
-    OutputTexture: {fileID: 2800000, guid: 0e52526abd88c7546b0147f9c339e34c, type: 3}
+    OutputTexture: {fileID: 0}
     sRGB: 0
     IsVirtual: 0
     IsAlphaAssignable: 1
@@ -145,10 +145,7 @@ MonoBehaviour:
   EnablePhysicalSize: 0
   Thumbnail: 
   HasThumbnail: 0
-  CurrentStatePreset: " <sbspreset pkgurl=\"pkg://AxeMold\" label=\"\" >\n  <presetinput
-    identifier=\"$outputsize\" uid=\"1342858056\" type=\"8\" value=\"10,10\" />\n 
-    <presetinput identifier=\"itemcolor\" uid=\"1024870567\" type=\"3\" value=\"0.27451,0.27451,0.27451,1\"
-    />\n </sbspreset>\n"
+  CurrentStatePreset: 
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
   GenerateAllMipmaps: 1
@@ -162,7 +159,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2585209406394728487
+    - rid: 6049830028631080979
       type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 0
@@ -181,7 +178,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728488
+    - rid: 6049830028631080980
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 1
@@ -203,7 +200,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728489
+    - rid: 6049830028631080981
       type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 2
@@ -215,7 +212,7 @@ MonoBehaviour:
             output image
           Type: 3
           WidgetType: 3
-        Data: {x: 0.27450982, y: 0.27450982, z: 0.27450982, w: 1}
+        Data: {x: 0.27451, y: 0.27451, z: 0.27451, w: 1}
         NumericalDescription:
           DefaultValue: {x: 0.27451, y: 0.27451, z: 0.27451, w: 1}
           MinValue: {x: 0, y: 0, z: 0, w: 0}
@@ -224,7 +221,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728490
+    - rid: 6049830028631080982
       type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 3
@@ -245,7 +242,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728491
+    - rid: 6049830028631080983
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 4
@@ -266,7 +263,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728492
+    - rid: 6049830028631080984
       type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 5

@@ -8,4 +8,6 @@ using shared;
 public class Recipe : ScriptableObject
 {
     public shared.Recipe recipe;
+    public bool isWeapon = false;
+    public string name = "Joffrey";
 }

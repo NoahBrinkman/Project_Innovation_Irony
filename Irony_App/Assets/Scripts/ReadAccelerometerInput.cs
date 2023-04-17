@@ -7,6 +7,7 @@ public class ReadAccelerometerInput : MonoBehaviour
 {
     private static ReadAccelerometerInput _instance;
 
+
     public static ReadAccelerometerInput Instance
     {
         get
@@ -37,6 +38,7 @@ public class ReadAccelerometerInput : MonoBehaviour
     {
         threshold *= threshold;
         lowPassValue = Input.acceleration;
+
     }
 
     private void Update()
@@ -47,10 +49,12 @@ public class ReadAccelerometerInput : MonoBehaviour
         if (deltaAcceleration.sqrMagnitude >= threshold)
         {
             OnShake?.Invoke();
+            
         }
         else
         {
             OnEndShake?.Invoke();
+        
         }
     }
 

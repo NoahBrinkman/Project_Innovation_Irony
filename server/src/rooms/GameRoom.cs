@@ -21,8 +21,13 @@ namespace server
 
 		//wraps the board to play on...
 		public int MemberCount => memberCount;
-		public GameRoom(TCPGameServer pOwner) : base(pOwner)
+		
+		private Dictionary<MinigameRoom, int> gameRoomGrades;
+
+
+        public GameRoom(TCPGameServer pOwner) : base(pOwner)
 		{
+			gameRoomGrades = new Dictionary<MinigameRoom, int>();
 		}
 
 		public void StartGame (List<TcpMessageChannel> players)
@@ -68,12 +73,43 @@ namespace server
 			else if(pMessage is SendMetalRequest) handleSendMetalRequest(pMessage as SendMetalRequest, pSender);
 			else if (pMessage is SendMetalsRequest) handleSendMetalsRequest(pMessage as SendMetalsRequest, pSender);
 			else if (pMessage is FinishItemRequest) handleFinishItemRequest(pMessage as FinishItemRequest, pSender);
+			else if(pMessage is EndGameRequest) handleEndGameRequest(pMessage as EndGameRequest, pSender);
+        }
+
+		private void handleEndGameRequest(EndGameRequest endGameRequest, TcpMessageChannel pSender)
+		{
+			Log.LogInfo("Hanlding EndGame",this);
+			//if (!_server._hosts.ContainsValue(pSender)) return;
+			EndGameEvent endGame = new EndGameEvent();
+			endGame.size = 4;
+			endGame.grades.Add(getRoomGrade(MinigameRoom.Mining));
+            endGame.grades.Add(getRoomGrade(MinigameRoom.Cleaning));
+            endGame.grades.Add(getRoomGrade(MinigameRoom.Smelting));
+            endGame.grades.Add(getRoomGrade(MinigameRoom.Casting));
+            sendToAll(endGame);
+			IsGameInPlay= false;
+		}
+
+		private RoomGrade getRoomGrade(MinigameRoom room)
+		{
+			int sum = 0;
+			foreach (var kvp in gameRoomGrades)
+			{
+				if(kvp.Key == room)
+				{
+					sum += kvp.Value;
+				}
+			}
+            RoomGrade roomGrade = new RoomGrade();
+            roomGrade.grade = sum * 10;
+            roomGrade.room = room;
+			return roomGrade;
         }
 
         private void handleFinishItemRequest(FinishItemRequest finishItemRequest, TcpMessageChannel pSender)
         {
 			//Find the host
-
+			Log.LogInfo("got the request",this);
 			for (int i = 0; i < _members.Count; i++)
 			{
 				if (_server._hosts.ContainsValue(_members[i]))
@@ -82,6 +118,7 @@ namespace server
 					Log.LogInfo("Host found sending item", this);
 					FinishItemResponse response = new FinishItemResponse();
 					response.recipe = finishItemRequest.recipe;
+					gameRoomGrades.Add(MinigameRoom.Casting, finishItemRequest.grade);
 					_members[i].SendMessage(response);
 					return;
 				}
@@ -90,7 +127,7 @@ namespace server
 
         private void handleSendMetalsRequest(SendMetalsRequest sendMetalsRequest, TcpMessageChannel pSender)
         {
-
+			Log.LogInfo($"Grade received: {sendMetalsRequest.grade}", this);
 			for (int i = 0; i < _members.Count; i++)
 			{
 				if (_server.GetPlayerInfo(_members[i]).room == sendMetalsRequest.to)
@@ -101,6 +138,7 @@ namespace server
 					response.metals= sendMetalsRequest.metals;
 					response.size= sendMetalsRequest.size;
 					response.grade = sendMetalsRequest.grade;
+					gameRoomGrades.Add(sendMetalsRequest.from, sendMetalsRequest.grade);
 					_members[i].SendMessage(response);
 					return;
 				}
@@ -109,7 +147,7 @@ namespace server
 
         private void handleSendMetalRequest(SendMetalRequest sendMetalRequest, TcpMessageChannel pSender)
         {
-
+            Log.LogInfo($"Grade received: {sendMetalRequest.grade}", this);
             for (int i = 0; i < _members.Count; i++)
             {
                 if (_server.GetPlayerInfo(_members[i]).room == sendMetalRequest.to)
@@ -119,6 +157,7 @@ namespace server
                     response.to = sendMetalRequest.to;
                     response.metal = sendMetalRequest.metal;
                     response.grade = sendMetalRequest.grade;
+                    gameRoomGrades.Add(sendMetalRequest.from, sendMetalRequest.grade);
                     _members[i].SendMessage(response);
                     return;
                 }
