@@ -97,11 +97,11 @@ public class CastingManager : MonoBehaviour
     {
         if (currentlyChosenMold != null)
         {
-            if (currentlyChosenMold.fillValue > +currentlyChosenMold.targetFillValue - currentlyChosenMold.fillMargin)
-            {
+            
+                
                 for (int i = 0; i < recipeBacklog.Count; i++)
                 {
-                    if (recipeBacklog[i].item == currentlyChosenMold.myItem)
+                    if (recipeBacklog[i].item == currentlyChosenMold.myItem && moltenMetalsInForge.ContainsAll(recipeBacklog[i].metalRecipe))
                     {
                         foreach (Metal metal in recipeBacklog[i].metalRecipe)
                         {
@@ -111,7 +111,6 @@ public class CastingManager : MonoBehaviour
                     }
                 }
                 StartCoroutine(currentlyChosenMold.SendOffScreen());
-            }
         }
     }
     public void SelectCurrentMold(CastMold mold)
