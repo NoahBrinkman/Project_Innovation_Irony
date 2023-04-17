@@ -79,7 +79,7 @@ public class OreManager : MonoBehaviour
         }
         for (int i = 0; i < randomExtraOres; i++)
         {
-            SpawnOre((Metal)Random.Range(0,Enum.GetNames(typeof(Metal)).Length));
+            SpawnOre((Metal)Random.Range(1,Enum.GetNames(typeof(Metal)).Length));
         }
     }
 

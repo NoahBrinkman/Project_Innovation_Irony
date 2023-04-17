@@ -459,6 +459,12 @@ Transform:
   m_Father: {fileID: 1733434345}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!4 &86878132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3264649322453868168, guid: 16bc46c178d1e1849b9b536d5308c59c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1524221670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &119837495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4551,14 +4557,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d252b726af0806459e3ab6346e5126e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumRotationalInput: 0.3
-  minimumaximumRotationalInput: 0.45
-  pouringAdditionMultiplier: 0.2
+  minimumRotationalInput: 0.03
+  minimumaximumRotationalInput: 0.06
+  pouringAdditionMultiplier: 0.1
   moltenMetalsInForge: 020000000100000002000000
   currentlyChosenMold: {fileID: 0}
-  bucket: {fileID: 0}
-  rotationIntensity: 1.1
-  rotationOffset: 10
+  bucket: {fileID: 86878132}
+  rotationIntensity: 1
+  rotationOffset: 5
 --- !u!1001 &1720455148
 PrefabInstance:
   m_ObjectHideFlags: 0
