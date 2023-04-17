@@ -3403,6 +3403,12 @@ PrefabInstance:
       addedObject: {fileID: 1552070663}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885bffd3c3c20c849b26df98e91152a7, type: 3}
+--- !u!4 &1447483481 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7459578007572074147, guid: 885bffd3c3c20c849b26df98e91152a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1447483480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1475104349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4132,6 +4138,9 @@ MonoBehaviour:
   pouringAdditionMultiplier: 0.2
   moltenMetalsInForge: 020000000100000002000000
   currentlyChosenMold: {fileID: 0}
+  bucket: {fileID: 1447483481}
+  rotationIntensity: 1.1
+  rotationOffset: 10
 --- !u!1 &1728780290
 GameObject:
   m_ObjectHideFlags: 0
