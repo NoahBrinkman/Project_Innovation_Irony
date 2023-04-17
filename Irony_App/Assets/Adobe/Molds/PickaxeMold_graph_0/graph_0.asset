@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: graph_0
   m_EditorClassIdentifier: 
   AssetPath: Assets/Adobe/Molds/PickaxeMold.sbsar
-  OutputPath: Assets/Adobe/Molds/PickaxeMold_graph_0
+  OutputPath: Assets\Adobe\Molds\PickaxeMold_graph_0
   RawData: {fileID: -244192453324840774, guid: d29305449cf202541b5d15cf6d733ed9, type: 3}
   Name: graph_0
   IsRoot: 1
   FlagedForDelete: 0
-  GUID: 29277563-2caf-4a9a-8534-04a03ea2279d
+  GUID: 4c6d2870-4c7f-4289-bb26-75f696a6f662
   Index: 0
   Input:
-  - rid: 2585209406394728499
-  - rid: 2585209406394728500
-  - rid: 2585209406394728501
-  - rid: 2585209406394728502
-  - rid: 2585209406394728503
-  - rid: 2585209406394728504
+  - rid: 7428115133679271943
+  - rid: 7428115133679271944
+  - rid: 7428115133679271945
+  - rid: 7428115133679271946
+  - rid: 7428115133679271947
+  - rid: 7428115133679271948
   Output:
   - Index: 0
     VirtualOutputIndex: 7
@@ -36,7 +36,7 @@ MonoBehaviour:
       Index: 0
       Type: 8
       Channel: baseColor
-    OutputTexture: {fileID: 0}
+    OutputTexture: {fileID: 2800000, guid: 55d473eae2be6574c860482de1cef4b9, type: 3}
     sRGB: 1
     IsVirtual: 0
     IsAlphaAssignable: 1
@@ -52,7 +52,7 @@ MonoBehaviour:
       Index: 1
       Type: 8
       Channel: normal
-    OutputTexture: {fileID: 0}
+    OutputTexture: {fileID: 2800000, guid: cfb13dc2146eb5b43b76e6bf64db9bad, type: 3}
     sRGB: 0
     IsVirtual: 0
     IsAlphaAssignable: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
       Index: 3
       Type: 8
       Channel: metallic
-    OutputTexture: {fileID: 0}
+    OutputTexture: {fileID: 2800000, guid: 68e1201653e96e14bab16e85c71f0e93, type: 3}
     sRGB: 0
     IsVirtual: 0
     IsAlphaAssignable: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
       Index: 4
       Type: 8
       Channel: height
-    OutputTexture: {fileID: 0}
+    OutputTexture: {fileID: 2800000, guid: ba163a0470d50114bb9e5f24bba4fa53, type: 3}
     sRGB: 1
     IsVirtual: 0
     IsAlphaAssignable: 1
@@ -132,7 +132,7 @@ MonoBehaviour:
       Index: 6
       Type: 8
       Channel: emissive
-    OutputTexture: {fileID: 0}
+    OutputTexture: {fileID: 2800000, guid: f68551d1b6ed9b5499f2139a26fff27f, type: 3}
     sRGB: 1
     IsVirtual: 0
     IsAlphaAssignable: 1
@@ -145,9 +145,7 @@ MonoBehaviour:
   EnablePhysicalSize: 0
   Thumbnail: 
   HasThumbnail: 0
-  CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Pickaxe_Mold\" label=\"\" >\n 
-    <presetinput identifier=\"$outputsize\" uid=\"1241480509\" type=\"8\" value=\"10,10\"
-    />\n </sbspreset>\n"
+  CurrentStatePreset: 
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
   GenerateAllMipmaps: 1
@@ -161,7 +159,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2585209406394728499
+    - rid: 7428115133679271943
       type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 0
@@ -180,7 +178,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728500
+    - rid: 7428115133679271944
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 1
@@ -202,7 +200,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728501
+    - rid: 7428115133679271945
       type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 2
@@ -223,7 +221,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728502
+    - rid: 7428115133679271946
       type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 3
@@ -244,7 +242,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728503
+    - rid: 7428115133679271947
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 4
@@ -265,7 +263,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209406394728504
+    - rid: 7428115133679271948
       type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 5
