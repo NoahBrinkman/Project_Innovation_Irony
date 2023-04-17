@@ -4443,6 +4443,7 @@ MonoBehaviour:
   cleaningTransform: {fileID: 71665404}
   smeltingTransform: {fileID: 1498983538}
   castingTransform: {fileID: 1887095143}
+  canvas: {fileID: 89662161}
   lockedInYValue: 100
   noPlayerYValue: -50
   resultsParent: {fileID: 942367663}
@@ -4461,6 +4462,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a9c9899fd92e5fb41897b9ce289fc188, type: 2}
   - {fileID: 11400000, guid: 9b9a86c9ad43ae445ab3ccd5f13fc8ab, type: 2}
   - {fileID: 11400000, guid: fa20074dca680904f9af5dd58cec716d, type: 2}
-  timePerRoundInSeconds: 10
+  orderDisplay: {fileID: 7954312007771290621, guid: d6c7d5ef8167e524fb48ccc73ee54618,
+    type: 3}
+  spawnY: -60
+  spawnX: -60
+  startY: 275
+  spaceIncrements: 50
+  timePerRoundInSeconds: 20
   bufferSeconds: 3
+  timeBetweenOrders: 30
   timerText: {fileID: 1031345174}
