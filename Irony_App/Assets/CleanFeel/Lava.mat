@@ -105,7 +105,7 @@ Material:
     - _ExtraNoiseAmount: 0.5
     - _Foam_amount: 0.4
     - _Foam_offset: 0.92
-    - _Fresnel_power: 0.9
+    - _Fresnel_power: 200
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -126,27 +126,27 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _Voronoi_amount: 0.015
-    - _Voronoi_offset: 2
-    - _Voronoi_scale: 35
+    - _Voronoi_offset: 1
+    - _Voronoi_scale: 20
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 1
-    - _metal: 0
-    - _smooth: 0
+    - _metal: 1
+    - _smooth: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Fresnel_color: {r: 15.363032, g: 5.5591125, b: 2.2384293, a: 0}
     - _LavaColor: {r: 0.7735849, g: 0.19585714, b: 0.083521195, a: 0}
-    - _LavaHeatColor: {r: 16, g: 6.5882354, b: 3.2627451, a: 0}
+    - _LavaHeatColor: {r: 11.688233, g: 2.1459827, b: 0, a: 0}
     - _LavaNormalSpeed: {r: 0, g: 0.2, b: 0, a: 0}
     - _Lava_speed: {r: 0, g: 0.1, b: 0, a: 0}
     - _Simplenoisespeed: {r: 0, g: 0.05, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _lava_scale: {r: 5, g: 5, b: 0, a: 0}
-    - _voronoi_speed: {r: 0, g: 0.05, b: 0, a: 0}
+    - _lava_scale: {r: 1, g: 1, b: 0, a: 0}
+    - _voronoi_speed: {r: 1, g: 2.38, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7656413557897402713
 MonoBehaviour:

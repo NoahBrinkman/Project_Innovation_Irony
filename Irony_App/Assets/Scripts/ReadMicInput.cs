@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
+using UnityEngine.VFX.Utility;
 
 public class ReadMicInput : MonoBehaviour
 {
@@ -13,11 +15,15 @@ public class ReadMicInput : MonoBehaviour
     private AudioClip micClip;
     [SerializeField] private float sensitivity = 75;
     [SerializeField] private float minimumloudness = .01f;
+
+    public float loudness;
     public float minimumLoudnes { get; private set; }
     private void Start()
     {
         source = GetComponent<AudioSource>();
         MicrophoneToAudioClip();
+
+        
     }
 
     private void MicrophoneToAudioClip()
@@ -30,11 +36,12 @@ public class ReadMicInput : MonoBehaviour
     
     void Update()
     {
-        float loudness = GetLoudnessFromMicrophone();
+        loudness = GetLoudnessFromMicrophone();
         if (loudness < minimumloudness)
             volume = 0;
         else
             volume = GetLoudnessFromMicrophone() * sensitivity;
+
     }
 
     float GetLoudnessFromMicrophone()
