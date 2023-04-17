@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Minigames/SmelteryRoom.unity
+    guid: 211b89bbcf2d8cb4494229c3662e962f
+  - enabled: 0
+    path: Assets/Scenes/MainMenu.unity
+    guid: 66eecd119c2e9184eb4efdabb9c40cc6
+  - enabled: 1
+    path: Assets/Scenes/LobbyScene.unity
+    guid: 4e967c82ed25abb4090609ca9e96a6be
+  - enabled: 1
+    path: Assets/Scenes/Minigames/MineRoom.unity
+    guid: f6cb3de482c27cd49aa5857084a8c77a
+  - enabled: 0
+    path: Assets/Scenes/Minigames/CleaningRoom.unity
+    guid: 1f925bb740d266d4c8b4265a05fb2c85
+  - enabled: 0
+    path: Assets/Scenes/Minigames/CastingRoom.unity
+    guid: 173aa9b585349cc4da2b13cca68a4de9
   m_configObjects: {}
