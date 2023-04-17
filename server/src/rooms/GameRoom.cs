@@ -81,6 +81,7 @@ namespace server
 			Log.LogInfo("Hanlding EndGame",this);
 			//if (!_server._hosts.ContainsValue(pSender)) return;
 			EndGameEvent endGame = new EndGameEvent();
+			endGame.size = 4;
 			endGame.grades.Add(getRoomGrade(MinigameRoom.Mining));
             endGame.grades.Add(getRoomGrade(MinigameRoom.Cleaning));
             endGame.grades.Add(getRoomGrade(MinigameRoom.Smelting));
@@ -90,19 +91,13 @@ namespace server
 
 		private RoomGrade getRoomGrade(MinigameRoom room)
 		{
-            var grades = gameRoomGrades.ToDictionary(p => p.Key == room).Values;
-            int sum = 0;
-            foreach (var kvp in grades)
-            {
-                sum += kvp.Value;
-            }
-			if(grades.Count == 0)
+			int sum = 0;
+			foreach (var kvp in gameRoomGrades)
 			{
-				sum = 0;
-			}
-			else
-			{
-				sum /= grades.Count;
+				if(kvp.Key == room)
+				{
+					sum += kvp.Value;
+				}
 			}
             RoomGrade roomGrade = new RoomGrade();
             roomGrade.grade = sum * 10;
