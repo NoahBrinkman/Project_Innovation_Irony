@@ -96,7 +96,7 @@ public class ForgeManager : MonoBehaviour
             request.to = MinigameRoom.Casting;
             request.metal = currentlyInForge;
             request.grade = Mathf.RoundToInt(grade);
-            MobileNetworkClient.Instance.SendMetal(request);
+            //MobileNetworkClient.Instance.SendMetal(request);
             Debug.Log($"Grade: {grade.ToString("F0")}");
             StartCoroutine(RemoveMetal());  
             //Remove current metal
@@ -135,7 +135,7 @@ public class ForgeManager : MonoBehaviour
     }
     IEnumerator AddNewMetal()
     {
-        moltenMetal.transform.DOMoveY(-6, 2);
+        moltenMetal.transform.DOMoveY(1, 2);
         yield return new WaitForSeconds(2);
         yield break;
     }
