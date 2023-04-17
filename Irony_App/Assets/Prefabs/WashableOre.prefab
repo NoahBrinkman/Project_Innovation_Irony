@@ -122,10 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   helper: {fileID: 11400000, guid: c20d37fb385128a4299f2a89c9712590, type: 2}
   cleaningSpeed: 0.5
+  particleSystem: {fileID: 8949406170967930912}
+  oreMesh: {fileID: 182797572392406511}
   metalType: 0
-  cps: {fileID: 0}
-  ps: {fileID: 8949406170967930912}
-  ms: {fileID: 182797572392406511}
 --- !u!1001 &1533749235204378987
 PrefabInstance:
   m_ObjectHideFlags: 0
