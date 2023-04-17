@@ -19,25 +19,43 @@ public class CastMold : MonoBehaviour
 
 
     [SerializeField] private CastingManager castingManager;
-    [SerializeField] private Transform moltenMetal;
+    [SerializeField] private MoltenLevel moltenMetal;
     [SerializeField] private float minimumY;
     [SerializeField] private float perfectY;
     [SerializeField] private float maximumY;
-
     [SerializeField] private GameObject toolPrefab;
-    
     public int GetGrade()
     {
-        return 5;
+        float timeUnderMargin = fillValue - (targetFillValue - fillMargin);
+        float timeOverMargin = fillValue - (targetFillValue + fillMargin);
+        float grade;
+        if (timeOverMargin <= 0 && timeUnderMargin >= 0)
+        {
+            grade = 10;
+        }
+        else
+        {
+            grade = 10;
+            if (timeOverMargin > 0)
+            {
+                grade -= timeOverMargin;
+            }
+
+            if (timeUnderMargin < 0)
+            {
+                grade += timeUnderMargin;
+            }
+
+        }
+
+        return Mathf.RoundToInt(grade);
     }
 
     public void Fill(float amount)
     {
         fillValue += amount;
         Debug.Log(fillValue);
-        Vector3 pos = moltenMetal.transform.localPosition;
-        pos.y =  Mathf.Clamp(Mathf.LerpUnclamped(minimumY,perfectY, (1/perfectFillValue)*fillValue), minimumY, maximumY);
-       moltenMetal.transform.localPosition = pos;
+        moltenMetal.UpdateSubstance(1/(targetFillValue+(fillMargin*3)/fillValue));
     }
 
     private void OnMouseDown()
@@ -66,13 +84,13 @@ public class CastMold : MonoBehaviour
     {
         int grade = GetGrade();
         //Sequence this
-
         GameObject g = Instantiate(toolPrefab, transform.position,transform.rotation);
         g.transform.DOMoveY(10, 2).SetEase(Ease.InBack);
         
         transform.DOMoveX(30, 1);
         
         yield return new WaitForSeconds(1.2f);
+        Fill(-fillValue);
         Fill(-fillValue);
         castingManager.SendToolToServer(myItem, grade);
         castingManager.SelectCurrentMold(this);

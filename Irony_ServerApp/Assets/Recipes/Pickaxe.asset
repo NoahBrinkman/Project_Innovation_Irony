@@ -15,4 +15,6 @@ MonoBehaviour:
   recipe:
     item: 1
     recipeSize: 3
-    metalRecipe: 020000000400000002000000
+    metalRecipe: 040000000200000002000000
+  isWeapon: 0
+  name: Tod

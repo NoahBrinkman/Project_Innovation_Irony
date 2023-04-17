@@ -28,6 +28,7 @@ public class CleaningParticleSystem : MonoBehaviour
     {
         if (camTransform == null)
         {
+            
             camTransform = GetComponent(typeof(Transform)) as Transform;
         }
     }
