@@ -2504,7 +2504,7 @@ MonoBehaviour:
   debugRecipes: []
   oreObject: {fileID: 3507771505071729787, guid: 188bdcec7a954b044b8722895630aa3b,
     type: 3}
-  randomExtraOres: 8
+  randomExtraOres: 7
   bounds:
   - {fileID: 1915718218}
   minimumDistanceBetweenOres: 1

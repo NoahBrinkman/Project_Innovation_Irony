@@ -730,7 +730,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0}
+  m_BackGroundColor: {r: 0.62352943, g: 0.4117647, b: 0.29803923, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1382,6 +1382,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   port: 55555
   lobbySceneIndex: 1
+  miningSceneIndex: 2
+  cleaningSceneIndex: 3
+  smeltingSceneIndex: 4
+  castingSceneIndex: 5
+  recipeBacklog:
+    item: 3
+    recipeSize: 3
+    metalRecipe: 
 --- !u!4 &1985880652
 Transform:
   m_ObjectHideFlags: 0
