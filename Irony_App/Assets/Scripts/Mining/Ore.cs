@@ -53,10 +53,10 @@ public class Ore : MonoBehaviour
          meshRenderer.material = myMat;
          ps.GetComponent<Renderer>().material = myMat;
          Reveal.GetComponent<Renderer>().material = myMat;
-
         _health = health;
         isSelected = false;
         beenMined = false;
+
         ReadAccelerometerInput.Instance.OnShake += OnShaken;
         cinCam = GetComponentInChildren<CinemachineVirtualCamera>();
         mainCam = GameObject.FindWithTag("MainVirtualCamera").GetComponent<CinemachineVirtualCamera>();
