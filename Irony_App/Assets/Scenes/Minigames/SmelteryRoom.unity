@@ -7464,7 +7464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sampleWindow: 64
   maxScale: {x: 0, y: 0, z: 0}
-  sensitivity: 150
+  sensitivity: 40
   minimumloudness: 0.005
   loudness: 0
 --- !u!1 &1737169320

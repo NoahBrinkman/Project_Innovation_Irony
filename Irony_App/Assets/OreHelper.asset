@@ -19,17 +19,17 @@ MonoBehaviour:
     roughness: 0.3
     perfectCleaningValue: 8
     cleaningGradeMargin: 5
-    targetHeat: 10
-    heatMargin: 5
-    cookTime: 5
+    targetHeat: 4
+    heatMargin: 1
+    cookTime: 3
   - Metal: 2
     mat: {fileID: 2100000, guid: c49fc35278b5dde4e8a4fd5209bf91a9, type: 2}
     moltenMat: {fileID: 2100000, guid: 04bb730db2198e244bd8131c3af98478, type: 2}
     roughness: 0.15
     perfectCleaningValue: 32
     cleaningGradeMargin: 7
-    targetHeat: 10
-    heatMargin: 2
+    targetHeat: 2
+    heatMargin: 0.5
     cookTime: 5
   - Metal: 3
     mat: {fileID: 2100000, guid: 174dea2ca604adb4db1231a00e07efc8, type: 2}
@@ -37,8 +37,8 @@ MonoBehaviour:
     roughness: 0.05
     perfectCleaningValue: 35
     cleaningGradeMargin: 6
-    targetHeat: 10
-    heatMargin: 2
+    targetHeat: 6
+    heatMargin: 1
     cookTime: 3
   - Metal: 4
     mat: {fileID: 2100000, guid: e5a2868162b049240a41e61d7303916d, type: 2}
@@ -46,15 +46,6 @@ MonoBehaviour:
     roughness: 0.4
     perfectCleaningValue: 35
     cleaningGradeMargin: 3
-    targetHeat: 10
-    heatMargin: 2
+    targetHeat: 9
+    heatMargin: 1
     cookTime: 3
-  - Metal: 3
-    mat: {fileID: 2100000, guid: 174dea2ca604adb4db1231a00e07efc8, type: 2}
-    moltenMat: {fileID: 2100000, guid: 3bdcc3689becbe54780ddd2ad1b09a01, type: 2}
-    roughness: 0.5
-    perfectCleaningValue: 35
-    cleaningGradeMargin: 6
-    targetHeat: 20
-    heatMargin: 0
-    cookTime: 100

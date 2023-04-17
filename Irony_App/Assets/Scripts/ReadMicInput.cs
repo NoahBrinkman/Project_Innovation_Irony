@@ -29,6 +29,7 @@ public class ReadMicInput : MonoBehaviour
     private void MicrophoneToAudioClip()
     {
         //Get The first microphone of device
+        
         string microphoneName = Microphone.devices[0];
         micClip = Microphone.Start(microphoneName, true, 20, AudioSettings.outputSampleRate);
         

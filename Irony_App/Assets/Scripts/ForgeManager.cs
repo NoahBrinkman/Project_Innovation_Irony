@@ -51,13 +51,15 @@ public class ForgeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (micInput.volume >= currentTargetHeat - currentHeatMargin &&
-            micInput.volume <= currentTargetHeat + currentHeatMargin)
+        float vol = micInput.volume;
+        
+        if (micVolume >= currentTargetHeat - currentHeatMargin &&
+            micVolume <= currentTargetHeat + currentHeatMargin)
         {
             timer += Time.deltaTime;
         }
 
-        debugText.text = $"Heat value: {micInput.volume}\nTimeTaken: {timer.ToString("F2")}";
+        debugText.text = $"Heat value: {vol}\nTimeTaken: {timer.ToString("F2")}";
         micVolume = Mathf.Clamp(micVolume, 0, 10);
         if (micInput.volume > 0.1f)
         {
