@@ -6831,7 +6831,7 @@ MonoBehaviour:
   endPosition: {fileID: 1809450686}
   easeMode: 15
   cleanLevelText: {fileID: 972087399}
-  cleanMeter: {fileID: 0}
+  cleanMeter: {fileID: 318931709}
 --- !u!1 &964280545
 GameObject:
   m_ObjectHideFlags: 0

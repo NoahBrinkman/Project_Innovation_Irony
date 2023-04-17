@@ -69,7 +69,7 @@ public class WashableOre : MonoBehaviour
     {
         if (cleanEnoughToSend)
         {
-            transform.DOMoveY(4, .6f).SetEase(Ease.InBack);
+            transform.DOMoveY(10, .6f).SetEase(Ease.InBack);
             if (perfectGrade)
             {
                 Debug.Log("very nice");
