@@ -17,6 +17,7 @@ public class PlayerLobbyHandler : MonoBehaviour
     [SerializeField] private RectTransform cleaningTransform;
     [SerializeField] private RectTransform smeltingTransform;
     [SerializeField] private RectTransform castingTransform;
+    [SerializeField] private Canvas canvas;
     [SerializeField] private float lockedInYValue;
     [SerializeField] private float noPlayerYValue;
 
@@ -30,10 +31,18 @@ public class PlayerLobbyHandler : MonoBehaviour
     [SerializeField] private List<Recipe> recipes = new List<Recipe>();
     private List<Recipe> recipePool;
     private List<Recipe> openOrders = new List<Recipe>();
+    [SerializeField] private GameObject orderDisplay;
+    private List<GameObject> stillOpenOrderDisplays;
+    [SerializeField] private float spawnY = -60;
+    [SerializeField] private float spawnX = -60;
+    [SerializeField] private float startY = 275;
+    [SerializeField] private float spaceIncrements = 50;
+    
     [Space]
     [Header("GameTime")]
     [SerializeField] private float timePerRoundInSeconds = 180.0f;
     [SerializeField] private float bufferSeconds = 3;
+    [SerializeField] private float timeBetweenOrders = 30;
     private float timer;
     [SerializeField] private TMP_Text timerText;
     private bool gameEnded = false;
@@ -43,6 +52,7 @@ public class PlayerLobbyHandler : MonoBehaviour
     private void Start()
     {
         recipePool = new List<Recipe>(recipes);
+        stillOpenOrderDisplays = new List<GameObject>();
         GameConnecter.Instance.OnMinigameChosen += MoveUp;
         GameConnecter.Instance.OnMinigameUnChosen += moveDown;
         GameConnecter.Instance.OnGameRoomStarted += SendRandomRecipe;
@@ -52,6 +62,7 @@ public class PlayerLobbyHandler : MonoBehaviour
 
     private void ShowEndGameUI(EndGameEvent msg)
     {
+        StopCoroutine(SpawnOrdersInGame());
         timerText.gameObject.SetActive(false);
         miningTransform.DOMoveY(noPlayerYValue * 2, .5f).SetEase(Ease.InBounce);
         cleaningTransform.DOMoveY(noPlayerYValue * 2, .5f).SetEase(Ease.InBounce);
@@ -82,15 +93,34 @@ public class PlayerLobbyHandler : MonoBehaviour
     private void CloseOrder(FinishItemResponse response)
     {
         Debug.Log("Received closeOrder");
+        Recipe closedOrder = null;
         for (int i = 0; i < openOrders.Count; i++)
         {
             if (response.recipe.item == openOrders[i].recipe.item)
             {
-                openOrders.Remove(openOrders[i]);
+                
+                for (int j = 0; j < stillOpenOrderDisplays.Count; j++)
+                {
+                    
+                    
+                    if (stillOpenOrderDisplays[j].GetComponent<OrderDisplay>().recipe.recipe.item == openOrders[i].recipe.item)
+                    {
+                        stillOpenOrderDisplays[j].GetComponent<OrderDisplay>().SendOffScreen();
+                        closedOrder = openOrders[i];
+                        break;
+                        
+
+                    }
+                }
                 Debug.Log("JOB DONE YAY");
             }
         }
 
+        if (closedOrder != null)
+        {
+            openOrders.Remove(closedOrder);
+        }
+ 
     }
 
 
@@ -141,6 +171,7 @@ public class PlayerLobbyHandler : MonoBehaviour
         GameConnecter.Instance.StartGame(recipes[0]);
         timerText.gameObject.SetActive(true);
         timer = timePerRoundInSeconds;
+        StartCoroutine(SpawnOrdersInGame());
     }
 
     private void SendRandomRecipe()
@@ -151,11 +182,15 @@ public class PlayerLobbyHandler : MonoBehaviour
         {
             recipePool = new List<Recipe>(recipes);
         }
-        
-        
-        
+
+        GameObject newOrderDisplay = Instantiate(orderDisplay, new Vector3(spawnX, spawnY,0),Quaternion.identity);
         openOrders.Add(r);
+        newOrderDisplay.GetComponent<OrderDisplay>().
+            Initialize(r, openOrders.Count, startY - (stillOpenOrderDisplays.Count * spaceIncrements));
+        newOrderDisplay.transform.SetParent(canvas.transform);
+        stillOpenOrderDisplays.Add(newOrderDisplay);
         GameConnecter.Instance.SendRecipe(r);
+        
     }
 
     private void Update()
@@ -181,10 +216,19 @@ public class PlayerLobbyHandler : MonoBehaviour
 
         }
 
+        
     }
-    
-    
-    
+
+    IEnumerator SpawnOrdersInGame()
+    {
+        while (!gameEnded)
+        {
+            yield return new WaitForSeconds(timeBetweenOrders);
+            SendRandomRecipe();
+        }
+        yield break;
+    }
+
 }
 
 [Serializable]
