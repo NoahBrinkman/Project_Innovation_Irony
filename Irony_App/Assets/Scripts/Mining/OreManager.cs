@@ -20,6 +20,7 @@ public class OreManager : MonoBehaviour
     [SerializeField] private int randomExtraOres = 5;
     [SerializeField] private List<Collider> bounds;
     [SerializeField] private float minimumDistanceBetweenOres = .75f;
+    [SerializeField] private Vector3 oreScale = new Vector3(0.1f, 0.1f, 0.1f);
     private List<Vector3> takenPositions = new List<Vector3>();
     private void Start()
     {
