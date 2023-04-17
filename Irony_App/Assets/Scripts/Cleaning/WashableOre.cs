@@ -14,20 +14,15 @@ public class WashableOre : MonoBehaviour
     public  float cleaningValue { get; private set; }
     private float targetCleaningValue = 1;
     private float targetCleaningMargin = .3f;
-    public float maxCleaningValue => targetCleaningValue + targetCleaningMargin * 3;
     public Action OnSend;
     public bool cleanEnoughToSend => cleaningValue >= (targetCleaningValue - targetCleaningMargin);
 
-    public bool perfectGrade => cleaningValue >= (targetCleaningValue - targetCleaningMargin) &&
+    private bool perfectGrade => cleaningValue >= (targetCleaningValue - targetCleaningMargin) &&
                                  cleaningValue <= (targetCleaningValue + targetCleaningMargin);
 
-    public CleaningParticleSystem cps;
-
-    [SerializeField] private ParticleSystem ps;
-    [SerializeField] private MeshRenderer ms;
+    public float maxCleaningValue => targetCleaningValue + (targetCleaningMargin * 3);
     public void Initialize(Metal metal, Vector3 endPosition, Ease easeMode = Ease.InQuart)
     {
-        cps = FindFirstObjectByType<CleaningParticleSystem>();
         metalType = metal;
         MetalData metalInfo = helper.GetMetalData(metal);
         GetComponent<MeshRenderer>().material = metalInfo.mat;
@@ -36,10 +31,8 @@ public class WashableOre : MonoBehaviour
         targetCleaningMargin = metalInfo.cleaningGradeMargin;
         transform.DOMove(endPosition, .5f).SetEase(easeMode);
         ReadAccelerometerInput.Instance.OnShake += OnShaken;
-        ReadSwipeInput.Instance.OnSwipeUp += OnSwipeUp;
-        ps.GetComponent<Renderer>().material = metalInfo.mat;
-        ms.GetComponent<MeshRenderer>().material = metalInfo.mat;
 
+        ReadSwipeInput.Instance.OnSwipeUp += OnSwipeUp;
     }
 
     private void OnDestroy()
@@ -52,21 +45,8 @@ public class WashableOre : MonoBehaviour
     private void OnShaken()
     {
         cleaningValue += cleaningSpeed - roughness;
-        cps.SoundValue = cleaningValue;
-        cps.SoundMarg = targetCleaningMargin;
-        cps.SoundMax = targetCleaningValue;
-        cleaningValue = Mathf.Clamp(cleaningValue, 0, maxCleaningValue);
-        
-        if(targetCleaningValue <= cleaningValue)
-        {
-            ps.maxParticles = 0;
-        }
-        else
-        {
-            ps.maxParticles = Mathf.RoundToInt(targetCleaningValue / cleaningValue);
-        }
-
     }
+
     private void OnSwipeUp()
     {
         if (cleanEnoughToSend)
@@ -89,5 +69,32 @@ public class WashableOre : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         OnSend?.Invoke();
+    }
+
+    public int GetGrade()
+    {
+        float timeUnderMargin = cleaningValue - (targetCleaningValue - targetCleaningMargin);
+            float timeOverMargin = cleaningValue - (targetCleaningValue + targetCleaningMargin);
+            float grade;
+            if (timeOverMargin <= 0 && timeUnderMargin >= 0)
+            {
+                grade = 10;
+            }
+            else
+            {
+                grade = 10;
+                if (timeOverMargin > 0)
+                {
+                    grade -= timeOverMargin;
+                }
+
+                if (timeUnderMargin < 0)
+                {
+                    grade += timeUnderMargin;
+                }
+
+            }
+
+            return Mathf.RoundToInt(grade);
     }
 }

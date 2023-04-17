@@ -16,19 +16,11 @@ public class MoltenLevel : MonoBehaviour
     }
 
 
-    public void UpdateSubstance()
+    public void UpdateSubstance(float brightnessFloat)
     {
-        float brightnessDiff = 1 - SubstanceBrightness;
+ 
 
-        
-        if(currentTimer < BrightTimer)
-        {
-            SubstanceBrightness += 0.1f;
-            currentTimer += Time.deltaTime;
-        }
-
-
-        mySubstance.SetInputFloat("moltenlevel" , SubstanceBrightness);
+        mySubstance.SetInputFloat("moltenlevel" , brightnessFloat);
         mySubstance.RenderAsync();
     }
 }

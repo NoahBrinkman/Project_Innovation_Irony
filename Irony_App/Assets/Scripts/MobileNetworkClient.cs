@@ -85,6 +85,11 @@ public class MobileNetworkClient : MonoBehaviour
         else if (message is RecipeAddedMessage) handleRecipeAddedMessage(message as RecipeAddedMessage);
         else if(message is SendMetalResponse) OnMetalReceived?.Invoke(message as SendMetalResponse);
         else if(message is SendMetalsResponse) OnMetalsReceived?.Invoke(message as SendMetalsResponse);
+        else if (message is EndGameEvent)
+        {
+            SceneManager.LoadScene(0);
+            _channel.Close();
+        }
        
     }
 

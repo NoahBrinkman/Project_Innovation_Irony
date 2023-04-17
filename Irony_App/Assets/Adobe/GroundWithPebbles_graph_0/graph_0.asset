@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: graph_0
   m_EditorClassIdentifier: 
   AssetPath: Assets/Adobe/GroundWithPebbles.sbsar
-  OutputPath: Assets/Adobe/GroundWithPebbles_graph_0
+  OutputPath: Assets\Adobe\GroundWithPebbles_graph_0
   RawData: {fileID: -244192453324840774, guid: d02b2b1fbd9787340b71add19ed4568c, type: 3}
   Name: graph_0
   IsRoot: 1
   FlagedForDelete: 0
-  GUID: 08dda6fc-067c-40e4-8cb0-5c42a79dbbee
+  GUID: 0a4d9004-e054-4be7-b8f3-d95dd41f353e
   Index: 0
   Input:
-  - rid: 2585209199033319424
-  - rid: 2585209199033319425
-  - rid: 2585209199033319426
-  - rid: 2585209199033319427
-  - rid: 2585209199033319428
-  - rid: 2585209199033319429
-  - rid: 2585209199033319430
+  - rid: 6049830028631080960
+  - rid: 6049830028631080961
+  - rid: 6049830028631080962
+  - rid: 6049830028631080963
+  - rid: 6049830028631080964
+  - rid: 6049830028631080965
+  - rid: 6049830028631080966
   Output:
   - Index: 0
     VirtualOutputIndex: 6
@@ -117,7 +117,7 @@ MonoBehaviour:
       Index: 5
       Type: 8
       Channel: ambientOcclusion
-    OutputTexture: {fileID: 2800000, guid: 55c2d7ed1301e4c4cbe20c05076b5272, type: 3}
+    OutputTexture: {fileID: 0}
     sRGB: 0
     IsVirtual: 0
     IsAlphaAssignable: 1
@@ -130,15 +130,7 @@ MonoBehaviour:
   EnablePhysicalSize: 0
   Thumbnail: 
   HasThumbnail: 0
-  CurrentStatePreset: " <sbspreset pkgurl=\"pkg://GroundWithPebbles\" label=\"\"
-    >\n  <presetinput identifier=\"$outputsize\" uid=\"744884189\" type=\"8\" value=\"11,11\"
-    />\n  <presetinput identifier=\"$randomseed\" uid=\"2064912783\" type=\"4\" value=\"447\"
-    />\n  <presetinput identifier=\"Ground_Color_1\" uid=\"1098205051\" type=\"3\"
-    value=\"0.330189,0.273324,0.235701,1\" />\n  <presetinput identifier=\"Ground_Color_2\"
-    uid=\"1098205032\" type=\"3\" value=\"0.632075,0.5607,0.47505,1\" />\n  <presetinput
-    identifier=\"Ground_Scale\" uid=\"1098182516\" type=\"4\" value=\"7\" />\n  <presetinput
-    identifier=\"Stylizing_Intensifier\" uid=\"1098171912\" type=\"0\" value=\"5\"
-    />\n </sbspreset>\n"
+  CurrentStatePreset: 
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
   GenerateAllMipmaps: 1
@@ -152,7 +144,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2585209199033319424
+    - rid: 6049830028631080960
       type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 0
@@ -163,7 +155,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 5
           WidgetType: 0
-        Data: {x: 11, y: 11}
+        Data: {x: 10, y: 10}
         NumericalDescription:
           DefaultValue: {x: 8, y: 8}
           MinValue: {x: 0, y: 0}
@@ -171,7 +163,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319425
+    - rid: 6049830028631080961
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 1
@@ -182,7 +174,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 0
-        Data: 447
+        Data: 0
         NumericalDescription:
           DefaultValue: 0
           MinValue: 0
@@ -193,7 +185,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319426
+    - rid: 6049830028631080962
       type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 2
@@ -205,7 +197,7 @@ MonoBehaviour:
             output image
           Type: 3
           WidgetType: 3
-        Data: {x: 0.3301887, y: 0.2733244, z: 0.23570071, w: 1}
+        Data: {x: 0.375691, y: 0.23943, z: 0.169171, w: 1}
         NumericalDescription:
           DefaultValue: {x: 0.375691, y: 0.23943, z: 0.169171, w: 1}
           MinValue: {x: 0, y: 0, z: 0, w: 0}
@@ -214,7 +206,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319427
+    - rid: 6049830028631080963
       type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 3
@@ -226,7 +218,7 @@ MonoBehaviour:
             output image
           Type: 3
           WidgetType: 3
-        Data: {x: 0.6320754, y: 0.5607004, z: 0.47505036, w: 1}
+        Data: {x: 0.39779, y: 0.283945, z: 0.197732, w: 1}
         NumericalDescription:
           DefaultValue: {x: 0.39779, y: 0.283945, z: 0.197732, w: 1}
           MinValue: {x: 0, y: 0, z: 0, w: 0}
@@ -235,7 +227,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319428
+    - rid: 6049830028631080964
       type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 4
@@ -256,7 +248,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319429
+    - rid: 6049830028631080965
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 5
@@ -267,7 +259,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 1
-        Data: 7
+        Data: 1
         NumericalDescription:
           DefaultValue: 1
           MinValue: 1
@@ -278,7 +270,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319430
+    - rid: 6049830028631080966
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 6
@@ -289,7 +281,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: 5
+        Data: 2.5
         NumericalDescription:
           DefaultValue: 2.5
           MinValue: 0
