@@ -12,6 +12,7 @@ public class CastMold : MonoBehaviour
     public float targetFillValue => perfectFillValue;
     [SerializeField] private float perfectFillMargin;
     public float fillMargin => perfectFillMargin;
+    public float maxFill => perfectFillValue + perfectFillMargin * 3;
     public float fillValue { get; private set; }
     [SerializeField] private Transform castingPosition;
     [SerializeField] private Transform startingPos;
@@ -55,7 +56,7 @@ public class CastMold : MonoBehaviour
     {
         fillValue += amount;
         Debug.Log(fillValue);
-        moltenMetal.UpdateSubstance(1/(targetFillValue+(fillMargin*3)/fillValue));
+        moltenMetal.UpdateSubstance(1/(maxFill/fillValue));
     }
 
     private void OnMouseDown()
@@ -85,8 +86,8 @@ public class CastMold : MonoBehaviour
         int grade = GetGrade();
         //Sequence this
         GameObject g = Instantiate(toolPrefab, transform.position,transform.rotation);
-        g.transform.DOMoveY(10, 2).SetEase(Ease.InBack);
-        
+        g.transform.DOMoveY(30, 2).SetEase(Ease.InBack);
+        Destroy(g,2.5f);
         transform.DOMoveX(30, 1);
         
         yield return new WaitForSeconds(1.2f);

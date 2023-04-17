@@ -571,6 +571,16 @@ PrefabInstance:
       propertyPath: castingPosition
       value: 
       objectReference: {fileID: 80840515}
+    - target: {fileID: -2100468180631660164, guid: 2e3b6c10f5b76a347abe9da369980734,
+        type: 3}
+      propertyPath: perfectFillValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -2100468180631660164, guid: 2e3b6c10f5b76a347abe9da369980734,
+        type: 3}
+      propertyPath: perfectFillMargin
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484729438868822383, guid: 2e3b6c10f5b76a347abe9da369980734,
         type: 3}
       propertyPath: m_Name
@@ -2863,6 +2873,16 @@ PrefabInstance:
       propertyPath: castingPosition
       value: 
       objectReference: {fileID: 80840515}
+    - target: {fileID: -7758788642481010620, guid: 6ff0cb9aa11290545982ef80359dda70,
+        type: 3}
+      propertyPath: perfectFillValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -7758788642481010620, guid: 6ff0cb9aa11290545982ef80359dda70,
+        type: 3}
+      propertyPath: perfectFillMargin
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484729438868822383, guid: 6ff0cb9aa11290545982ef80359dda70,
         type: 3}
       propertyPath: m_Name
@@ -3487,6 +3507,16 @@ PrefabInstance:
       propertyPath: castingPosition
       value: 
       objectReference: {fileID: 80840515}
+    - target: {fileID: -452610186992092594, guid: da362272a318fc042a4d24c22683409c,
+        type: 3}
+      propertyPath: perfectFillValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -452610186992092594, guid: da362272a318fc042a4d24c22683409c,
+        type: 3}
+      propertyPath: perfectFillMargin
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484729438868822383, guid: da362272a318fc042a4d24c22683409c,
         type: 3}
       propertyPath: m_Name
@@ -3922,6 +3952,16 @@ PrefabInstance:
       propertyPath: castingPosition
       value: 
       objectReference: {fileID: 80840515}
+    - target: {fileID: -6484897868454177257, guid: d4e7e20ffc0d9734ab0304bd2f6993a7,
+        type: 3}
+      propertyPath: perfectFillValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -6484897868454177257, guid: d4e7e20ffc0d9734ab0304bd2f6993a7,
+        type: 3}
+      propertyPath: perfectFillMargin
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484729438868822383, guid: d4e7e20ffc0d9734ab0304bd2f6993a7,
         type: 3}
       propertyPath: m_Name
@@ -4313,6 +4353,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16bc46c178d1e1849b9b536d5308c59c, type: 3}
+--- !u!4 &1524221671 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3264649322453868168, guid: 16bc46c178d1e1849b9b536d5308c59c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1524221670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1552070662
 GameObject:
   m_ObjectHideFlags: 0
@@ -4556,7 +4602,7 @@ MonoBehaviour:
   pouringAdditionMultiplier: 0.2
   moltenMetalsInForge: 020000000100000002000000
   currentlyChosenMold: {fileID: 0}
-  bucket: {fileID: 0}
+  bucket: {fileID: 1524221671}
   rotationIntensity: 1.1
   rotationOffset: 10
 --- !u!1001 &1720455148
