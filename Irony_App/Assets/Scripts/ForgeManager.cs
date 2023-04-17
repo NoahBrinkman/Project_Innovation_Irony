@@ -19,18 +19,16 @@ public class ForgeManager : MonoBehaviour
    private float currentHeatMargin;
    private float currentCookTime;
    private float timer;
-   private float micVolume = 0;
-   [SerializeField] private float dropOffRate = 1f;
+
    [SerializeField] private Transform moltenMetal;
 
-   [SerializeField] private HeatValueImageIndicator indicator;
    [SerializeField] [NotNull] private TMP_Text debugText;
     // Start is called before the first frame update
     void Start()
     {
         micInput = GetComponent<ReadMicInput>();
         ReadSwipeInput.Instance.OnSwipeRight += OnSwipeRight;
-       if(MobileNetworkClient.Instance != null) MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+        MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
     }
 
     private void OnMetalReceived(SendMetalResponse obj)
@@ -51,23 +49,13 @@ public class ForgeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (micVolume >= currentTargetHeat - currentHeatMargin &&
-            micVolume <= currentTargetHeat + currentHeatMargin)
+        if (micInput.volume >= currentTargetHeat - currentHeatMargin &&
+            micInput.volume <= currentTargetHeat + currentHeatMargin)
         {
             timer += Time.deltaTime;
         }
 
-        micVolume = Mathf.Clamp(micVolume, 0, 10);
-        if (micInput.volume > micInput.minimumLoudnes)
-        {
-            micVolume += micInput.volume;
-        }
-        else
-        {
-            micVolume -= dropOffRate;
-        }
-        indicator.SetIndicator(micVolume/10);
-        debugText.text = $"Heat value: {micVolume}\nTimeTaken: {timer.ToString("F2")}";
+        debugText.text = $"Heat value: {micInput.volume}\nTimeTaken: {timer.ToString("F2")}";
         
         if (currentlyInForge == Metal.None && forgeBacklog.Count > 0)
         {
@@ -77,9 +65,32 @@ public class ForgeManager : MonoBehaviour
 
     private void OnSwipeRight()
     {
-        if (timer >= currentCookTime)
+        // timer = 5 
+        // cooktime = 5
+        // margin is 2
+        if (timer >= currentCookTime - (currentHeatMargin*2))
         {
-            float grade = 10 - (timer - currentCookTime) * gradeSubtractionMultiplier;
+            float timeUnderMargin = timer - (currentCookTime - currentHeatMargin);
+            float timeOverMargin = timer - (currentCookTime + currentHeatMargin);
+            float grade;
+            if (timeOverMargin <= 0 && timeUnderMargin >= 0)
+            {
+                grade = 10;
+            }
+            else
+            {
+                grade = 10;
+                if (timeOverMargin > 0)
+                {
+                    grade -= timeOverMargin;
+                }
+
+                if (timeUnderMargin < 0)
+                {
+                    grade += timeUnderMargin;
+                }
+
+            }
             SendMetalRequest request = new SendMetalRequest();
             request.from = MinigameRoom.Smelting;
             request.to = MinigameRoom.Casting;
