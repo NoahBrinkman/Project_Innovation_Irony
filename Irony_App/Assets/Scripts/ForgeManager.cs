@@ -24,6 +24,8 @@ public class ForgeManager : MonoBehaviour
    [SerializeField] private HeatValueImageIndicator indicator;
    [SerializeField] private float dropOffRate = .2f;
    [SerializeField] [NotNull] private TMP_Text debugText;
+
+    [SerializeField] private ParticleSystem Stars1, Stars2;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,9 +54,9 @@ public class ForgeManager : MonoBehaviour
     void Update()
     {
         float vol = micInput.volume;
-        
+
         if (micVolume >= currentTargetHeat - currentHeatMargin &&
-            micVolume <= currentTargetHeat + currentHeatMargin)
+        micVolume <= currentTargetHeat + currentHeatMargin)
         {
             timer += Time.deltaTime;
         }
@@ -69,14 +71,43 @@ public class ForgeManager : MonoBehaviour
         {
             micVolume -= dropOffRate;
         }
-        indicator.SetIndicator(micVolume/10);
+        indicator.SetIndicator(micVolume / 10);
         if (currentlyInForge == Metal.None && forgeBacklog.Count > 0)
         {
             InitializeNewMetalInForge();
-        }   
-    }
+        }
+        if (timer >= currentCookTime - (currentHeatMargin * 2))
+        {
+            float timeUnderMargin = timer - (currentCookTime - currentHeatMargin);
+            float timeOverMargin = timer - (currentCookTime + currentHeatMargin);
+            float grade;
+            if (timeOverMargin <= 0 && timeUnderMargin >= 0)
+            {
+                grade = 10;
 
-    private void OnSwipeRight()
+            }
+            else
+            {
+                grade = 10;
+                if (timeOverMargin > 0)
+                {
+                    grade -= timeOverMargin;
+                }
+
+                if (timeUnderMargin < 0)
+                {
+                    grade += timeUnderMargin;
+                }
+
+            }
+            if (grade == 10)
+            {
+                Stars1.Play();
+                Stars2.Play();
+            }
+        }
+    }
+            private void OnSwipeRight()
     {
         // timer = 5 
         // cooktime = 5
@@ -89,6 +120,7 @@ public class ForgeManager : MonoBehaviour
             if (timeOverMargin <= 0 && timeUnderMargin >= 0)
             {
                 grade = 10;
+                
             }
             else
             {
@@ -142,7 +174,7 @@ public class ForgeManager : MonoBehaviour
         currentTargetHeat = mD.targetHeat;
         currentHeatMargin = mD.heatMargin;
         currentCookTime = mD.cookTime;
-        moltenMetal.GetComponent<MeshRenderer>().material = helper.GetMaterial(currentlyInForge);
+        moltenMetal.GetComponent<MeshRenderer>().material = helper.GetMetalData(currentlyInForge).moltenMat;
         StartCoroutine(AddNewMetal());
         
     }

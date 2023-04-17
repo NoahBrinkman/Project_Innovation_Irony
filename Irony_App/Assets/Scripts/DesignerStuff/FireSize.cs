@@ -13,6 +13,8 @@ public class FireSize : MonoBehaviour
     VisualEffect fire;
     ExposedProperty EP;
     float fireSize;
+    [SerializeField] private AudioSource audioS;
+    [SerializeField] private AudioClip FireCalm, FireWild;
     void Start()
     {
         EP = "FlameSize";
@@ -26,5 +28,15 @@ public class FireSize : MonoBehaviour
         fire.SetFloat(EP, fireSize);
         Debug.Log(rmi.volume);
         CS.shakeAmount = rmi.loudness/2;
+        if(rmi.volume <= 0.25f)
+        {
+            audioS.clip = FireCalm;
+            
+        }
+        else
+        {
+            audioS.clip = FireWild;
+            
+        }
     }
 }
