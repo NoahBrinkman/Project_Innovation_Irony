@@ -113,7 +113,7 @@ namespace server
         private void handleFinishItemRequest(FinishItemRequest finishItemRequest, TcpMessageChannel pSender)
         {
 			//Find the host
-
+			Log.LogInfo("got the request",this);
 			for (int i = 0; i < _members.Count; i++)
 			{
 				if (_server._hosts.ContainsValue(_members[i]))

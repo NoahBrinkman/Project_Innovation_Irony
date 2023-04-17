@@ -19,7 +19,7 @@ public class CastMold : MonoBehaviour
 
 
     [SerializeField] private CastingManager castingManager;
-    [SerializeField] private Transform moltenMetal;
+    [SerializeField] private MoltenLevel moltenMetal;
     [SerializeField] private float minimumY;
     [SerializeField] private float perfectY;
     [SerializeField] private float maximumY;
@@ -55,9 +55,7 @@ public class CastMold : MonoBehaviour
     {
         fillValue += amount;
         Debug.Log(fillValue);
-        Vector3 pos = moltenMetal.transform.localPosition;
-        pos.y =  Mathf.Clamp(Mathf.LerpUnclamped(minimumY,perfectY, (1/perfectFillValue)*fillValue), minimumY, maximumY);
-       moltenMetal.transform.localPosition = pos;
+        moltenMetal.UpdateSubstance(1/(targetFillValue+(fillMargin*3)/fillValue));
     }
 
     private void OnMouseDown()

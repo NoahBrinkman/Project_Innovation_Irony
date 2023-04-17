@@ -151,7 +151,9 @@ public class PlayerLobbyHandler : MonoBehaviour
         {
             recipePool = new List<Recipe>(recipes);
         }
-
+        
+        
+        
         openOrders.Add(r);
         GameConnecter.Instance.SendRecipe(r);
     }
