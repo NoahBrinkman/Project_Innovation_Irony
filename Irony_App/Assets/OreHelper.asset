@@ -15,9 +15,9 @@ MonoBehaviour:
   colors:
   - Metal: 1
     mat: {fileID: 2100000, guid: ef29de174ded35549ab438b81c35aa15, type: 2}
-    roughness: 0.1
-    perfectCleaningValue: 25
-    cleaningGradeMargin: 6
+    roughness: 0.3
+    perfectCleaningValue: 8
+    cleaningGradeMargin: 5
     targetHeat: 10
     heatMargin: 5
     cookTime: 5
@@ -40,16 +40,16 @@ MonoBehaviour:
   - Metal: 4
     mat: {fileID: 2100000, guid: e5a2868162b049240a41e61d7303916d, type: 2}
     roughness: 0.4
-    perfectCleaningValue: 40
-    cleaningGradeMargin: 6
+    perfectCleaningValue: 35
+    cleaningGradeMargin: 3
     targetHeat: 10
     heatMargin: 2
     cookTime: 3
-  - Metal: 0
-    mat: {fileID: 2100000, guid: 051685f27a21efc4499f495e28d21e1c, type: 2}
+  - Metal: 3
+    mat: {fileID: 2100000, guid: 174dea2ca604adb4db1231a00e07efc8, type: 2}
     roughness: 0.5
-    perfectCleaningValue: 3.5
-    cleaningGradeMargin: 0.5
+    perfectCleaningValue: 35
+    cleaningGradeMargin: 6
     targetHeat: 20
     heatMargin: 0
     cookTime: 100

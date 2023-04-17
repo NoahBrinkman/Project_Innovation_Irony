@@ -391,9 +391,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The cleaner needs to remove the leftover rock on the ores. Keep in mind
-    to not scrape into the mineral. \r\n\r\nIron \u2013 20-30  \r\nDiamond \u2013
-    40-50 \r\n\rCopper \u2013 10-20 \r\n\rGold \u2013 60-80 "
+  m_text: "The cleaner needs to remove the left-over rock on the ores. Keep in mind
+    to not scrape into the mineral. \r\n\r\nIron (silver) \u2013 halfway \r\n\rDiamond
+    (blue) \u2013 3 quarters \r\nCopper (reddish-brown) \u2013 1 quarter \r\n\rGold
+    \u2013 3 quarters "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1fe8b42eeed7e6f499d43f6dafd066f5, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ca60b596289aa9469a65855e14d33ca, type: 3}
-  m_Name: Axe
+  m_Name: Sword
   m_EditorClassIdentifier: 
   recipe:
-    item: 3
+    item: 1
     recipeSize: 3
-    metalRecipe: 010000000300000001000000
+    metalRecipe: 040000000400000003000000
