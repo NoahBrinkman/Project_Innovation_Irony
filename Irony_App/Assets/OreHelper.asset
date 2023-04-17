@@ -42,7 +42,7 @@ MonoBehaviour:
     cookTime: 3
   - Metal: 4
     mat: {fileID: 2100000, guid: e5a2868162b049240a41e61d7303916d, type: 2}
-    moltenMat: {fileID: 0}
+    moltenMat: {fileID: 2100000, guid: 0e4c81000792ace48aec30ded612e3e6, type: 2}
     roughness: 0.4
     perfectCleaningValue: 35
     cleaningGradeMargin: 3

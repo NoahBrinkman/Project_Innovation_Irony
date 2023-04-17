@@ -577,6 +577,16 @@ PrefabInstance:
       propertyPath: castingPosition
       value: 
       objectReference: {fileID: 80840515}
+    - target: {fileID: -2100468180631660164, guid: 2e3b6c10f5b76a347abe9da369980734,
+        type: 3}
+      propertyPath: perfectFillValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -2100468180631660164, guid: 2e3b6c10f5b76a347abe9da369980734,
+        type: 3}
+      propertyPath: perfectFillMargin
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484729438868822383, guid: 2e3b6c10f5b76a347abe9da369980734,
         type: 3}
       propertyPath: m_Name
@@ -2869,6 +2879,16 @@ PrefabInstance:
       propertyPath: castingPosition
       value: 
       objectReference: {fileID: 80840515}
+    - target: {fileID: -7758788642481010620, guid: 6ff0cb9aa11290545982ef80359dda70,
+        type: 3}
+      propertyPath: perfectFillValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -7758788642481010620, guid: 6ff0cb9aa11290545982ef80359dda70,
+        type: 3}
+      propertyPath: perfectFillMargin
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484729438868822383, guid: 6ff0cb9aa11290545982ef80359dda70,
         type: 3}
       propertyPath: m_Name
@@ -3493,6 +3513,16 @@ PrefabInstance:
       propertyPath: castingPosition
       value: 
       objectReference: {fileID: 80840515}
+    - target: {fileID: -452610186992092594, guid: da362272a318fc042a4d24c22683409c,
+        type: 3}
+      propertyPath: perfectFillValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -452610186992092594, guid: da362272a318fc042a4d24c22683409c,
+        type: 3}
+      propertyPath: perfectFillMargin
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484729438868822383, guid: da362272a318fc042a4d24c22683409c,
         type: 3}
       propertyPath: m_Name
@@ -3928,6 +3958,16 @@ PrefabInstance:
       propertyPath: castingPosition
       value: 
       objectReference: {fileID: 80840515}
+    - target: {fileID: -6484897868454177257, guid: d4e7e20ffc0d9734ab0304bd2f6993a7,
+        type: 3}
+      propertyPath: perfectFillValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -6484897868454177257, guid: d4e7e20ffc0d9734ab0304bd2f6993a7,
+        type: 3}
+      propertyPath: perfectFillMargin
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484729438868822383, guid: d4e7e20ffc0d9734ab0304bd2f6993a7,
         type: 3}
       propertyPath: m_Name

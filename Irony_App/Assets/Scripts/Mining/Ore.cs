@@ -37,6 +37,10 @@ public class Ore : MonoBehaviour
     public GameObject TheRock;
 
     [SerializeField] private CamShake camTarget;
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip mine, lastMine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +60,7 @@ public class Ore : MonoBehaviour
         _health = health;
         isSelected = false;
         beenMined = false;
-
+        audioSource.clip = mine;
         ReadAccelerometerInput.Instance.OnShake += OnShaken;
         cinCam = GetComponentInChildren<CinemachineVirtualCamera>();
         mainCam = GameObject.FindWithTag("MainVirtualCamera").GetComponent<CinemachineVirtualCamera>();
@@ -109,6 +113,7 @@ public class Ore : MonoBehaviour
         beenChipped = true;
         Debug.Log("Mined");
         _health--;
+        audioSource.Play();
         if (_health <= 0)
         {
             Instantiate(TheRock, Dwayne.transform.position, Quaternion.identity);
@@ -117,6 +122,8 @@ public class Ore : MonoBehaviour
             Reveal.Play();
             camTarget.GetComponent<CamShake>().shakeDuration = 0.75f;
             beenMined = true;
+            audioSource.clip = lastMine;
+            audioSource.Play();
             ReadSwipeInput.Instance.OnSwipeLeft += SendOffRejected;
             ReadSwipeInput.Instance.OnSwipeRight += SendOffAccepted;
             if(meshRenderer != null)
