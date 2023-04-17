@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using shared;
+using UnityEditor;
 
 public class CastingManager : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class CastingManager : MonoBehaviour
     [SerializeField] private float rotationIntensity = 1.1f;
     [SerializeField] private float rotationOffset = 10;
     private List<Recipe> recipeBacklog = new List<Recipe>();
-
+    [SerializeField] private ParticleSystem pouringS;
+    [SerializeField] private OreHelper helper;
     void Start()
     {
         Input.gyro.enabled = true;
         ReadSwipeInput.Instance.OnSwipeRight += OnswipeRight;
+        pouringS.GetComponent<ParticleSystem>();
         if (MobileNetworkClient.Instance != null)
         {
             
@@ -62,7 +65,11 @@ public class CastingManager : MonoBehaviour
                 if ( rotationalInput >  minimumRotationalInput && rotationalInput < minimumaximumRotationalInput)
                 {
                     currentlyChosenMold.Fill(rotationalInput);
-                            
+                    pouringS.Play();
+                }
+                else
+                {
+                    pouringS.Stop();
                 }
             }
             if(recipeBacklog.Count == 0) return;
@@ -90,6 +97,7 @@ public class CastingManager : MonoBehaviour
         if (message.to == MinigameRoom.Casting)
         {
             moltenMetalsInForge.Add(message.metal);
+            
         }
     }
     
