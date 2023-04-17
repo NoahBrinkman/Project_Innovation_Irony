@@ -12,24 +12,59 @@ public class CastingManager : MonoBehaviour
     [SerializeField] private float pouringAdditionMultiplier;
     [SerializeField] private List<Metal> moltenMetalsInForge;
     [SerializeField] private CastMold currentlyChosenMold;
-
+    [SerializeField] private Transform bucket;
+    [SerializeField] private float rotationIntensity = 1.1f;
+    [SerializeField] private float rotationOffset = 10;
     private List<Recipe> recipeBacklog = new List<Recipe>();
 
     void Start()
     {
         Input.gyro.enabled = true;
         ReadSwipeInput.Instance.OnSwipeRight += OnswipeRight;
-        MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
-        MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+        if (MobileNetworkClient.Instance != null)
+        {
+            
+            MobileNetworkClient.Instance.OnRecipeReceived += OnRecipeReceived;
+            MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+            if(MobileNetworkClient.Instance.recipeBacklog != null) OnRecipeReceived(MobileNetworkClient.Instance.recipeBacklog);
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            for (int i = 0; i < recipeBacklog.Count; i++)
+            {
+                if (recipeBacklog[i].item == currentlyChosenMold.myItem)
+                {
+                    foreach (Metal metal in recipeBacklog[i].metalRecipe)
+                    {
+                        moltenMetalsInForge.Remove(metal);
+                    }
+                    break;
+                }
+            }
+            StartCoroutine(currentlyChosenMold.SendOffScreen());
+        }
         if (currentlyChosenMold != null)
         {
+            if (MobileNetworkClient.Instance == null)
+            {
+                Input.gyro.enabled = true;
+                float rotationalInput = Mathf.Abs(Input.gyro.attitude.z);
+                Debug.Log(rotationalInput);
+                float t = Mathf.InverseLerp(0f, 0.5f, rotationalInput);
+                float bucketRotaion = Mathf.Lerp(270f, 180f, t);
+                bucket.localRotation = Quaternion.Euler(new Vector3(0,90, bucketRotaion));
+                if ( rotationalInput >  minimumRotationalInput && rotationalInput < minimumaximumRotationalInput)
+                {
+                    currentlyChosenMold.Fill(rotationalInput);
+                            
+                }
+            }
             if(recipeBacklog.Count == 0) return;
                 //Debug.Log(Input.gyro.attitude.x + " , " + Input.gyro.attitude.y + " , "+ Input.gyro.attitude.z );
                 for (int i = 0; i < recipeBacklog.Count; i++)
@@ -37,6 +72,7 @@ public class CastingManager : MonoBehaviour
                     if (recipeBacklog[i].item == currentlyChosenMold.myItem && moltenMetalsInForge.ContainsAll(recipeBacklog[0].metalRecipe))
                     {
                         float rotationalInput = Mathf.Abs(Input.gyro.attitude.z);
+                        bucket.rotation = Quaternion.Euler(new Vector3(0,0, 180 + (-rotationalInput * rotationIntensity)));
                         if ( rotationalInput >  minimumRotationalInput && rotationalInput < minimumaximumRotationalInput)
                         {
                             currentlyChosenMold.Fill(rotationalInput);
@@ -46,6 +82,7 @@ public class CastingManager : MonoBehaviour
                     }
                 }
         }
+        Input.gyro.enabled = false;
     }
 
     void OnMetalReceived(SendMetalResponse message)
@@ -96,10 +133,9 @@ public class CastingManager : MonoBehaviour
 
     private void OnRecipeReceived(Recipe r)
     {
+        Debug.Log("Recipe Receved: " + r.item);
         recipeBacklog.Add(r);
     }
-
-
     
     public void SendToolToServer(Item item, int grade)
     {
@@ -110,7 +146,7 @@ public class CastingManager : MonoBehaviour
             {
                 FinishItemRequest request = new FinishItemRequest();
                 request.recipe = recipeBacklog[i];
-                
+                request.grade = grade;
                 MobileNetworkClient.Instance.channel.SendMessage(request);
                 recipeBacklog.Remove(recipeBacklog[i]);
                 
