@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lava
+  m_Name: Lava_copper
   m_Shader: {fileID: -6465566751694194690, guid: c3111a3571e51e042ab59847f1c2f891,
     type: 3}
   m_Parent: {fileID: 0}
@@ -139,8 +139,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Fresnel_color: {r: 15.363032, g: 5.5591125, b: 2.2384293, a: 0}
-    - _LavaColor: {r: 0.7735849, g: 0.19585714, b: 0.083521195, a: 0}
-    - _LavaHeatColor: {r: 11.688233, g: 2.1459827, b: 0, a: 0}
+    - _LavaColor: {r: 0.8679245, g: 0.1627358, b: 0, a: 0}
+    - _LavaHeatColor: {r: 8.363163, g: 0.35028955, b: 0, a: 0}
     - _LavaNormalSpeed: {r: 0, g: 0.2, b: 0, a: 0}
     - _Lava_speed: {r: 0, g: 0.1, b: 0, a: 0}
     - _Simplenoisespeed: {r: 0, g: 0.05, b: 0, a: 0}

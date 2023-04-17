@@ -6951,7 +6951,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3bdcc3689becbe54780ddd2ad1b09a01, type: 2}
+  - {fileID: 2100000, guid: 04bb730db2198e244bd8131c3af98478, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7428,9 +7428,7 @@ MonoBehaviour:
   forgeBacklog: 01000000020000000300000004000000
   currentlyInForge: 0
   gradeSubtractionMultiplier: 2
-  dropOffRate: 0.1
   moltenMetal: {fileID: 1357050854}
-  indicator: {fileID: 1241335231}
   debugText: {fileID: 972087399}
 --- !u!114 &1695411820
 MonoBehaviour:

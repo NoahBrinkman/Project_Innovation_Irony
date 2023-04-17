@@ -14,6 +14,7 @@ using UnityEngine;
             for (int i = 0; i < colors.Count; i++)
             {
                 if (colors[i].Metal == metal) return colors[i].mat;
+                if (colors[i].Metal == metal) return colors[i].moltenMat;
             }
 
             return null;
@@ -46,6 +47,7 @@ public class MetalData
     [Header("General")]
     public Metal Metal;
     public Material mat;
+    public Material moltenMat;
     [Header("Cleaning")]
     [Tooltip("Shaking the phone will make a value increase, roughness will subtract itself from this")]
     public float roughness = .5f;
