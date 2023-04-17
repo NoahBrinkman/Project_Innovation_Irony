@@ -124,7 +124,7 @@ public class ForgeManager : MonoBehaviour
     }
     IEnumerator AddNewMetal()
     {
-        moltenMetal.transform.DOMoveY(-4, 2);
+        moltenMetal.transform.DOMoveY(1, 2);
         yield return new WaitForSeconds(2);
         yield break;
     }

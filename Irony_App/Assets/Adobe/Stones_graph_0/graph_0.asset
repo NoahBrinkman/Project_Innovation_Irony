@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: graph_0
   m_EditorClassIdentifier: 
   AssetPath: Assets/Adobe/Stones.sbsar
-  OutputPath: Assets/Adobe/Stones_graph_0
+  OutputPath: Assets\Adobe\Stones_graph_0
   RawData: {fileID: -244192453324840774, guid: eb443ee2b04c4fe45b6936d33f0ef22c, type: 3}
   Name: graph_0
   IsRoot: 1
   FlagedForDelete: 0
-  GUID: b33171cc-5b20-4586-b93c-ce3943d9cb38
+  GUID: 81a05d11-79f1-42fe-8449-3db13817fdc3
   Index: 0
   Input:
-  - rid: 2585209199033319439
-  - rid: 2585209199033319440
-  - rid: 2585209199033319441
-  - rid: 2585209199033319442
-  - rid: 2585209199033319443
+  - rid: 7428115133679271968
+  - rid: 7428115133679271969
+  - rid: 7428115133679271970
+  - rid: 7428115133679271971
+  - rid: 7428115133679271972
   Output:
   - Index: 0
     VirtualOutputIndex: 6
@@ -115,7 +115,7 @@ MonoBehaviour:
       Index: 5
       Type: 8
       Channel: ambientOcclusion
-    OutputTexture: {fileID: 2800000, guid: ba9a0adf887be704ebd6b26d2e657d95, type: 3}
+    OutputTexture: {fileID: 0}
     sRGB: 0
     IsVirtual: 0
     IsAlphaAssignable: 1
@@ -128,12 +128,7 @@ MonoBehaviour:
   EnablePhysicalSize: 0
   Thumbnail: 
   HasThumbnail: 0
-  CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Substance_graph\" label=\"\" >\n 
-    <presetinput identifier=\"$outputsize\" uid=\"3795302352\" type=\"8\" value=\"11,11\"
-    />\n  <presetinput identifier=\"rocks_x_amount\" uid=\"2400533052\" type=\"4\"
-    value=\"20\" />\n  <presetinput identifier=\"rocks_y_amount\" uid=\"2400532363\"
-    type=\"4\" value=\"20\" />\n  <presetinput identifier=\"rocks_scale\" uid=\"2400537185\"
-    type=\"0\" value=\"3.49\" />\n </sbspreset>\n"
+  CurrentStatePreset: 
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
   GenerateAllMipmaps: 1
@@ -147,7 +142,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2585209199033319439
+    - rid: 7428115133679271968
       type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 0
@@ -158,7 +153,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 5
           WidgetType: 0
-        Data: {x: 11, y: 11}
+        Data: {x: 10, y: 10}
         NumericalDescription:
           DefaultValue: {x: 8, y: 8}
           MinValue: {x: 0, y: 0}
@@ -166,7 +161,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319440
+    - rid: 7428115133679271969
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 1
@@ -188,7 +183,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319441
+    - rid: 7428115133679271970
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 2
@@ -199,7 +194,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 1
-        Data: 20
+        Data: 16
         NumericalDescription:
           DefaultValue: 16
           MinValue: 1
@@ -210,7 +205,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319442
+    - rid: 7428115133679271971
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 3
@@ -221,7 +216,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 1
-        Data: 20
+        Data: 16
         NumericalDescription:
           DefaultValue: 16
           MinValue: 1
@@ -232,7 +227,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2585209199033319443
+    - rid: 7428115133679271972
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 4
@@ -243,7 +238,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: 3.49
+        Data: 5
         NumericalDescription:
           DefaultValue: 5
           MinValue: 0
