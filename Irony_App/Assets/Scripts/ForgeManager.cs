@@ -26,6 +26,8 @@ public class ForgeManager : MonoBehaviour
    [SerializeField] [NotNull] private TMP_Text debugText;
 
     [SerializeField] private ParticleSystem Stars1, Stars2;
+    [SerializeField] private ParticleSystem bubbles;
+    [SerializeField] private AudioSource GoodGradeSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class ForgeManager : MonoBehaviour
         ReadSwipeInput.Instance.OnSwipeRight += OnSwipeRight;
         if(MobileNetworkClient.Instance != null)
         MobileNetworkClient.Instance.OnMetalReceived += OnMetalReceived;
+        bubbles.GetComponent<ParticleSystem>();
     }
 
     private void OnMetalReceived(SendMetalResponse obj)
@@ -84,7 +87,6 @@ public class ForgeManager : MonoBehaviour
             if (timeOverMargin <= 0 && timeUnderMargin >= 0)
             {
                 grade = 10;
-
             }
             else
             {
@@ -93,21 +95,20 @@ public class ForgeManager : MonoBehaviour
                 {
                     grade -= timeOverMargin;
                 }
-
                 if (timeUnderMargin < 0)
                 {
                     grade += timeUnderMargin;
                 }
-
             }
             if (grade == 10)
             {
                 Stars1.Play();
                 Stars2.Play();
+                GoodGradeSound.Play();
             }
         }
     }
-            private void OnSwipeRight()
+    private void OnSwipeRight()
     {
         // timer = 5 
         // cooktime = 5
@@ -175,6 +176,7 @@ public class ForgeManager : MonoBehaviour
         currentHeatMargin = mD.heatMargin;
         currentCookTime = mD.cookTime;
         moltenMetal.GetComponent<MeshRenderer>().material = helper.GetMetalData(currentlyInForge).moltenMat;
+        bubbles.GetComponent<Renderer>().material = helper.GetMetalData(currentlyInForge).mat;
         StartCoroutine(AddNewMetal());
         
     }
