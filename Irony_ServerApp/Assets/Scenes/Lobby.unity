@@ -4425,7 +4425,7 @@ MonoBehaviour:
   spawnX: -60
   startY: 275
   spaceIncrements: 50
-  timePerRoundInSeconds: 20
+  timePerRoundInSeconds: 180
   bufferSeconds: 3
   timeBetweenOrders: 30
   timerText: {fileID: 1031345174}

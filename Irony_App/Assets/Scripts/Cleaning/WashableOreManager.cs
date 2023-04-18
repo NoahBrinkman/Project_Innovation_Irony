@@ -56,8 +56,8 @@ public class WashableOreManager : MonoBehaviour
         if (currentOre != null)
         {
 
-            cleanLevelText.text =
-                $"Clean Level: {(currentOre.cleanEnoughToSend ? "<color=green>" : "")}{currentOre.cleaningValue.ToString("F2")}{(currentOre.cleanEnoughToSend ? "</color>" : "")}";
+          //  cleanLevelText.text =
+            //    $"Clean Level: {(currentOre.cleanEnoughToSend ? "<color=green>" : "")}{currentOre.cleaningValue.ToString("F2")}{(currentOre.cleanEnoughToSend ? "</color>" : "")}";
             cleanMeter.UpdateIndicatorPosition(currentOre);
         }
         else cleanLevelText.text = "All done for now!";

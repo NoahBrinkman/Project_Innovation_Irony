@@ -9296,7 +9296,7 @@ MonoBehaviour:
   minimumRotationalInput: 0.03
   minimumaximumRotationalInput: 0.5
   pouringAdditionMultiplier: 1
-  moltenMetalsInForge: 020000000100000002000000
+  moltenMetalsInForge: 
   currentlyChosenMold: {fileID: 0}
   bucket: {fileID: 86878132}
   rotationIntensity: 1

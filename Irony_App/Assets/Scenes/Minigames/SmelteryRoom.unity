@@ -8647,7 +8647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helper: {fileID: 11400000, guid: c20d37fb385128a4299f2a89c9712590, type: 2}
-  forgeBacklog: 01000000020000000300000004000000
+  forgeBacklog: 
   currentlyInForge: 0
   gradeSubtractionMultiplier: 2
   moltenMetal: {fileID: 1357050854}
