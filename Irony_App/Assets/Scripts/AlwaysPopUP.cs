@@ -14,6 +14,6 @@ public class AlwaysPopUP : MonoBehaviour
     {
         transform.localScale = new Vector3();
         transform.DOScale(Vector3.one, duration).SetEase(easeMode);
-        audio.Play();
+       if(audio !=null) audio.Play();
     }
 }
